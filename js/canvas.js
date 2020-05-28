@@ -1,34 +1,44 @@
 function setup() {
-	// Canvas
+	// Create canvas
 	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
 	canvas.parent('wrapper');
 	frameRate(15);
 }
 
 function draw() {
+	// Reset canvas
 	background("#4E4A4E");
-	// Move
-	if (player != null && player.is_moving) {
-		player.move(mouseX, mouseY);
-	}
-	// Display room, player, and ghosts
+	// If player and room are defined
 	if (player != null && room != null) {
-		room.display();
-		player.display();
-		for (var k = 0; k < ghosts.length; k++) {
-			ghosts[k].display();
+		// Move player with keyboard
+		if (!player.is_mouse_moving) {
+			isArrowKeyPressed() ? player.startArrowMoving() : player.stopArrowMoving()
+			if (keyIsDown(LEFT_ARROW )) { player.move(player.x - TILESIZE, player.y) }
+			if (keyIsDown(RIGHT_ARROW)) { player.move(player.x + TILESIZE, player.y) }
+			if (keyIsDown(UP_ARROW   )) { player.move(player.x, player.y - TILESIZE) }
+			if (keyIsDown(DOWN_ARROW )) { player.move(player.x, player.y + TILESIZE) }
 		}
+		// Move player with mouse
+		if (player.is_mouse_moving) { player.move(mouseX, mouseY); }
+		// Display room
+		room.display();
+		// Display ghost players
+		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display(); }
+		// Display player
+		player.display();
 	}
 }
 
 function mousePressed() {
-	if (player != null) {
-		player.startMoving();
-	}
+	// Set moving flag on player
+	if (player != null) { player.startMouseMoving(); }
 }
 
 function mouseReleased() {
-	if (player != null) {
-		player.stopMoving();
-	}
+	// Unset moving flag on player
+	if (player != null) { player.stopMouseMoving(); }
+}
+
+function isArrowKeyPressed() {
+	return keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW);
 }
