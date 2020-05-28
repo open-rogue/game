@@ -56,7 +56,7 @@ class Player {
   }
 
   isMoving() {
-    return this.is_arrow_moving || this.is_mouse_moving;
+    return this.is_moving || this.is_arrow_moving || this.is_mouse_moving;
   }
 
   display() {
