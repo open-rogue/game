@@ -6,6 +6,8 @@ class Player {
     this.dir = dir;
     this.is_player = is_player;
     this.is_moving = is_moving;
+    this.is_mouse_moving = false;
+    this.is_arrow_moving = false;
     this.latestTime = Infinity;
     this.anim_speed = 4;
     this.anim_count = 0;
@@ -33,13 +35,28 @@ class Player {
     }
   }
 
-  startMoving() {
-    this.is_moving = true;
+  startMouseMoving() {
+    this.is_mouse_moving = true;
   }
 
-  stopMoving() {
-    this.is_moving = false;
+  stopMouseMoving() {
+    this.is_mouse_moving = false;
     this.submit();    
+  }
+
+  startArrowMoving() {
+    this.is_arrow_moving = true;
+  }
+
+  stopArrowMoving() {
+    if (this.is_arrow_moving) {
+      this.is_arrow_moving = false;
+      this.submit();
+    }
+  }
+
+  isMoving() {
+    return this.is_arrow_moving || this.is_mouse_moving;
   }
 
   display() {
@@ -49,7 +66,7 @@ class Player {
       fill(128);
     }
     //ellipse(this.x, this.y, 16, 16);
-    if (!this.is_moving) {
+    if (!this.isMoving()) {
       image((this.dir.x < 0) ? player_left_img : player_right_img, this.x - TILESIZE/2, this.y - TILESIZE/2);
     } else {
       if (this.anim_frame == 0) {
@@ -68,7 +85,7 @@ class Player {
   		x: this.x,
   		y: this.y,
   		dir: [this.dir.x, this.dir.y],
-      isMoving: this.is_moving,
+      isMoving: this.isMoving(),
       animFrame: this.anim_frame,
       lastAction: firebase.database.ServerValue.TIMESTAMP
   	};
