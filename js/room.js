@@ -19,7 +19,7 @@ class Tile {
   }
 }
 
-class TileMap {
+class Room {
   constructor(room_id) {
     this.room_id = room_id;
     this.tiles = [];
