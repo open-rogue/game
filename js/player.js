@@ -59,6 +59,7 @@ class Player {
       }
     }
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
+    textAlign(CENTER, CENTER);
   	text(this.name, this.x, this.y + 32);
   }
 
@@ -83,36 +84,36 @@ class Player {
     // Check canvas edge collision and teleportation
     // North
     if (new_y - (TILESIZE / 2) < 0) {
-      if (tilemap.north > -1) {
-        print(tilemap.north);
-        tilemap = new TileMap(tilemap.north);
+      if (room.north > -1) {
+        print(room.north);
+        room = new Room(room.north);
         this.y = 32;
       }
       return false;
     }
     // East
     if (new_x + (TILESIZE / 4) > width) {
-      if (tilemap.east > -1) {
-        print(tilemap.east);
-        tilemap = new TileMap(tilemap.east);
+      if (room.east > -1) {
+        print(room.east);
+        room = new Room(room.east);
         this.x = 32;
       }
       return false;
     }
     // South
     if (new_y + (TILESIZE / 2) > height) {
-      if (tilemap.south > -1) {
-        print(tilemap.south);
-        tilemap = new TileMap(tilemap.south);
+      if (room.south > -1) {
+        print(room.south);
+        room = new Room(room.south);
         this.y = height - 32;
       }
       return false;
     }
     // West
     if (new_x - (TILESIZE / 4) < 0) {
-      if (tilemap.west > -1) {
-        print(tilemap.west);
-        tilemap = new TileMap(tilemap.west);
+      if (room.west > -1) {
+        print(room.west);
+        room = new Room(room.west);
         this.x = width - 32;
       }
       return false;
@@ -124,8 +125,8 @@ class Player {
     //  return false;
     //}
     // Check wall tile collision
-    for (var k = 0; k < tilemap.tiles.length; k++) {
-      var tile = tilemap.tiles[k];
+    for (var k = 0; k < room.tiles.length; k++) {
+      var tile = room.tiles[k];
       if (tile.is_wall) {
         if (createVector(new_x - tile.x(), new_y - tile.y()).mag() < 32) {
           return false;

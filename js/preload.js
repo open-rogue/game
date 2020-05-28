@@ -2,6 +2,7 @@ const TILESIZE = 32;
 const MAP_WIDTH = 16;
 const MAP_HEIGHT = 12;
 const PLAYER_SPEED = 8;
+const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 
 let player_left_img;
 let player_right_img;
@@ -9,13 +10,16 @@ let player_right_img;
 let tileset = [];
 
 let canvas;
-let tilemap;
+let room;
 let player;
 let ghosts = [];
 let database;
 let rooms;
+let player_name;
 
 function preload() {
+	// Get player name
+	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
 	// Firebase
 	var firebaseConfig = {
 		apiKey: "AIzaSyAmxjDLZrtiWjQGkekCdTXKx5zCbLDJP28",
