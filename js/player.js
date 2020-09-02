@@ -104,9 +104,9 @@ class Player {
     // North
     if (new_y - (TILESIZE / 2) < 0) {
       if (room.north > -1) {
-        print(room.north);
-        room = new Room(room.north);
+        print("Moved to room", room.north);
         this.room_id = room.north;
+        room = new Room(room.north);
         this.y = 32;
       }
       return false;
@@ -114,9 +114,9 @@ class Player {
     // East
     if (new_x + (TILESIZE / 4) > width) {
       if (room.east > -1) {
-        print(room.east);
-        room = new Room(room.east);
+        print("Moved to room", room.east);
         this.room_id = room.east;
+        room = new Room(room.east);
         this.x = 32;
       }
       return false;
@@ -124,9 +124,9 @@ class Player {
     // South
     if (new_y + (TILESIZE / 2) > height) {
       if (room.south > -1) {
-        print(room.south);
-        room = new Room(room.south);
+        print("Moved to room", room.south);
         this.room_id = room.south;
+        room = new Room(room.south);
         this.y = height - 32;
       }
       return false;
@@ -134,9 +134,9 @@ class Player {
     // West
     if (new_x - (TILESIZE / 4) < 0) {
       if (room.west > -1) {
-        print(room.west);
-        room = new Room(room.west);
+        print("Moved to room", room.west);
         this.room_id = room.west;
+        room = new Room(room.west);
         this.x = width - 32;
       }
       return false;
