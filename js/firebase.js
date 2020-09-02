@@ -15,7 +15,7 @@ function gotPlayerData(data) {
 		// Assign values
 		if (name != player_name && player != null) {
 			// Ghost
-			if (player.latestTime - time < PLAYER_TIMEOUT && player.room == room_id) {
+			if (player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
 				ghosts.push(new Player(name, x, y, dir, false, is_moving, anim_frame));
 			}
 		} else {
