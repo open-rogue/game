@@ -3,11 +3,12 @@ class Tile {
   	this.i = i;
     this.j = j;
     this.type = type;
-    this.is_wall = (type != 0);
+    this.is_wall = COLLIDERS.includes(type);
   }
 
   display() {
-    image(tileset[this.type], this.i * TILESIZE, this.j * TILESIZE);
+    var key = (this.type in tileset) ? this.type : "NULL";
+    image(tileset[key], this.i * TILESIZE, this.j * TILESIZE);
   }
 
   x() {

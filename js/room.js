@@ -11,7 +11,7 @@ class Room {
         for (var j = 0; j < MAP_HEIGHT; j++) {
             for (var i = 0; i < MAP_WIDTH; i++) {
                 var index = (j * MAP_WIDTH) + i;
-                var type = int(this.data.charAt(index));
+                var type = this.data[index];
                 this.tiles.push(new Tile(i, j, type));
             }
         }
