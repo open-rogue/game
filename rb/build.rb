@@ -9,15 +9,20 @@ require './rb/room.rb'
 room = Room.new(1)
 
 room.fill('-')     									# Sets floor
-room.row(0, '#')   									# Sets top wall
+room.row(0, '=')   									# Sets top wall
+room.row(1, '#')   									# Sets top wall
+room.row(room.h - 1, '=')   				# Sets bottom wall
 room.col(0, '=')   									# Sets left wall
 room.col(room.w - 1, '=') 					# Sets right wall
+
+room.tile(4, 5, "?")
 				
 room.draw()													# Draws room to console
 
 room.replace('-', 'STONE_FLOOR')    # After layout is complete
 room.replace('=', 'STONE_TOP')      # set true image values in
 room.replace('#', 'STONE_BRICK')    # placeholders place
+room.replace('?', 'TEST')
 
 room.east = 2
 
