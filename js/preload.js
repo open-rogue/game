@@ -20,6 +20,7 @@ let player_name;
 function preload() {
 	// Get player name
 	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
+	player_name = player_name.substr(0, 16);
 	// Firebase
 	var firebaseConfig = {
 		apiKey: "AIzaSyAmxjDLZrtiWjQGkekCdTXKx5zCbLDJP28",
