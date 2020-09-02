@@ -3,6 +3,7 @@ class Player {
   	this.name = name
     this.x = x;
     this.y = y;
+    this.room = 1;
     this.dir = dir;
     this.is_player = is_player;
     this.is_moving = is_moving;
@@ -83,7 +84,8 @@ class Player {
   submit() {
   	var data = {
   		x: this.x,
-  		y: this.y,
+      y: this.y,
+      room: this.room,
   		dir: [this.dir.x, this.dir.y],
       isMoving: this.isMoving(),
       animFrame: this.anim_frame,
@@ -104,6 +106,7 @@ class Player {
       if (room.north > -1) {
         print(room.north);
         room = new Room(room.north);
+        this.room = room.north;
         this.y = 32;
       }
       return false;
@@ -113,6 +116,7 @@ class Player {
       if (room.east > -1) {
         print(room.east);
         room = new Room(room.east);
+        this.room = room.east;
         this.x = 32;
       }
       return false;
@@ -122,6 +126,7 @@ class Player {
       if (room.south > -1) {
         print(room.south);
         room = new Room(room.south);
+        this.room = room.south;
         this.y = height - 32;
       }
       return false;
@@ -131,6 +136,7 @@ class Player {
       if (room.west > -1) {
         print(room.west);
         room = new Room(room.west);
+        this.room = room.west;
         this.x = width - 32;
       }
       return false;
