@@ -7,6 +7,7 @@ function gotPlayerData(data) {
 		var name = names[k];
 		var x = records[name].x;
 		var y = records[name].y;
+		var room_id = records[name].room;
 		var dir = createVector(records[name].dir[0], records[name].dir[1]);
 		var time = records[name].lastAction;
 		var is_moving = records[name].isMoving;
@@ -14,7 +15,7 @@ function gotPlayerData(data) {
 		// Assign values
 		if (name != player_name && player != null) {
 			// Ghost
-			if (player.latestTime - time < PLAYER_TIMEOUT) {
+			if (player.latestTime - time < PLAYER_TIMEOUT && player.room == room_id) {
 				ghosts.push(new Player(name, x, y, dir, false, is_moving, anim_frame));
 			}
 		} else {
