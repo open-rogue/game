@@ -3,7 +3,7 @@ class Room
 	attr_accessor :north, :east, :south, :west
 
 	def initialize(room_id)
-		@w, @h, @north, @east, @south, @west = 16, 12, -1, -1, -1, -1
+		@w, @h, @north, @east, @south, @west = 24, 16, -1, -1, -1, -1
 		@id, @data = room_id, Array.new(@w * @h)
 	end
 

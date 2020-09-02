@@ -2,13 +2,12 @@ class Tile {
   constructor(i, j, type) {
   	this.i = i;
     this.j = j;
-    this.type = type;
-    this.is_wall = COLLIDERS.includes(type);
+    this.type = (type in tileset) ? type : "NULL";
+    this.is_wall = COLLIDERS.includes(this.type);
   }
 
   display() {
-    var key = (this.type in tileset) ? this.type : "NULL";
-    image(tileset[key], this.i * TILESIZE, this.j * TILESIZE);
+    image(tileset[this.type], this.i * TILESIZE, this.j * TILESIZE);
   }
 
   x() {
