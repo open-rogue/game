@@ -68,17 +68,17 @@ class Player {
     }
     //ellipse(this.x, this.y, 16, 16);
     if (!this.isMoving()) {
-      image((this.dir.x < 0) ? player_left_img : player_right_img, this.x - TILESIZE/2, this.y - TILESIZE/2);
+      image((this.dir.x < 0) ? player_left_img : player_right_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
     } else {
       if (this.anim_frame == 0) {
-        image((this.dir.x < 0) ? player_left_walk_a_img : player_right_walk_a_img, this.x - TILESIZE/2, this.y - TILESIZE/2);
+        image((this.dir.x < 0) ? player_left_walk_a_img : player_right_walk_a_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       } else {
-        image((this.dir.x < 0) ? player_left_walk_b_img : player_right_walk_b_img, this.x - TILESIZE/2, this.y - TILESIZE/2);
+        image((this.dir.x < 0) ? player_left_walk_b_img : player_right_walk_b_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       }
     }
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
     textAlign(CENTER, CENTER);
-  	text(this.name, this.x, this.y + 32);
+  	text(this.name, this.x, this.y + TILESIZE);
   }
 
   submit() {

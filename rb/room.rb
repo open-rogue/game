@@ -15,7 +15,9 @@ class Room
 
 	def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
 
-	def row(j, t); (0...@w).each { |i| @data[ix(i, j)] = t }; end
+  def row(j, t); (0...@w).each { |i| @data[ix(i, j)] = t }; end
+  
+  def random_fill(t, r); @data.map! { |k| rand < r ? t : k }; end
 
 	def replace(a, b); @data.map! { |c| (a == c) ? b : c }; end
 

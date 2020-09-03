@@ -1,4 +1,4 @@
-const TILESIZE = 32;
+const TILESIZE = 24;
 const MAP_WIDTH = 24;
 const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 8;
@@ -6,7 +6,10 @@ const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const COLLIDERS = [
 	"NULL",
 	"STONE_TOP",
-	"STONE_BRICK"
+	"STONE_BRICK",
+	"OAK_TREE",
+	"FIR_TREE",
+	"PINE_TREE"
 ]
 
 let player_left_img;
@@ -59,4 +62,10 @@ function preload() {
 	tileset["STONE_FLOOR"] = loadImage('img/stone_floor.png');
 	tileset["STONE_TOP"] = loadImage('img/stone_top.png');
 	tileset["STONE_BRICK"] = loadImage('img/stone_brick.png');
+	tileset["GROUND"] = loadImage('img/ground.png');
+	tileset["GRASS"] = loadImage('img/grass.png');
+	tileset["FLOWERS"] = loadImage('img/flowers.png');
+	tileset["OAK_TREE"] = loadImage('img/oak_tree.png');
+	tileset["PINE_TREE"] = loadImage('img/pine_tree.png');
+	tileset["FIR_TREE"] = loadImage('img/fir_tree.png');
 }
