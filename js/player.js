@@ -106,7 +106,7 @@ class Player {
         print("Moved to room", room.north);
         this.room_id = room.north;
         room = new Room(room.north);
-        this.y = 32;
+        this.y = TILESIZE;
       }
       return false;
     }
@@ -116,7 +116,7 @@ class Player {
         print("Moved to room", room.east);
         this.room_id = room.east;
         room = new Room(room.east);
-        this.x = 32;
+        this.x = TILESIZE;
       }
       return false;
     }
@@ -126,7 +126,7 @@ class Player {
         print("Moved to room", room.south);
         this.room_id = room.south;
         room = new Room(room.south);
-        this.y = height - 32;
+        this.y = height - TILESIZE;
       }
       return false;
     }
@@ -136,7 +136,7 @@ class Player {
         print("Moved to room", room.west);
         this.room_id = room.west;
         room = new Room(room.west);
-        this.x = width - 32;
+        this.x = width - TILESIZE;
       }
       return false;
     }
@@ -150,7 +150,7 @@ class Player {
     for (var k = 0; k < room.tiles.length; k++) {
       var tile = room.tiles[k];
       if (tile.is_wall) {
-        if (createVector(new_x - tile.x(), new_y - tile.y()).mag() < 32) {
+        if (createVector(new_x - tile.x(), new_y - tile.y()).mag() < TILESIZE * 0.8) {
           return false;
         }
       }
