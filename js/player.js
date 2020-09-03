@@ -19,11 +19,10 @@ class Player {
   }
 
   move(x, y) {
-    var vector = createVector(x - this.x, y - this.y);
-    var mag = (vector.mag() > PLAYER_SPEED) ? PLAYER_SPEED : vector.mag();
-  	this.dir = vector.normalize();
-    var new_x = this.x + this.dir.x * mag;
-    var new_y = this.y + this.dir.y * mag;
+    var vector = createVector(x - this.x, y - this.y).limit(PLAYER_SPEED);
+    var new_x = this.x + vector.x;
+    var new_y = this.y + vector.y;
+    this.dir = vector.normalize();
     if (this.checkPos(new_x, new_y)) {
       this.x = new_x;
       this.y = new_y;
