@@ -42,7 +42,7 @@ function errPlayerData(err) {
 function gotRoomData(data) {
 	rooms = data.val();
 	if (room == null) {
-		room = new Room(1);
+		room = new Room(2);
 	}
 }
 

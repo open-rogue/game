@@ -3,6 +3,7 @@ function setup() {
 	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
 	canvas.parent('wrapper');
 	frameRate(15);
+	noSmooth();
 }
 
 function draw() {
