@@ -8,7 +8,7 @@ function setup() {
 
 function draw() {
 	// Reset canvas
-	background("#4E4A4E");
+	background("#222323");
 	// If player and room are defined
 	if (player != null && room != null) {
 		// Move player with keyboard
