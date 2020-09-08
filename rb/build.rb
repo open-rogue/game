@@ -6,8 +6,7 @@ room = Room.new(2)
 room.fill(" ")
 room.random_fill('*', 0.1)
 
-map = ""
-map += "OOOOOOOOOO    OOOOOOOOOO"
+map  = "OOOOOOOOOO    OOOOOOOOOO"
 map += "O                      O"
 map += "O                      O"
 map += "O                      O"
