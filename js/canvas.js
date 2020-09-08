@@ -1,7 +1,7 @@
 function setup() {
 	// Create canvas
 	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
-	canvas.parent('wrapper');
+	canvas.parent('game');
 	frameRate(15);
 	noSmooth();
 }

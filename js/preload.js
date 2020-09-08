@@ -9,7 +9,18 @@ const COLLIDERS = [
 	"STONE_BRICK",
 	"OAK_TREE",
 	"FIR_TREE",
-	"PINE_TREE"
+	"PINE_TREE",
+	"WALL_EW",
+	"WALL_ES",
+	"WALL_SW",
+	"WALL_NE",
+	"WALL_NW",
+	"WALL_NSE",
+	"WALL_NSW",
+	//"WALL_NSE_N",
+	"WALL_NSE_S",
+	//"WALL_NSW_N",
+	"WALL_NSW_S"
 ]
 
 let player_left_img;
@@ -68,4 +79,17 @@ function preload() {
 	tileset["OAK_TREE"] = loadImage('img/oak_tree.png');
 	tileset["PINE_TREE"] = loadImage('img/pine_tree.png');
 	tileset["FIR_TREE"] = loadImage('img/fir_tree.png');
+	tileset["WALL_EW"] = loadImage('img/wall_ew.png');
+	tileset["WALL_ES"] = loadImage('img/wall_es.png');
+	tileset["WALL_SW"] = loadImage('img/wall_sw.png');
+	tileset["WALL_NE"] = loadImage('img/wall_ne.png');
+	tileset["WALL_NW"] = loadImage('img/wall_nw.png');
+	tileset["WALL_NSE"] = loadImage('img/wall_nse.png');
+	tileset["WALL_NSW"] = loadImage('img/wall_nsw.png');
+	tileset["WALL_NSE_N"] = loadImage('img/wall_nse_n.png');
+	tileset["WALL_NSE_S"] = loadImage('img/wall_nse_s.png');
+	tileset["WALL_NSW_N"] = loadImage('img/wall_nsw_n.png');
+	tileset["WALL_NSW_S"] = loadImage('img/wall_nsw_s.png');
+	tileset["STAIRS_UP"] = loadImage('img/stairs_up.png');
+	tileset["STAIRS_DOWN"] = loadImage('img/stairs_down.png');
 }

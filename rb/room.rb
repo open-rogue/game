@@ -2,11 +2,21 @@ KEY_PATH = "./files/key.json"
 
 REF = [
   [' ', 'GROUND'],
+  ['G', 'GROUND'],
   ['"', 'GRASS'],
   ['*', 'FLOWERS'],
   ['O', 'OAK_TREE'],
   ['F', 'FIR_TREE'],
   ['P', 'PINE_TREE'],
+  ['─', 'WALL_EW'],
+  ['<', 'WALL_NSW'],
+  ['>', 'WALL_NSE'],
+  ['┌', 'WALL_ES'],
+  ['┐', 'WALL_SW'],
+  ['└', 'WALL_NE'],
+  ['┘', 'WALL_NW'],
+  ['^', 'STAIRS_UP'],
+  ['˅', 'STAIRS_DOWN']
 ]
 
 class Room
