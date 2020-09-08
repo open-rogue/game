@@ -1,15 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
   margin: 0;
   width: 100vw;
   overflow-x: hidden;
-  color: #FFFFFF;
+  background-color: #222323;
+  user-select: none;
 }
 
-
-#wrapper {
+#wrapper, #game, #menu {
   display: flex;
   width: 100vw;
   height: 100vh;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+#menu ul {
+  list-style: none;
+  font-family: "Press Start 2P", monospace;
+  color: white;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+}
+
+#menu li {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 16;
+  transition-duration: 0.2s;
+  opacity: 1;
+}
+
+#menu li:hover {
+  opacity: 0.5;
+}
+
+#menu p {
+  display: inline-block;
+  cursor: default;
+}
+
+#version {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 32px;
+  font-size: 0.8em;
+  opacity: 0.8;
+  text-align: right;
+  font-family: "Press Start 2P", monospace;
+  color: white;
+  cursor: default;
 }
