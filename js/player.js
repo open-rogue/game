@@ -106,7 +106,7 @@ class Player {
         print("Moved to room", room.north);
         this.room_id = room.north;
         room = new Room(room.north);
-        this.y = TILESIZE;
+        this.y = height - TILESIZE;
       }
       return false;
     }
@@ -126,7 +126,7 @@ class Player {
         print("Moved to room", room.south);
         this.room_id = room.south;
         room = new Room(room.south);
-        this.y = height - TILESIZE;
+        this.y = TILESIZE;
       }
       return false;
     }
