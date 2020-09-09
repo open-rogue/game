@@ -25,6 +25,7 @@ class Player {
     var new_x = this.x + vector.x;
     var new_y = this.y + vector.y;
     this.dir = vector.normalize();
+    // Check dir
     if (this.checkPos(new_x, new_y)) {
       this.x = new_x;
       this.y = new_y;
@@ -33,8 +34,32 @@ class Player {
         this.anim_count = 0;
         this.anim_frame = (this.anim_frame == 0) ? 1 : 0;
       }
-      this.submit();      
+      this.submit();
+      return true;
     }
+    // Check only X vector
+    if (this.checkPos(new_x, this.y)) {
+      this.x = new_x;
+      this.anim_count++;
+      if (this.anim_count >= this.anim_speed) {
+        this.anim_count = 0;
+        this.anim_frame = (this.anim_frame == 0) ? 1 : 0;
+      }
+      this.submit();
+      return true;
+    }
+    // Check only Y vector
+    if (this.checkPos(this.x, new_y)) {
+      this.y = new_y;
+      this.anim_count++;
+      if (this.anim_count >= this.anim_speed) {
+        this.anim_count = 0;
+        this.anim_frame = (this.anim_frame == 0) ? 1 : 0;
+      }
+      this.submit();
+      return true;
+    }
+    return false;
   }
 
   startMouseMoving() {
@@ -104,6 +129,10 @@ class Player {
 
   checkPos(new_x, new_y) {
     // Check canvas edge collision and teleportation
+    var new_left   = new_x - (TILESIZE / 2);
+    var new_right  = new_x + (TILESIZE / 2);
+    var new_top    = new_y - (TILESIZE / 2);
+    var new_bottom = new_y + (TILESIZE / 2);
     // North
     if (new_y - (TILESIZE / 2) < 0) {
       if (room.north > -1) {
@@ -144,18 +173,14 @@ class Player {
       }
       return false;
     }
-    //if (new_x - (TILESIZE / 4) < 0 || new_x + (TILESIZE / 4) > width) {
-    //  return false;
-    //}
-    //if (new_y - (TILESIZE / 2) < 0 || new_y + (TILESIZE / 2) > height) {
-    //  return false;
-    //}
     // Check wall tile collision
     for (var k = 0; k < room.tiles.length; k++) {
       var tile = room.tiles[k];
       if (tile.is_wall) {
-        if (createVector(new_x - tile.x(), new_y - tile.y()).mag() < TILESIZE * 0.8) {
-          return false;
+        if ((new_right > tile.left()) && (new_left < tile.right())) {
+          if ((new_bottom > tile.top()) && (new_top < tile.bottom())) {
+            return false;
+          }
         }
       }
     }

@@ -17,4 +17,20 @@ class Tile {
   y() {
     return (this.j * TILESIZE) + (TILESIZE / 2);
   }
+
+  left() {
+    return this.i * TILESIZE;
+  }
+
+  right() {
+    return this.left() + TILESIZE;
+  }
+
+  top() {
+    return this.j * TILESIZE;
+  }
+
+  bottom() {
+    return this.top() + TILESIZE;
+  }
 }
