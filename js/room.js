@@ -9,13 +9,16 @@ class Room {
         this.south = rooms[this.room_id].south;
         this.west = rooms[this.room_id].west;
         // Set warps
-        for (var j = 0; j < MAP_HEIGHT; j++) {
-            for (var i = 0; i < MAP_WIDTH; i++) {
-                var index = (j * MAP_WIDTH) + i;
-                var room = rooms[this.room_id].warps[index];
-                if (room != -1) {
-                    this.warps.push(new Warp(i, j, room));
-                }
+        console.log(rooms[this.room_id].warps);
+        for (var k = 0; k < rooms[this.room_id].warps.length; k++) {
+            var warp = rooms[this.room_id].warps[k];
+            var warp_x  = warp[0];
+            var warp_y  = warp[1];
+            var room_id = warp[2];
+            var room_x  = warp[3];
+            var room_y  = warp[4];
+            if (room_id != -1) {
+                this.warps.push(new Warp(warp_x, warp_y, room_id, room_x, room_y))
             }
         }
         // Set tiles

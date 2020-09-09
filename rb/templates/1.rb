@@ -29,7 +29,7 @@ room.tile(16, 4, "WALL_NSE_N")
 room.tile(16, 6, "WALL_NSE_S")
 room.tile(10, 5, "WALL_NSW_N")
 room.tile(10, 8, "WALL_NSW_S")
-room.warp(9, 4, 3)
+room.warp(9, 4, 3, 9, 6)
 
 
 room.reformat()
