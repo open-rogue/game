@@ -3,8 +3,8 @@ require './rb/include.rb'
 room = Room.new(5)
 room.color = "#661010"
 
-room.fill("VORPAL_GROUND")
-room.random_fill('VORPAL_FIRE', 0.05)
+room.fill("GROUND")
+room.random_fill('FIRE', 0.05)
 
        #012345678901234567890123
 map  = "CCCCCCCCCCCCCCCCCCCCCCCC" #0

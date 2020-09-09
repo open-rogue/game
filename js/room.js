@@ -43,6 +43,7 @@ class Room {
     }
 
     display() {
+		background(this.color);
 		document.getElementById("game").style.backgroundColor = this.color;
         for (var k = 0; k < this.tiles.length; k++) {
             this.tiles[k].display();
