@@ -18,7 +18,7 @@ map += "O    <GGGGGGGGGG>      O" #7
 map += "O    <GGGGGGGGGG>      O" #8
 map += "O    └────└─────┘      O" #9
 map += "O                      O" #0
-map += "O                      O" #1
+map += "O             S        O" #1
 map += "O                      O" #2
 map += "O                      O" #3
 map += "O                      O" #4
@@ -30,6 +30,7 @@ room.tile(16, 6, "WALL_NSE_S")
 room.tile(10, 5, "WALL_NSW_N")
 room.tile(10, 8, "WALL_NSW_S")
 room.warp(9, 4, 3, 9, 6)
+room.sign(14, 11, "This is a test sign")
 
 
 room.reformat()

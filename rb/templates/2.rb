@@ -10,7 +10,7 @@ room.random_fill('*', 0.1)
 map  = "OOOOOOOOOO    OOOOOOOOOO" #0
 map += "O                      O" #1
 map += "O                      O" #2
-map += "O                      O" #3
+map += "O    S                 O" #3
 map += "O                      O" #4
 map += "O                      O" #5
 map += "O                      O" #6
@@ -25,6 +25,7 @@ map += "O                      O" #4
 map += "OOOOOOOOOOOOOOOOOOOOOOOO" #5
 
 room.overlay(map)
+room.sign(5, 3, "This game is in-development!")
 
 room.reformat()
 room.draw()

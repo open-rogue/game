@@ -16,7 +16,8 @@ REF = [
   ['└', 'WALL_NE'],
   ['┘', 'WALL_NW'],
   ['^', 'STAIRS_UP'],
-  ['˅', 'STAIRS_DOWN']
+  ['˅', 'STAIRS_DOWN'],
+  ['S', 'SIGN']
 ]
 
 class Room
@@ -25,7 +26,7 @@ class Room
 
 	def initialize(room_id, map = nil)
 		@id, @w, @h, @north, @east, @south, @west = room_id, 24, 16, -1, -1, -1, -1
-    @data, @warps = Array.new(@w * @h), [[-1, -1, -1, -1, -1]]
+    @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
 	end
 
@@ -36,6 +37,8 @@ class Room
   def tile(i, j, t); @data[ix(i, j)] = t; end
   
   def warp(i, j, r, x, y); @warps << [i, j, r, x, y]; end
+  
+  def sign(i, j, s); @signs << [i, j, s]; end
 
 	def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
 
@@ -54,6 +57,7 @@ class Room
       :room_id => @id, 
       :data => @data,
       :warps => @warps,
+      :signs => @signs,
       :north => @north,
       :east => @east,
       :south => @south,

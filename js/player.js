@@ -157,19 +157,29 @@ class Player {
         }
       }
     }
+    // Check sign
+    var is_sign = false;
+    for (var k = 0; k < room.signs.length; k++) {
+      var sign = room.signs[k];
+      if (createVector(new_x - sign.x(), new_y - sign.y()).mag() < TILESIZE * 2) {
+        document.getElementById("game-text").innerHTML = "\"" + sign.text + "\"";
+        is_sign = true;
+      }
+    }
+    if (!is_sign) {
+      document.getElementById("game-text").innerHTML = "&nbsp;";
+    }
     // Check warp collision
     for (var k = 0; k < room.warps.length; k++) {
       var warp = room.warps[k];
-      if (warp.room != -1) {
-        if (createVector(new_x - warp.x(), new_y - warp.y()).mag() < TILESIZE * 0.8) {
-          if (this.latestTime - this.lastWarp > this.warpCooldown) {
-            this.lastWarp = this.latestTime;
-            this.room_id = warp.room_id;
-            room = new Room(warp.room_id);
-            this.x = warp.room_x * TILESIZE;
-            this.y = warp.room_y * TILESIZE;
-            return false;
-          }
+      if (createVector(new_x - warp.x(), new_y - warp.y()).mag() < TILESIZE * 0.8) {
+        if (this.latestTime - this.lastWarp > this.warpCooldown) {
+          this.lastWarp = this.latestTime;
+          this.room_id = warp.room_id;
+          room = new Room(warp.room_id);
+          this.x = warp.room_x * TILESIZE;
+          this.y = warp.room_y * TILESIZE;
+          return false;
         }
       }
     }

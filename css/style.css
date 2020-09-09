@@ -17,6 +17,10 @@ body {
   flex-direction: column;
 }
 
+#game {
+  flex-direction: column-reverse;
+}
+
 #menu ul {
   list-style: none;
   font-family: "Press Start 2P", monospace;
@@ -41,6 +45,13 @@ body {
 #menu p {
   display: inline-block;
   cursor: default;
+}
+
+#game-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1em;
+  color: white;
+  padding-top: 32px;
 }
 
 #version {
