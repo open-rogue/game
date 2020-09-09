@@ -77,7 +77,9 @@ class Player {
         image((this.dir.x < 0) ? player_left_walk_b_img : player_right_walk_b_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       }
     }
+    stroke(255, 255, 255);
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
+    noStroke();
     textAlign(CENTER, CENTER);
   	text(this.name, this.x, this.y + TILESIZE);
   }
