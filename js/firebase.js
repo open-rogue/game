@@ -49,3 +49,7 @@ function gotRoomData(data) {
 function errRoomData(err) {
 
 }
+
+function dbTimestamp() {
+	return firebase.database.ServerValue.TIMESTAMP;
+}
