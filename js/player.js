@@ -3,7 +3,7 @@ class Player {
   	this.name = name
     this.x = x;
     this.y = y;
-    this.room_id = 1;
+    this.room_id = START_ROOM;
     this.dir = dir;
     this.is_player = is_player;
     this.is_moving = is_moving;

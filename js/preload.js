@@ -3,6 +3,7 @@ const MAP_WIDTH = 24;
 const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
+const START_ROOM = 2;
 const COLLIDERS = [
 	"NULL",
 	"STONE_TOP",
