@@ -4,3 +4,11 @@ class Sign extends Tile {
         this.text = text;
     }
 }
+
+function setGameText(caption) {
+    document.getElementById("game-text").innerHTML = "\"" + caption + "\"";
+}
+
+function clearGameText() {
+    document.getElementById("game-text").innerHTML = "&nbsp;";
+}

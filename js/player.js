@@ -189,12 +189,12 @@ class Player {
     for (var k = 0; k < room.signs.length; k++) {
       var sign = room.signs[k];
       if (createVector(new_x - sign.x(), new_y - sign.y()).mag() < TILESIZE * 2) {
-        document.getElementById("game-text").innerHTML = "\"" + sign.text + "\"";
+        setGameText(sign.text);
         is_sign = true;
       }
     }
     if (!is_sign) {
-      document.getElementById("game-text").innerHTML = "&nbsp;";
+      clearGameText();
     }
     // Check warp collision
     for (var k = 0; k < room.warps.length; k++) {
