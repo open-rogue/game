@@ -11,7 +11,7 @@ class Player {
     this.is_arrow_moving = false;
     this.latestTime = Infinity;
     this.lastWarp = 0;
-    this.warpCooldown = 2;
+    this.warpCooldown = 1000;
     this.anim_speed = 4;
     this.anim_count = 0;
     this.anim_frame = anim_frame;
@@ -162,10 +162,12 @@ class Player {
       var warp = room.warps[k];
       if (warp.room != -1) {
         if (createVector(new_x - warp.x(), new_y - warp.y()).mag() < TILESIZE * 0.8) {
-          if (this.latestTime - this.lastWarp > this.warpCooldown * 1000) {
+          if (this.latestTime - this.lastWarp > this.warpCooldown) {
             this.lastWarp = this.latestTime;
-            this.room_id = warp.room;
-            room = new Room(warp.room);
+            this.room_id = warp.room_id;
+            room = new Room(warp.room_id);
+            this.x = warp.room_x * TILESIZE;
+            this.y = warp.room_y * TILESIZE;
             return false;
           }
         }

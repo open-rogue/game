@@ -23,7 +23,7 @@ map += "                        " #4
 map += "                        " #5
 
 room.overlay(map)
-room.warp( 9, 4, 1)
+room.warp(9, 4, 1, 9, 6)
 
 
 room.reformat()
