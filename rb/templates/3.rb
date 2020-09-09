@@ -9,7 +9,7 @@ map  = "                        " #0
 map += "                        " #1
 map += "                        " #2
 map += "     ┌──────────┐       " #3
-map += "     <GGG˅GGGGGG>       " #4
+map += "     <GGG˅GG   G>       " #4
 map += "     <GGGGGGGGGG>       " #5
 map += "     <GGGGGGGGGG>       " #6
 map += "     <GGGGGGGGGG>       " #7
@@ -23,6 +23,9 @@ map += "                        " #4
 map += "                        " #5
 
 room.overlay(map)
+room.tile(12, 4, "CHAIR")
+room.tile(13, 4, "TABLE")
+room.tile(14, 4, "CHAIR")
 room.warp(9, 4, 1, 9, 6)
 
 
