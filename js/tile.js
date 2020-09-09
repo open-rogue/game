@@ -1,5 +1,5 @@
 class Tile {
-  constructor(i, j, type) {
+  constructor(i, j, type = "NULL") {
   	this.i = i;
     this.j = j;
     this.type = (type in tileset) ? type : "NULL";

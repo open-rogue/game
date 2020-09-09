@@ -24,8 +24,8 @@ class Room
 	attr_accessor :north, :east, :south, :west
 
 	def initialize(room_id, map = nil)
-		@w, @h, @north, @east, @south, @west = 24, 16, -1, -1, -1, -1
-    @id, @data = room_id, Array.new(@w * @h)
+		@id, @w, @h, @north, @east, @south, @west = room_id, 24, 16, -1, -1, -1, -1
+    @data, @warps = Array.new(@w * @h), Array.new(@w * @h) { -1 }
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
 	end
 
@@ -33,13 +33,14 @@ class Room
 
 	def fill(t); @data.map! { t }; end
 
-	def tile(i, j, t); @data[ix(i, j)] = t; end
+  def tile(i, j, t); @data[ix(i, j)] = t; end
+  
+  def warp(i, j, r); @warps[ix(i, j)] = r; end
 
 	def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
 
   def row(j, t); (0...@w).each { |i| @data[ix(i, j)] = t }; end
   
-  #room.random_fill('O', 0.02)
   def random_fill(t, r); @data.map! { |k| rand < r ? t : k }; end
 
   def overlay(map); map.split("").each_with_index { |k, i| @data[i] = k unless k == " " }; end
@@ -52,6 +53,7 @@ class Room
     { 
       :room_id => @id, 
       :data => @data,
+      :warps => @warps,
       :north => @north,
       :east => @east,
       :south => @south,
