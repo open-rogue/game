@@ -28,9 +28,7 @@ room.tile(13, 4, "TABLE")
 room.tile(14, 4, "CHAIR")
 room.warp(9, 4, 1, 9, 6)
 
-
 room.reformat()
-room.draw()
 
 room.save()
 
