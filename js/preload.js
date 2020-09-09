@@ -11,6 +11,7 @@ const COLLIDERS = [
 	"OAK_TREE",
 	"FIR_TREE",
 	"PINE_TREE",
+	"CHERUB_TREE",
 	//"SIGN",
 	"TABLE",
 	"WALL_EW",
@@ -77,11 +78,13 @@ function preload() {
 	tileset["STONE_TOP"] = loadImage('img/stone_top.png');
 	tileset["STONE_BRICK"] = loadImage('img/stone_brick.png');
 	tileset["GROUND"] = loadImage('img/ground.png');
+	tileset["VORPAL_GROUND"] = loadImage('img/vorpal_ground.png');
 	tileset["GRASS"] = loadImage('img/grass.png');
 	tileset["FLOWERS"] = loadImage('img/flowers.png');
 	tileset["OAK_TREE"] = loadImage('img/oak_tree.png');
 	tileset["PINE_TREE"] = loadImage('img/pine_tree.png');
 	tileset["FIR_TREE"] = loadImage('img/fir_tree.png');
+	tileset["CHERUB_TREE"] = loadImage('img/cherub_tree.png');
 	tileset["WALL_EW"] = loadImage('img/wall_ew.png');
 	tileset["WALL_ES"] = loadImage('img/wall_es.png');
 	tileset["WALL_SW"] = loadImage('img/wall_sw.png');
@@ -98,4 +101,8 @@ function preload() {
 	tileset["SIGN"] = loadImage('img/sign.png');
 	tileset["TABLE"] = loadImage('img/table.png');
 	tileset["CHAIR"] = loadImage('img/chair.png');
+	tileset["WARP_GREEN"] = loadImage('img/warp_green.png');
+	tileset["WARP_BLUE"] = loadImage('img/warp_blue.png');
+	tileset["FIRE"] = loadImage('img/fire.png');
+	tileset["VORPAL_FIRE"] = loadImage('img/vorpal_fire.png');
 }

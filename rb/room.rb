@@ -8,6 +8,7 @@ REF = [
   ['O', 'OAK_TREE'],
   ['F', 'FIR_TREE'],
   ['P', 'PINE_TREE'],
+  ['C', 'CHERUB_TREE'],
   ['─', 'WALL_EW'],
   ['<', 'WALL_NSW'],
   ['>', 'WALL_NSE'],
@@ -17,15 +18,18 @@ REF = [
   ['┘', 'WALL_NW'],
   ['^', 'STAIRS_UP'],
   ['˅', 'STAIRS_DOWN'],
-  ['S', 'SIGN']
+  ['S', 'SIGN'],
+  ['X', 'WARP_BLUE'],
+  ['F', 'FIRE']
 ]
 
 class Room
-  attr_accessor :id, :data, :w, :h
+  attr_accessor :id, :data, :w, :h, :color
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
-    @id, @w, @h, @north, @east, @south, @west = room_id, 24, 16, -1, -1, -1, -1
+    @id, @color = room_id, "#222323"
+    @w, @h, @north, @east, @south, @west = 24, 16, -1, -1, -1, -1
     @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
   end
@@ -54,7 +58,8 @@ class Room
 
   def export()
     {
-      :room_id => @id, 
+      :room_id => @id,
+      :color => @color,
       :data => @data,
       :warps => @warps,
       :signs => @signs,

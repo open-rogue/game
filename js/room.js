@@ -9,6 +9,7 @@ class Room {
         this.east = rooms[this.room_id].east;
         this.south = rooms[this.room_id].south;
         this.west = rooms[this.room_id].west;
+        this.color = rooms[this.room_id].color;
         // Set warps
         for (var k = 0; k < rooms[this.room_id].warps.length; k++) {
             var warp = rooms[this.room_id].warps[k];
@@ -42,6 +43,7 @@ class Room {
     }
 
     display() {
+		document.getElementById("game").style.backgroundColor = this.color;
         for (var k = 0; k < this.tiles.length; k++) {
             this.tiles[k].display();
         }
