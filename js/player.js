@@ -155,6 +155,18 @@ class Player {
         }
       }
     }
+    // Check warp collision
+    for (var k = 0; k < room.warps.length; k++) {
+      var warp = room.warps[k];
+      if (warp.room != -1) {
+        if (createVector(new_x - warp.x(), new_y - warp.y()).mag() < TILESIZE * 0.8) {
+          this.room_id = warp.room;
+          room = new Room(warp.room);
+          this.x -= TILESIZE;
+          return false;
+        }
+      }
+    }
     return true;
   }
 
