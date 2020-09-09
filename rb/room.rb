@@ -21,18 +21,18 @@ REF = [
 ]
 
 class Room
-	attr_accessor :id, :data, :w, :h
-	attr_accessor :north, :east, :south, :west
+  attr_accessor :id, :data, :w, :h
+  attr_accessor :north, :east, :south, :west
 
-	def initialize(room_id, map = nil)
-		@id, @w, @h, @north, @east, @south, @west = room_id, 24, 16, -1, -1, -1, -1
+  def initialize(room_id, map = nil)
+    @id, @w, @h, @north, @east, @south, @west = room_id, 24, 16, -1, -1, -1, -1
     @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
-	end
+  end
 
-	def ix(i, j); j * @w + i; end
+  def ix(i, j); j * @w + i; end
 
-	def fill(t); @data.map! { t }; end
+  def fill(t); @data.map! { t }; end
 
   def tile(i, j, t); @data[ix(i, j)] = t; end
   
@@ -40,7 +40,7 @@ class Room
   
   def sign(i, j, s); @signs << [i, j, s]; end
 
-	def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
+  def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
 
   def row(j, t); (0...@w).each { |i| @data[ix(i, j)] = t }; end
   
@@ -48,12 +48,12 @@ class Room
 
   def overlay(map); map.split("").each_with_index { |k, i| @data[i] = k unless k == " " }; end
 
-	def reformat(); REF.each { |a, b| @data.map! { |c| (a == c) ? b : c } }; end
+  def reformat(); REF.each { |a, b| @data.map! { |c| (a == c) ? b : c } }; end
 
   def draw(); (0...@h).each { |j| puts (0...@w).map { |i| @data[ix(i, j)][0] + " " }.join }; end
 
   def export()
-    { 
+    {
       :room_id => @id, 
       :data => @data,
       :warps => @warps,
@@ -65,7 +65,7 @@ class Room
     }
   end
 
-	def save()
+  def save()
     base_uri = 'https://machin-dev.firebaseio.com'
     auth_token = File.open(KEY_PATH).read
     firebase = Firebase::Client.new(base_uri, auth_token)
@@ -73,7 +73,7 @@ class Room
     response = firebase.set("mmo/rooms/#{@id}", export())
     puts response.success? ? "Room ##{@id} added to database" : "Room could not be added"
     return response.success?
-	end
+  end
 end
 
 def get_rooms()
