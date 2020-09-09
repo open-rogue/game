@@ -7,22 +7,22 @@ room.fill(" ")
 room.random_fill('*', 0.1)
 
        #012345678901234567890123
-map  = "OOOOOOOOOOOOOOOOOOOOOOOO" #0
-map += "OOOOOOOOOOOOOOOOOOOOOOOO" #1
-map += "OOOOOOOOOOOOOOOOOOOOOOOO" #2
-map += "OOOOOOOOO       OOOOOOOO" #3
+map  = "OCOOOOOOOOOOOOOCOOOOOOOO" #0
+map += "OOOOOOCOOOOOOOOOOOOOOOOO" #1
+map += "OOOOOOOOOOOOCOOOOOOOCOOO" #2
+map += "OOOCOOOOO       OOOOOOOO" #3
 map += "OOOOO               OOOO" #4
 map += "OOOO                 OOO" #5
 map += "            S         OO" #6
-map += "                      OO" #7
+map += "                      OC" #7
 map += "            X         OO" #8
 map += "                      OO" #9
-map += "OOOO                 OOO" #0
-map += "OOOOO               OOOO" #1
-map += "OOOOOOOOO       OOOOOOOO" #2
-map += "OOOOOOOOOOOOOOOOOOOOOOOO" #3
-map += "OOOOOOOOOOOOOOOOOOOOOOOO" #4
-map += "OOOOOOOOOOOOOOOOOOOOOOOO" #5
+map += "OOOO                 COO" #0
+map += "OCOOO               OOOO" #1
+map += "OOOOCOOOO       OOCOOOOO" #2
+map += "OOOOOOOOCOOOOOOOOOOOOOOC" #3
+map += "OCOOOOOOOOOOOOOCOOOOOOOO" #4
+map += "OOOOCOOOOOCOOOOOOOCOOOOO" #5
 
 room.overlay(map)
 

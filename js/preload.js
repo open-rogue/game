@@ -78,7 +78,6 @@ function preload() {
 	tileset["STONE_TOP"] = loadImage('img/stone_top.png');
 	tileset["STONE_BRICK"] = loadImage('img/stone_brick.png');
 	tileset["GROUND"] = loadImage('img/ground.png');
-	tileset["VORPAL_GROUND"] = loadImage('img/vorpal_ground.png');
 	tileset["GRASS"] = loadImage('img/grass.png');
 	tileset["FLOWERS"] = loadImage('img/flowers.png');
 	tileset["OAK_TREE"] = loadImage('img/oak_tree.png');
@@ -104,5 +103,4 @@ function preload() {
 	tileset["WARP_GREEN"] = loadImage('img/warp_green.png');
 	tileset["WARP_BLUE"] = loadImage('img/warp_blue.png');
 	tileset["FIRE"] = loadImage('img/fire.png');
-	tileset["VORPAL_FIRE"] = loadImage('img/vorpal_fire.png');
 }
