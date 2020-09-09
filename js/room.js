@@ -3,13 +3,13 @@ class Room {
         this.room_id = room_id;
         this.tiles = [];
         this.warps = [];
+        this.signs = [];
         this.data = rooms[this.room_id].data;
         this.north = rooms[this.room_id].north;
         this.east = rooms[this.room_id].east;
         this.south = rooms[this.room_id].south;
         this.west = rooms[this.room_id].west;
         // Set warps
-        console.log(rooms[this.room_id].warps);
         for (var k = 0; k < rooms[this.room_id].warps.length; k++) {
             var warp = rooms[this.room_id].warps[k];
             var warp_x  = warp[0];
@@ -19,6 +19,16 @@ class Room {
             var room_y  = warp[4];
             if (room_id != -1) {
                 this.warps.push(new Warp(warp_x, warp_y, room_id, room_x, room_y))
+            }
+        }
+        // Set signs
+        for (var k = 0; k < rooms[this.room_id].signs.length; k++) {
+            var sign = rooms[this.room_id].signs[k];
+            var sign_x  = sign[0];
+            var sign_y  = sign[1];
+            var text = sign[2];
+            if (text != "") {
+                this.signs.push(new Sign(sign_x, sign_y, text))
             }
         }
         // Set tiles

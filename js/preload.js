@@ -11,6 +11,7 @@ const COLLIDERS = [
 	"OAK_TREE",
 	"FIR_TREE",
 	"PINE_TREE",
+	//"SIGN",
 	"WALL_EW",
 	"WALL_ES",
 	"WALL_SW",
@@ -93,4 +94,5 @@ function preload() {
 	tileset["WALL_NSW_S"] = loadImage('img/wall_nsw_s.png');
 	tileset["STAIRS_UP"] = loadImage('img/stairs_up.png');
 	tileset["STAIRS_DOWN"] = loadImage('img/stairs_down.png');
+	tileset["SIGN"] = loadImage('img/sign.png');
 }
