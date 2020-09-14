@@ -30,6 +30,8 @@ function draw() {
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display(); }
 		// Display player
 		player.display();
+		// Play player sounds
+		player.sound();
 	}
 }
 

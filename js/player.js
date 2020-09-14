@@ -12,6 +12,7 @@ class Player {
     this.latestTime = Infinity;
     this.lastWarp = 0;
     this.warpCooldown = 1000;
+    this.soundCooldown = 3;
     this.anim_speed = 4;
     this.anim_count = 0;
     this.anim_frame = anim_frame;
@@ -86,6 +87,24 @@ class Player {
     return this.is_moving || this.is_arrow_moving || this.is_mouse_moving;
   }
 
+  sound() {
+    if (this.isMoving()) {
+      if (this.soundCooldown == 0) {
+        if (this.anim_count % 2 == 0) {
+          step_left_sound.play();
+          this.soundCooldown = 3;
+        } else {
+          step_right_sound.play();
+          this.soundCooldown = 3;
+        }
+      } else {
+        this.soundCooldown -= 1;
+      }
+    } else {
+      this.soundCooldown = 0;
+    }
+  }
+
   display() {
     if (this.is_player) {
       fill(255, 0, 0);
@@ -106,7 +125,7 @@ class Player {
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
     noStroke();
     textAlign(CENTER, CENTER);
-  	text(this.name, this.x, this.y + TILESIZE);
+    text(this.name, this.x, this.y + TILESIZE);
   }
 
   submit() {
