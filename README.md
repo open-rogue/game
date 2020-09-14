@@ -8,3 +8,7 @@
 [Pixel Fonts - pix3m](https://opengameart.org/content/pixel-fonts-by-pix3m)
 
 [16x16 Fantasy Tileset - Jerom](https://opengameart.org/content/16x16-fantasy-tileset)
+
+[The Adventure Begins - bart](https://opengameart.org/content/adventure-begins)
+
+[Foot walking step sounds - Jute](https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-snow-wood-and-dirt)
