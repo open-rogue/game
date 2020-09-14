@@ -39,6 +39,7 @@ let ghosts = [];
 let database;
 let rooms;
 let player_name;
+let bgm;
 
 function preload() {
 	// Get player name
@@ -72,6 +73,8 @@ function preload() {
 	player_right_walk_a_img = loadImage('img/player_right_walk_a.png');
 	player_left_walk_b_img = loadImage('img/player_left_walk_b.png');
 	player_right_walk_b_img = loadImage('img/player_right_walk_b.png');
+	// Music
+	bgm = loadSound('ogg/little_town_orchestral.ogg');
 	// Tileset
 	tileset["NULL"] = loadImage('img/null.png');
 	tileset["STONE_FLOOR"] = loadImage('img/stone_floor.png');
