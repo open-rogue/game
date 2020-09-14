@@ -29,6 +29,8 @@ const COLLIDERS = [
 
 let player_left_img;
 let player_right_img;
+let step_left_sound;
+let step_right_sound;
 
 let tileset = {};
 
@@ -73,8 +75,10 @@ function preload() {
 	player_right_walk_a_img = loadImage('img/player_right_walk_a.png');
 	player_left_walk_b_img = loadImage('img/player_left_walk_b.png');
 	player_right_walk_b_img = loadImage('img/player_right_walk_b.png');
-	// Music
+	// Sounds
 	bgm = loadSound('ogg/little_town_orchestral.ogg');
+	step_left_sound = loadSound('ogg/stepwood_1.wav');
+	step_right_sound = loadSound('ogg/stepwood_2.wav');
 	// Tileset
 	tileset["NULL"] = loadImage('img/null.png');
 	tileset["STONE_FLOOR"] = loadImage('img/stone_floor.png');
