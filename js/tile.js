@@ -3,7 +3,7 @@ class Tile {
   	this.i = i;
     this.j = j;
     this.type = (type in tileset) ? type : "NULL";
-    this.is_wall = COLLIDERS.includes(this.type);
+    this.is_wall = colliders.includes(this.type);
   }
 
   display() {
