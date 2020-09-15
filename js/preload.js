@@ -42,6 +42,7 @@ let database;
 let rooms;
 let player_name;
 let bgm;
+let table;
 
 function preload() {
 	// Get player name
@@ -80,34 +81,14 @@ function preload() {
 	step_left_sound = loadSound('ogg/stepwood_1.wav');
 	step_right_sound = loadSound('ogg/stepwood_2.wav');
 	// Tileset
-	tileset["NULL"] = loadImage('img/null.png');
-	tileset["STONE_FLOOR"] = loadImage('img/stone_floor.png');
-	tileset["STONE_TOP"] = loadImage('img/stone_top.png');
-	tileset["STONE_BRICK"] = loadImage('img/stone_brick.png');
-	tileset["GROUND"] = loadImage('img/ground.png');
-	tileset["GRASS"] = loadImage('img/grass.png');
-	tileset["FLOWERS"] = loadImage('img/flowers.png');
-	tileset["OAK_TREE"] = loadImage('img/oak_tree.png');
-	tileset["PINE_TREE"] = loadImage('img/pine_tree.png');
-	tileset["FIR_TREE"] = loadImage('img/fir_tree.png');
-	tileset["CHERUB_TREE"] = loadImage('img/cherub_tree.png');
-	tileset["WALL_EW"] = loadImage('img/wall_ew.png');
-	tileset["WALL_ES"] = loadImage('img/wall_es.png');
-	tileset["WALL_SW"] = loadImage('img/wall_sw.png');
-	tileset["WALL_NE"] = loadImage('img/wall_ne.png');
-	tileset["WALL_NW"] = loadImage('img/wall_nw.png');
-	tileset["WALL_NSE"] = loadImage('img/wall_nse.png');
-	tileset["WALL_NSW"] = loadImage('img/wall_nsw.png');
-	tileset["WALL_NSE_N"] = loadImage('img/wall_nse_n.png');
-	tileset["WALL_NSE_S"] = loadImage('img/wall_nse_s.png');
-	tileset["WALL_NSW_N"] = loadImage('img/wall_nsw_n.png');
-	tileset["WALL_NSW_S"] = loadImage('img/wall_nsw_s.png');
-	tileset["STAIRS_UP"] = loadImage('img/stairs_up.png');
-	tileset["STAIRS_DOWN"] = loadImage('img/stairs_down.png');
-	tileset["SIGN"] = loadImage('img/sign.png');
-	tileset["TABLE"] = loadImage('img/table.png');
-	tileset["CHAIR"] = loadImage('img/chair.png');
-	tileset["WARP_GREEN"] = loadImage('img/warp_green.png');
-	tileset["WARP_BLUE"] = loadImage('img/warp_blue.png');
-	tileset["FIRE"] = loadImage('img/fire.png');
+	table = loadTable('files/tiles.csv', 'csv', 'header', loadTiles);
+}
+
+function loadTiles() {
+	print(table.getRowCount() + ' total tiles in table');
+	for (let row = 0; row < table.getRowCount(); row++) {
+		var id = table.getString(row, 0);
+		var path = table.getString(row, 1);
+		tileset[id] = loadImage(path);
+	}
 }
