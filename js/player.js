@@ -91,10 +91,10 @@ class Player {
     if (this.isMoving()) {
       if (this.soundCooldown == 0) {
         if (this.anim_count % 2 == 0) {
-          step_left_sound.play();
+          step_left_sound.play(0, 1, 0.3);
           this.soundCooldown = 3;
         } else {
-          step_right_sound.play();
+          step_right_sound.play(0, 1, 0.3);
           this.soundCooldown = 3;
         }
       } else {
