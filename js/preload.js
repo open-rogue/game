@@ -4,28 +4,6 @@ const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const START_ROOM = 2;
-const COLLIDERS = [
-	"NULL",
-	"STONE_TOP",
-	"STONE_BRICK",
-	"OAK_TREE",
-	"FIR_TREE",
-	"PINE_TREE",
-	"CHERUB_TREE",
-	//"SIGN",
-	"TABLE",
-	"WALL_EW",
-	"WALL_ES",
-	"WALL_SW",
-	"WALL_NE",
-	"WALL_NW",
-	"WALL_NSE",
-	"WALL_NSW",
-	//"WALL_NSE_N",
-	"WALL_NSE_S",
-	//"WALL_NSW_N",
-	"WALL_NSW_S"
-]
 
 let player_left_img;
 let player_right_img;
@@ -33,6 +11,7 @@ let step_left_sound;
 let step_right_sound;
 
 let tileset = {};
+let colliders = [];
 
 let canvas;
 let room;
@@ -89,6 +68,10 @@ function loadTiles() {
 	for (let row = 0; row < table.getRowCount(); row++) {
 		var id = table.getString(row, 0);
 		var path = table.getString(row, 1);
+		var collider = table.getString(row, 2);
 		tileset[id] = loadImage(path);
+		if (collider == 'true') {
+			colliders.push(id);
+		}
 	}
 }
