@@ -9,7 +9,7 @@ let box_a, box_b;
 let stars = [];
 let lines = [];
 let font;
-let name = "LouisM";
+let name = "Test";
 
 let sequence_locked = false;
 
@@ -47,36 +47,43 @@ function sequence(stage = 0) {
         case 0:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             add_text("ENTER CREDENTIALS", FRG);
             break;
         case 1:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             type_text(name, 100);
             break;
         case 2:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             type_text("*************", 100);
             break;
         case 3:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             add_text("USER VERIFIED", FRG);
             break;
         case 4:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             add_text("INITIALIZING FTL DRIVE", FRG);
             break;
         case 5:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             add_text("ENTER STELLAR COORDINATES", FRG);
             break;
         case 6:
             background(BKG);
             draw_stars();
+            draw_pointer(0, 0, 16, 0.6, 0.8, false);
             type_text("7034.2186.9581", 100);
             break;
         case 7:
@@ -116,6 +123,9 @@ function sequence(stage = 0) {
             break;
         case 13:
             add_text("ROUTE FOUND", FRG);
+            break;
+        case 14:
+            window.location.href = "./game.html?name=" + name;
             break;
       }
       setTimeout(function() { sequence(stage + 1) }, SEQ_DELAY);
