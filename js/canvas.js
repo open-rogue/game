@@ -1,6 +1,6 @@
 function setup() {
 	// Create canvas
-	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
+	canvas = createCanvas(MAP_WIDTH * TILESIZE, (MAP_HEIGHT + 1.5) * TILESIZE);
 	canvas.parent('game');
 	frameRate(15);
 	noSmooth();
@@ -32,6 +32,8 @@ function draw() {
 		player.display();
 		// Play player sounds
 		player.sound();
+		// Stats bar
+		stats.display();
 	}
 }
 

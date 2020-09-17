@@ -21,6 +21,7 @@ let database;
 let rooms;
 let player_name;
 let bgm;
+let stats;
 let table;
 
 function preload() {
@@ -47,7 +48,9 @@ function preload() {
   	ref.on('value', gotPlayerData, errPlayerData);
 	// Room data event
 	var ref = database.ref('mmo/rooms');
-  	ref.on('value', gotRoomData, errRoomData);
+	  ref.on('value', gotRoomData, errRoomData);
+	// Create stats
+	stats = new Stats();
 	// Player tiles
 	player_left_img = loadImage('img/player_left.png');
 	player_right_img = loadImage('img/player_right.png');
