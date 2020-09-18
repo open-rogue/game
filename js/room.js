@@ -10,6 +10,8 @@ class Room {
         this.south = rooms[this.room_id].south;
         this.west  = rooms[this.room_id].west;
         this.color = rooms[this.room_id].color;
+        this.height = TILESIZE * MAP_HEIGHT;
+        this.width = TILESIZE * MAP_WIDTH;
         // Set warps
         for (var k = 0; k < rooms[this.room_id].warps.length; k++) {
             var warp = rooms[this.room_id].warps[k];
@@ -42,11 +44,21 @@ class Room {
         }
     }
 
-    display() {
-		background(this.color);
+    display(only_colliders = false) {
+        if (!only_colliders) {
+            background(this.color);
+        }
 		document.getElementById("game").style.backgroundColor = this.color;
         for (var k = 0; k < this.tiles.length; k++) {
-            this.tiles[k].display();
+            if (only_colliders) {
+                if (this.tiles[k].is_wall) {
+                    this.tiles[k].display();
+                }
+            } else {
+                if (!this.tiles[k].is_wall) {
+                    this.tiles[k].display();
+                }
+            }
         }
     }
 }

@@ -175,12 +175,12 @@ class Player {
         print("Moved to room", room.north);
         this.room_id = room.north;
         room = new Room(room.north);
-        this.y = height - TILESIZE;
+        this.y = room.height - TILESIZE;
       }
       return false;
     }
     // East
-    if (new_x + (TILESIZE / 4) > width) {
+    if (new_x + (TILESIZE / 4) > room.width) {
       if (room.east > -1) {
         print("Moved to room", room.east);
         this.room_id = room.east;
@@ -190,7 +190,7 @@ class Player {
       return false;
     }
     // South
-    if (new_y + (TILESIZE / 2) > height) {
+    if (new_y + (TILESIZE / 2) > room.height) {
       if (room.south > -1) {
         print("Moved to room", room.south);
         this.room_id = room.south;
@@ -205,7 +205,7 @@ class Player {
         print("Moved to room", room.west);
         this.room_id = room.west;
         room = new Room(room.west);
-        this.x = width - TILESIZE;
+        this.x = room.width - TILESIZE;
       }
       return false;
     }
