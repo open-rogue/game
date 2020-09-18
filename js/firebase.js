@@ -37,7 +37,9 @@ function gotPlayerData(data) {
 	// Create player if not in database
 	if (player == null) {
 		print("Creating new player")
-		player = new Player(player_name, width/2, height/2, createVector(0, 0), true, false, 0);
+		var x = MAP_WIDTH  * TILESIZE * 0.5;
+		var y = MAP_HEIGHT * TILESIZE * 0.5;
+		player = new Player(player_name, x, y, createVector(0, 0), true, false, 0);
 	}
 	//draw();
 }

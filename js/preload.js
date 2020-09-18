@@ -24,8 +24,10 @@ let player_name;
 let bgm;
 let stats;
 let table;
+let font;
 
 function preload() {
+	font = loadFont("files/pixel.ttf");
 	// Get player name
 	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
 	player_name = player_name.substr(0, 16);

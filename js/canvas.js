@@ -4,6 +4,7 @@ function setup() {
 	canvas.parent('game');
 	frameRate(15);
 	noSmooth();
+	textFont(font);
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();
