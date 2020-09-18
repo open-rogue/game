@@ -1,5 +1,5 @@
 class Player {
-  constructor(name, x, y, dir, is_player, is_moving, anim_frame, inventory = {}) {
+  constructor(name, x, y, dir, is_player, is_moving, anim_frame, inventory = { "GOLD": 0 }) {
   	this.name = name
     this.x = x;
     this.y = y;
