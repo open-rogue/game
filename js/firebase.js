@@ -23,7 +23,6 @@ function gotPlayerData(data) {
 			} else {
 				// Player
 				if (player_name == name && player == null) {
-					print(records[name]);
 					var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
 					player = new Player(player_name, x, y, dir, true, false, 0, inventory);
 				} else {
