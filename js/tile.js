@@ -7,7 +7,9 @@ class Tile {
   }
 
   display() {
-    image(tileset[this.type], this.i * TILESIZE, this.j * TILESIZE, TILESIZE, TILESIZE);
+    if (this.type in tileset) {
+      image(tileset[this.type], this.i * TILESIZE, this.j * TILESIZE, TILESIZE, TILESIZE);
+    }
   }
 
   x() {

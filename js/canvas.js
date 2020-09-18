@@ -7,6 +7,7 @@ function setup() {
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();
+	particles = [];
 }
 
 function draw() {
@@ -32,6 +33,13 @@ function draw() {
 		player.display();
 		// Play player sounds
 		player.sound();
+		// Display particles
+		for (var k = 0; k < particles.length; k++) { 
+			particles[k].display(); 
+			particles[k].decrease(); 
+		}
+		// Remove complete particles
+		particles = particles.filter(function(particle) { return !particle.finished() });
 		// Stats bar
 		stats.display();
 	}
