@@ -1,5 +1,5 @@
 class Player {
-  constructor(name, x, y, dir, is_player, is_moving, anim_frame) {
+  constructor(name, x, y, dir, is_player, is_moving, anim_frame, inventory = {}) {
   	this.name = name
     this.x = x;
     this.y = y;
@@ -15,6 +15,7 @@ class Player {
     this.soundCooldown = 3;
     this.anim_speed = 4;
     this.anim_count = 0;
+    this.inventory = inventory;
     this.anim_frame = anim_frame;
     if (this.is_player) {
       this.submit();
@@ -126,22 +127,31 @@ class Player {
     noStroke();
     textAlign(CENTER, CENTER);
     text(this.name, this.x, this.y + TILESIZE);
-    if (this.isMoving()) {
+    if (this.is_player && this.isMoving()) {
       if (random(1) < 0.05) {
         particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 5));
+        this.addItem("GOLD", 1);
       }
     }
   }
 
+  round(num, places) {
+    return parseFloat(parseFloat(num).toFixed(places))
+  }
+
   submit() {
   	var data = {
-  		x: this.x,
-      y: this.y,
       room: this.room_id,
-  		dir: [this.dir.x, this.dir.y],
+  		x: this.round(this.x, 4),
+      y: this.round(this.y, 4),
+  		dir: [
+        this.round(this.dir.x, 4), 
+        this.round(this.dir.y, 4)
+      ],
       isMoving: this.isMoving(),
       animFrame: this.anim_frame,
-      lastAction: firebase.database.ServerValue.TIMESTAMP
+      lastAction: firebase.database.ServerValue.TIMESTAMP,
+      inventory: this.inventory
   	};
   	var ref = database.ref('mmo/players');
   	ref.child(this.name).set(data, this.gotData);
@@ -251,5 +261,14 @@ class Player {
 
   bottom() {
     return this.y + TILESIZE;
+  }
+
+  addItem(item, quantity) {
+    if (item in this.inventory) {
+      this.inventory[item] += quantity;
+    } else {
+      this.inventory[item] = quantity;
+    }
+    print(this.inventory);
   }
 }

@@ -24,20 +24,17 @@ function draw() {
 			if (keyIsDown(DOWN_ARROW )) { player.move(player.x, player.y + TILESIZE) }
 		}
 		// Move player with mouse
-		if (player.is_mouse_moving) { player.move(mouseX, mouseY); }
+		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
 		// Display room
 		room.display();
 		// Display ghost players
-		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display(); }
+		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Display player
 		player.display();
 		// Play player sounds
 		player.sound();
 		// Display particles
-		for (var k = 0; k < particles.length; k++) { 
-			particles[k].display(); 
-			particles[k].decrease(); 
-		}
+		for (var k = 0; k < particles.length; k++) { particles[k].display() }
 		// Remove complete particles
 		particles = particles.filter(function(particle) { return !particle.finished() });
 		// Stats bar

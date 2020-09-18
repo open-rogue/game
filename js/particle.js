@@ -1,6 +1,6 @@
 class Particle { 
     constructor(type, x, y, t, size = 16) {
-        this.type = type;
+        this.type = (type in tileset) ? type : "NULL";
         this.x = x;
         this.y = y;
         this.t = t;
@@ -8,11 +8,8 @@ class Particle {
     }
     
     display() {
-        if (this.type in tileset) {
-            image(tileset[this.type], this.x - this.size/2, this.y - this.size/2, this.size, this.size);
-        } else {
-            print(this.type + " does not exist in tileset");
-        }
+        image(tileset[this.type], this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+        this.decrease();
     }
 
     decrease() {
