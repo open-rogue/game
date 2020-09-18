@@ -126,7 +126,9 @@ class Player {
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
     noStroke();
     textAlign(CENTER, CENTER);
+    textSize(12);
     text(this.name, this.x, this.y + TILESIZE);
+    // Inventory and particle test
     if (this.is_player && this.isMoving()) {
       if (random(1) < 0.05) {
         particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 5));
@@ -269,6 +271,5 @@ class Player {
     } else {
       this.inventory[item] = quantity;
     }
-    print(this.inventory);
   }
 }
