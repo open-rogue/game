@@ -126,6 +126,11 @@ class Player {
     noStroke();
     textAlign(CENTER, CENTER);
     text(this.name, this.x, this.y + TILESIZE);
+    if (this.isMoving()) {
+      if (random(1) < 0.05) {
+        particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 5));
+      }
+    }
   }
 
   submit() {

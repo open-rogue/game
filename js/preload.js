@@ -17,6 +17,7 @@ let canvas;
 let room;
 let player;
 let ghosts = [];
+let particles;
 let database;
 let rooms;
 let player_name;
@@ -63,12 +64,13 @@ function preload() {
 	step_left_sound = loadSound('ogg/stepwood_1.wav');
 	step_right_sound = loadSound('ogg/stepwood_2.wav');
 	// Tileset
-	table = loadTable('files/tiles.csv', 'csv', 'header', loadTiles);
+	table = loadTable('files/tiles.csv?t=${Date.now()}', 'csv', 'header', loadTiles);
 }
 
 function loadTiles() {
-	print(table.getRowCount() + ' total tiles in table');
+	//print(table.getRowCount() + ' total tiles in table');
 	for (let row = 0; row < table.getRowCount(); row++) {
+		//print(id, path);
 		var id = table.getString(row, 0);
 		var path = table.getString(row, 1);
 		var collider = table.getString(row, 2);

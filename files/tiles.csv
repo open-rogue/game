@@ -1,6 +1,7 @@
 id,path,collider
 NULL,img/null.png,true
 GOLD,img/gold.png,false
+PLUS_GOLD,img/plus_gold.png,false
 STONE_FLOOR,img/stone_floor.png,false
 STONE_TOP,img/stone_top.png,true
 STONE_BRICK,img/stone_brick.png,true
