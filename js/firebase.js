@@ -18,13 +18,16 @@ function gotPlayerData(data) {
 				// Ghost
 				//print("Player:", player.room_id, "Ghost:", room_id)
 				if (player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
-					ghosts.push(new Player(name, x, y, dir, false, is_moving, anim_frame));
+					ghosts.push(new Player(name, room_id, x, y, dir, false, is_moving, anim_frame));
 				}
 			} else {
 				// Player
 				if (player_name == name && player == null) {
 					var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
-					player = new Player(player_name, x, y, dir, true, false, 0, inventory);
+					player = new Player(player_name, room_id, x, y, dir, true, false, 0, inventory);
+					if (room != null) {
+						player.changeRoom(room_id);
+					}
 				} else {
 					if (player != null) {
 						player.latestTime = records[name].lastAction;
@@ -38,7 +41,7 @@ function gotPlayerData(data) {
 		print("Creating new player")
 		var x = MAP_WIDTH  * TILESIZE * 0.5;
 		var y = MAP_HEIGHT * TILESIZE * 0.5;
-		player = new Player(player_name, x, y, createVector(0, 0), true, false, 0);
+		player = new Player(player_name, START_ROOM, x, y, createVector(0, 0), true, false, 0);
 	}
 	//draw();
 }
@@ -50,7 +53,7 @@ function errPlayerData(err) {
 function gotRoomData(data) {
 	rooms = data.val();
 	if (room == null) {
-		room = new Room(START_ROOM);
+		room = new Room(player == null ? START_ROOM : player.room_id);
 	}
 }
 

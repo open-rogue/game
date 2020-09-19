@@ -26,7 +26,7 @@ map += "OOOOOO            OOOOOO" #4
 map += "OOOOOOOOOOOOOOOOOOOOOOOO" #5
 
 room.overlay(map)
-room.sign(5, 3, "This game is in-development!")
+room.sign(5, 3, "Sophy smells!")
 
 room.reformat()
 
