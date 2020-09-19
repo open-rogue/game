@@ -1,9 +1,9 @@
 class Player {
-  constructor(name, x, y, dir, is_player, is_moving, anim_frame, inventory = { "GOLD": 0 }) {
+  constructor(name, room_id, x, y, dir, is_player, is_moving, anim_frame, inventory = { "GOLD": 0 }) {
   	this.name = name
     this.x = x;
     this.y = y;
-    this.room_id = START_ROOM;
+    this.room_id = room_id;
     this.dir = dir;
     this.is_player = is_player;
     this.is_moving = is_moving;
@@ -163,6 +163,12 @@ class Player {
 
   }
 
+  changeRoom(room_id) {
+    print("Moved to room", room_id);
+    this.room_id = room_id;
+    room = new Room(room_id)
+  }
+
   checkPos(new_x, new_y) {
     // Check canvas edge collision and teleportation
     var new_left   = new_x - (TILESIZE / 2);
@@ -172,9 +178,7 @@ class Player {
     // North
     if (new_y - (TILESIZE / 2) < 0) {
       if (room.north > -1) {
-        print("Moved to room", room.north);
-        this.room_id = room.north;
-        room = new Room(room.north);
+        this.changeRoom(room.north);
         this.y = room.height - TILESIZE;
       }
       return false;
@@ -182,9 +186,7 @@ class Player {
     // East
     if (new_x + (TILESIZE / 4) > room.width) {
       if (room.east > -1) {
-        print("Moved to room", room.east);
-        this.room_id = room.east;
-        room = new Room(room.east);
+        this.changeRoom(room.east);
         this.x = TILESIZE;
       }
       return false;
@@ -192,9 +194,7 @@ class Player {
     // South
     if (new_y + (TILESIZE / 2) > room.height) {
       if (room.south > -1) {
-        print("Moved to room", room.south);
-        this.room_id = room.south;
-        room = new Room(room.south);
+        this.changeRoom(room.south);
         this.y = TILESIZE;
       }
       return false;
@@ -202,9 +202,7 @@ class Player {
     // West
     if (new_x - (TILESIZE / 4) < 0) {
       if (room.west > -1) {
-        print("Moved to room", room.west);
-        this.room_id = room.west;
-        room = new Room(room.west);
+        this.changeRoom(room.west);
         this.x = room.width - TILESIZE;
       }
       return false;

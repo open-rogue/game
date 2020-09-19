@@ -26,10 +26,10 @@ function draw() {
 		}
 		// Move player with mouse
 		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
-		// Display ghost players
-		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Display room without colliders
 		room.display(false);
+		// Display ghost players
+		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Display player
 		player.display();
 		// Play player sounds
