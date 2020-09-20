@@ -45,20 +45,10 @@ class Room {
     }
 
     display(only_colliders = false) {
-        if (!only_colliders) {
-            background(this.color);
-        }
+        background(this.color);
 		document.getElementById("game").style.backgroundColor = this.color;
         for (var k = 0; k < this.tiles.length; k++) {
-            if (only_colliders) {
-                if (this.tiles[k].is_wall) {
-                    this.tiles[k].display();
-                }
-            } else {
-                if (!this.tiles[k].is_wall) {
-                    this.tiles[k].display();
-                }
-            }
+            this.tiles[k].display();
         }
     }
 }
