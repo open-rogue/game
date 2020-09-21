@@ -24,13 +24,14 @@ REF = [
 ]
 
 class Room
-  attr_accessor :id, :data, :w, :h, :color
+  attr_accessor :id, :data, :w, :h, :color, :weather
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
     @id, @color = room_id, "#222323"
     @w, @h, @north, @east, @south, @west = 24, 16, -1, -1, -1, -1
     @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
+    @weather = true
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
   end
 
@@ -66,7 +67,8 @@ class Room
       :north => @north,
       :east => @east,
       :south => @south,
-      :west => @west
+      :west => @west,
+      :weather => @weather
     }
   end
 

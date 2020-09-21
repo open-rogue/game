@@ -20,4 +20,3 @@ class Particle {
         return this.t <= 0;
     }
 }
- 

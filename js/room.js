@@ -10,6 +10,7 @@ class Room {
         this.south = rooms[this.room_id].south;
         this.west  = rooms[this.room_id].west;
         this.color = rooms[this.room_id].color;
+        this.weather = rooms[this.room_id].weather;
         this.height = TILESIZE * MAP_HEIGHT;
         this.width = TILESIZE * MAP_WIDTH;
         // Set warps
