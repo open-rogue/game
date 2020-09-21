@@ -184,12 +184,13 @@ class Player {
 
   }
 
-  changeRoom(room_id, x = this.x, y = this.y) {
+  changeRoom(room_id, x = null, y = null) {
     print(`Moved to room ${room_id} [${this.round(x)}, ${this.round(y)}]`);
-    this.x = x;
-    this.y = y;
+    if (x != null) { this.x = x };
+    if (y != null) { this.y = y };
     this.room_id = room_id;
     room = new Room(room_id);
+    this.submit();
   }
 
   checkPos(new_x, new_y) {
