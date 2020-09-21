@@ -10,15 +10,11 @@ function chatExecute(str) {
   if (str[0] != "/") { return null }
   command = str.substring(1);
   if (command == "spawn") {
-    var x = 0.5 * TILESIZE * MAP_WIDTH;
-    var y = 0.5 * TILESIZE * MAP_HEIGHT;
-    print(x, y);
-    player.changeRoom(START_ROOM, x, y);
+    player.changeRoom(START_ROOM, 0.5 * mapWidth(), 0.5 * mapHeight());
     return true;
   }
   if (command == "rain") {
     weather.raining = !weather.raining;
-    print(weather.raining);
     return true;
   }
 }
