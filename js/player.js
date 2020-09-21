@@ -90,10 +90,12 @@ class Player {
   }
 
   chat(callback) {
-    this.chatText = chatValue();
-    this.chatCooldown = CHAT_COOLDOWN;
-    this.submit();
-    callback();
+    if (chatExecute(chatValue()) == null) {
+      this.chatText = chatValue();
+      this.chatCooldown = CHAT_COOLDOWN;
+      this.submit();
+    }
+      callback();
   }
 
   sound() {
@@ -182,10 +184,12 @@ class Player {
 
   }
 
-  changeRoom(room_id) {
-    print("Moved to room", room_id);
+  changeRoom(room_id, x = this.x, y = this.y) {
+    print(`Moved to room ${room_id} [${this.round(x)}, ${this.round(y)}]`);
+    this.x = x;
+    this.y = y;
     this.room_id = room_id;
-    room = new Room(room_id)
+    room = new Room(room_id);
   }
 
   checkPos(new_x, new_y) {
