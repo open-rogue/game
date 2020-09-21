@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@font-face {
+  font-family: "Pixels";
+  src: url(../files/pixel.ttf);
+}
+
 body {
   margin: 0;
   width: 100vw;
@@ -45,6 +50,18 @@ body {
 #menu p {
   display: inline-block;
   cursor: default;
+}
+
+#chat {
+  display: flex;
+  font-family: "Pixels";
+  background-color: inherit;
+  color: transparent;
+  text-shadow: 0 0 0 #FFFFFF;
+  border: none;
+  width: 576px;
+  margin: 16px;
+  padding: 0;
 }
 
 #game-text {

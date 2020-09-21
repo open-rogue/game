@@ -1,5 +1,5 @@
 class Player {
-  constructor(name, room_id, x, y, dir, is_player, is_moving, anim_frame, inventory = { "GOLD": 0 }) {
+  constructor(name, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
   	this.name = name
     this.x = x;
     this.y = y;
@@ -17,6 +17,7 @@ class Player {
     this.anim_count = 0;
     this.inventory = inventory;
     this.anim_frame = anim_frame;
+    this.chatText = chat_text;
     if (this.is_player) {
       this.submit();
     }
@@ -88,6 +89,13 @@ class Player {
     return this.is_moving || this.is_arrow_moving || this.is_mouse_moving;
   }
 
+  chat(callback) {
+    this.chatText = chatValue();
+    this.chatCooldown = CHAT_COOLDOWN;
+    this.submit();
+    callback();
+  }
+
   sound() {
     if (this.isMoving()) {
       if (this.soundCooldown == 0) {
@@ -107,11 +115,6 @@ class Player {
   }
 
   display() {
-    if (this.is_player) {
-      fill(255, 0, 0);
-    } else {
-      fill(128);
-    }
     //ellipse(this.x, this.y, 16, 16);
     if (!this.isMoving()) {
       image((this.dir.x < 0) ? player_left_img : player_right_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
@@ -122,12 +125,27 @@ class Player {
         image((this.dir.x < 0) ? player_left_walk_b_img : player_right_walk_b_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       }
     }
+    // Direction vector
     stroke(255, 255, 255);
     line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
     noStroke();
+    // Name
+    this.is_player ? fill(255, 0, 0) : fill(128);
     textAlign(CENTER, CENTER);
     textSize(12);
     text(this.name, this.x, this.y + TILESIZE);
+    // Chat
+    if (this.chatText != "") {
+      fill(255);
+      text(this.chatText, this.x, this.y - TILESIZE);
+      if (this.is_player) {
+        this.chatCooldown -= 1;
+        if (this.chatCooldown == 0) { 
+          this.chatText = ""
+          this.submit();
+        }
+      }
+    }
     // Inventory and particle test
     if (this.is_player && this.isMoving()) {
       if (random(1) < 0.05) {
@@ -153,7 +171,8 @@ class Player {
       isMoving: this.isMoving(),
       animFrame: this.anim_frame,
       lastAction: firebase.database.ServerValue.TIMESTAMP,
-      inventory: this.inventory
+      inventory: this.inventory,
+      chatText: this.chatText
   	};
   	var ref = database.ref('mmo/players');
   	ref.child(this.name).set(data, this.gotData);

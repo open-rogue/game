@@ -45,14 +45,35 @@ function draw() {
 
 function mousePressed() {
 	// Set moving flag on player
-	if (player != null) { player.startMouseMoving(); }
+	if (player != null) { player.startMouseMoving() }
 }
 
 function mouseReleased() {
 	// Unset moving flag on player
-	if (player != null) { player.stopMouseMoving(); }
+	if (player != null) { player.stopMouseMoving() }
+	document.getElementById("chat").focus(); 
+}
+
+function keyReleased() {
+	if (keyCode === ENTER) {
+		if (player != null && chatValue() != "") {
+			player.chat(function() { clearChat() })
+		}
+	}
 }
 
 function isArrowKeyPressed() {
 	return keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW);
+}
+
+function isEnterPressed() {
+	return keyIsDown(ENTER);
+}
+
+function chatValue() {
+	return document.getElementById("chat").value;
+}
+
+function clearChat() {
+    document.getElementById("chat").value = "";
 }

@@ -4,6 +4,7 @@ const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const START_ROOM = 2;
+const CHAT_COOLDOWN = 100;
 
 let player_left_img;
 let player_right_img;
@@ -66,13 +67,13 @@ function preload() {
 	step_left_sound = loadSound('ogg/stepwood_1.wav');
 	step_right_sound = loadSound('ogg/stepwood_2.wav');
 	// Tileset
-	table = loadTable('files/tiles.csv?t=${Date.now()}', 'csv', 'header', loadTiles);
+	table = loadTable('files/tiles.csv?' + (new Date()).getTime(), 'csv', 'header', loadTiles);
 }
 
 function loadTiles() {
 	//print(table.getRowCount() + ' total tiles in table');
 	for (let row = 0; row < table.getRowCount(); row++) {
-		//print(id, path);
+		print(id, path);
 		var id = table.getString(row, 0);
 		var path = table.getString(row, 1);
 		var collider = table.getString(row, 2);
