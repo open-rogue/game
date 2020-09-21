@@ -69,11 +69,3 @@ function isArrowKeyPressed() {
 function isEnterPressed() {
 	return keyIsDown(ENTER);
 }
-
-function chatValue() {
-	return document.getElementById("chat").value;
-}
-
-function clearChat() {
-    document.getElementById("chat").value = "";
-}

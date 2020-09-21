@@ -21,7 +21,7 @@ class Room {
             var room_x  = warp[3];
             var room_y  = warp[4];
             if (room_id != -1) {
-                this.warps.push(new Warp(warp_x, warp_y, room_id, room_x, room_y))
+                this.warps.push(new Warp(warp_x, warp_y, room_id, room_x, room_y));
             }
         }
         // Set signs
@@ -31,7 +31,7 @@ class Room {
             var sign_y = sign[1];
             var text   = sign[2];
             if (text != "") {
-                this.signs.push(new Sign(sign_x, sign_y, text))
+                this.signs.push(new Sign(sign_x, sign_y, text));
             }
         }
         // Set tiles
