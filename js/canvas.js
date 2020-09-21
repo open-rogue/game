@@ -40,6 +40,11 @@ function draw() {
 		particles = particles.filter(function(particle) { return !particle.finished() });
 		// Stats bar
 		stats.display();
+		// Weather
+		if (weather.raining && room.weather) {
+			weather.update();
+			weather.display();
+		}
 	}
 }
 
@@ -68,4 +73,12 @@ function isArrowKeyPressed() {
 
 function isEnterPressed() {
 	return keyIsDown(ENTER);
+}
+
+function mapWidth() {
+	return TILESIZE * MAP_WIDTH;
+}
+
+function mapHeight() {
+	return TILESIZE * MAP_HEIGHT;
 }

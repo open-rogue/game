@@ -1,6 +1,7 @@
 require './rb/include.rb'
 
 room = Room.new(3)
+room.weather = false
 
 room.fill(" ")
 

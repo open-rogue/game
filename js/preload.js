@@ -26,6 +26,7 @@ let bgm;
 let stats;
 let table;
 let font;
+let weather;
 
 function preload() {
 	font = loadFont("files/pixel.ttf");
@@ -55,6 +56,8 @@ function preload() {
 	  ref.on('value', gotRoomData, errRoomData);
 	// Create stats
 	stats = new Stats();
+	// Create weather
+	weather = new Weather();
 	// Player tiles
 	player_left_img = loadImage('img/player_left.png');
 	player_right_img = loadImage('img/player_right.png');

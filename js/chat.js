@@ -16,4 +16,9 @@ function chatExecute(str) {
     player.changeRoom(START_ROOM, x, y);
     return true;
   }
+  if (command == "rain") {
+    weather.raining = !weather.raining;
+    print(weather.raining);
+    return true;
+  }
 }
