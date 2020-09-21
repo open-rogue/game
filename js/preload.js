@@ -59,11 +59,11 @@ function preload() {
 	// Create weather
 	weather = new Weather();
 	// Player tiles
-	player_left_img = loadImage('img/player_left.png');
-	player_right_img = loadImage('img/player_right.png');
-	player_left_walk_a_img = loadImage('img/player_left_walk_a.png');
+	player_left_img 		= loadImage('img/player_left.png');
+	player_right_img 		= loadImage('img/player_right.png');
+	player_left_walk_a_img 	= loadImage('img/player_left_walk_a.png');
 	player_right_walk_a_img = loadImage('img/player_right_walk_a.png');
-	player_left_walk_b_img = loadImage('img/player_left_walk_b.png');
+	player_left_walk_b_img 	= loadImage('img/player_left_walk_b.png');
 	player_right_walk_b_img = loadImage('img/player_right_walk_b.png');
 	// Sounds
 	bgm = loadSound('ogg/little_town_orchestral.ogg');
