@@ -1,4 +1,7 @@
-# mmo
+# Open-source MMO
+
+<img src="./files/preview.png" alt="Gameplay preview" width="100%">
+
 ### Resource links
 
 [8x8 Character and Sprite Sheet - Glacialan](https://opengameart.org/content/8x8-character-and-sprite-sheet)
