@@ -5,6 +5,7 @@ room.north = 1
 room.east = 4
 
 room.fill(" ")
+room.random_fill('"', 0.05)
 room.random_fill('*', 0.1)
 
        #012345678901234567890123
