@@ -5,6 +5,14 @@ const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const START_ROOM = 2;
 const CHAT_COOLDOWN = 100;
+const PLAYER_TYPES = ["man", "knight", "lizard", "wizard"];
+
+const SPRITE_LEFT	 = 0;
+const SPRITE_RIGHT	 = 1;
+const SPRITE_LEFT_A	 = 2;
+const SPRITE_LEFT_B	 = 3;
+const SPRITE_RIGHT_A = 4;
+const SPRITE_RIGHT_B = 5;
 
 let player_left_img;
 let player_right_img;
@@ -27,12 +35,14 @@ let stats;
 let table;
 let font;
 let weather;
+let sprites = [];
 
 function preload() {
 	font = loadFont("files/pixel.ttf");
 	// Get player name
 	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
 	player_name = player_name.substr(0, 16);
+	player_type =  (getURLParams().type == null) ? PLAYER_TYPES[0] : getURLParams().type;
 	// Firebase
 	var firebaseConfig = {
 		apiKey: "AIzaSyAmxjDLZrtiWjQGkekCdTXKx5zCbLDJP28",
@@ -58,13 +68,15 @@ function preload() {
 	stats = new Stats();
 	// Create weather
 	weather = new Weather();
-	// Player tiles
-	player_left_img 		= loadImage('img/player_left.png');
-	player_right_img 		= loadImage('img/player_right.png');
-	player_left_walk_a_img 	= loadImage('img/player_left_walk_a.png');
-	player_right_walk_a_img = loadImage('img/player_right_walk_a.png');
-	player_left_walk_b_img 	= loadImage('img/player_left_walk_b.png');
-	player_right_walk_b_img = loadImage('img/player_right_walk_b.png');
+	// Sprites
+	for (var index = 0; index < PLAYER_TYPES.length; index++) {
+		var set = [];
+		var type = PLAYER_TYPES[index];
+		for (var k = 0; k < 6; k++) {
+			set.push(loadImage(`img/sprites/${type}/${k}.png`));
+		}
+		sprites[type] = set;
+	}
 	// Sounds
 	bgm = loadSound('ogg/little_town_orchestral.ogg');
 	step_left_sound = loadSound('ogg/stepwood_1.wav');
