@@ -198,8 +198,8 @@ class Player {
   }
 
   changeRoom(room_id, x = null, y = null) {
-    if (x != null) { this.x = x };
-    if (y != null) { this.y = y };
+    if (x != null) { this.x = parseFloat(x) };
+    if (y != null) { this.y = parseFloat(y) };
     print(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);
     this.room_id = room_id;
     room = new Room(room_id);

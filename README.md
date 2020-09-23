@@ -4,12 +4,14 @@
 
 ### Chat commands
 
-| Command        | Description          | Admin |
-| :------:       |:--------------------:|:-----:|
-| `/spawn`       | Teleport to spawn    |       |
-| `/skin <type>` | Change player sprite |   👑   |
-| `/rain`        | Toggle rain          |       |
-| `/snow`        | Toggle snow          |       |
+| Command                   | Description          | Admin |
+| :------------------------:|:--------------------:|:-----:|
+| `/spawn`                  | Teleport to spawn    |       |
+| `/room <room ID>`         | Teleport to room     |   👑   |
+| `/room <room ID> <x> <y>` | Teleport to location |   👑   |
+| `/skin <type>`            | Change player sprite |   👑   |
+| `/rain`                   | Toggle rain          |       |
+| `/snow`                   | Toggle snow          |       |
 
 ### Resource links
 
