@@ -2,6 +2,14 @@
 
 <img src="./files/preview.png" alt="Gameplay preview" width="100%">
 
+### Chat commands
+
+| Command  | Description       |
+| :------: |:-----------------:|
+| `/spawn` | Teleport to spawn |
+| `/rain`  | Toggle rain       |
+| `/snow`  | Toggle snow       |
+
 ### Resource links
 
 [8x8 Character and Sprite Sheet - Glacialan](https://opengameart.org/content/8x8-character-and-sprite-sheet)
