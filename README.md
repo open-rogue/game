@@ -4,11 +4,12 @@
 
 ### Chat commands
 
-| Command  | Description       |
-| :------: |:-----------------:|
-| `/spawn` | Teleport to spawn |
-| `/rain`  | Toggle rain       |
-| `/snow`  | Toggle snow       |
+| Command        | Description          | Admin |
+| :------:       |:--------------------:|:-----:|
+| `/spawn`       | Teleport to spawn    |       |
+| `/skin <type>` | Change player sprite |   👑   |
+| `/rain`        | Toggle rain          |       |
+| `/snow`        | Toggle snow          |       |
 
 ### Resource links
 
