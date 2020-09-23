@@ -13,6 +13,10 @@ body {
   user-select: none;
 }
 
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
 #wrapper, #game, #menu {
   display: flex;
   width: 100vw;

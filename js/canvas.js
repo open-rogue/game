@@ -41,7 +41,7 @@ function draw() {
 		// Stats bar
 		stats.display();
 		// Weather
-		if (weather.isActive && room.weather) {
+		if (!weather.clear() && room.weather) {
 			weather.update();
 			weather.display();
 		}
