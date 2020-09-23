@@ -8,7 +8,7 @@ class Particle {
     }
     
     display() {
-        image(tileset[this.type], this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+    	image(tileset[this.type], this.x - this.size/2, this.y - this.size/2, this.size, this.size);
         this.decrease();
     }
 
