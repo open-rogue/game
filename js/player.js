@@ -1,6 +1,7 @@
 class Player {
-  constructor(name, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
-  	this.name = name
+  constructor(name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
+  	this.name = name;
+    this.playerType = (type == null) ? PLAYER_TYPES[0] : type;
     this.x = x;
     this.y = y;
     this.room_id = room_id;
@@ -117,20 +118,20 @@ class Player {
   }
 
   display() {
-    //ellipse(this.x, this.y, 16, 16);
+    var sprite = sprites[this.playerType];
     if (!this.isMoving()) {
-      image((this.dir.x < 0) ? player_left_img : player_right_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
+      image((this.dir.x < 0) ? sprite[SPRITE_LEFT] : sprite[SPRITE_RIGHT], this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
     } else {
       if (this.anim_frame == 0) {
-        image((this.dir.x < 0) ? player_left_walk_a_img : player_right_walk_a_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
+        image((this.dir.x < 0) ? sprite[SPRITE_LEFT_A] : sprite[SPRITE_RIGHT_A], this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       } else {
-        image((this.dir.x < 0) ? player_left_walk_b_img : player_right_walk_b_img, this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
+        image((this.dir.x < 0) ? sprite[SPRITE_LEFT_B] : sprite[SPRITE_RIGHT_B], this.x - TILESIZE/2, this.y - TILESIZE/2, TILESIZE, TILESIZE);
       }
     }
     // Direction vector
-    stroke(255, 255, 255);
-    line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
-    noStroke();
+    //stroke(255, 255, 255);
+    //line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
+    //noStroke();
     // Name
     this.is_player ? fill(255, 0, 0) : fill(128);
     textAlign(CENTER, CENTER);
@@ -172,6 +173,7 @@ class Player {
       ],
       isMoving: this.isMoving(),
       animFrame: this.anim_frame,
+      playerType: this.playerType,
       lastAction: firebase.database.ServerValue.TIMESTAMP,
       inventory: this.inventory,
       chatText: this.chatText
