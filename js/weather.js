@@ -14,8 +14,8 @@ class Weather {
         this.initialize();
     }
 
-    isActive() {
-        return this.state != WEATHER_CLEAR;
+    clear() {
+        return this.state == WEATHER_CLEAR;
     }
 
     initialize() {
