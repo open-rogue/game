@@ -90,6 +90,17 @@ class Player {
     return this.is_moving || this.is_arrow_moving || this.is_mouse_moving;
   }
 
+  changePlayerType(type) {
+		if (PLAYER_TYPES.includes(type)) {
+      this.playerType = type;
+      print(this.playerType);
+      this.submit();
+    } else {
+      console.log(type);
+      print(type, "NOT IN PLAYER_TYPES", PLAYER_TYPES);
+    }
+  }
+
   chat(callback) {
     if (chatExecute(chatValue()) == null) {
       this.chatText = chatValue();
