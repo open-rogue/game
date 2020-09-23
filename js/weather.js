@@ -1,10 +1,28 @@
+const WEATHER_CLEAR = 0
+const WEATHER_RAIN  = 1
+const WEATHER_SNOW  = 2
+
 class Weather {
     constructor() {
-        this.raining = false;
+        this.state = WEATHER_CLEAR;
         this.particles = [];
-        for (var k = 0; k < 200; k++) {
+        this.particleCount = 200;
+    }
+
+    toggle(state) {
+        this.state = (this.state == state) ? WEATHER_CLEAR : state;
+        this.initialize();
+    }
+
+    isActive() {
+        return this.state != WEATHER_CLEAR;
+    }
+
+    initialize() {
+        this.particles = [];
+        for (var k = 0; k < this.particleCount; k++) {
             this.particles.push(
-                new Droplet(random(mapWidth()), random(mapHeight()))
+                new Droplet(random(mapWidth()), random(mapHeight()), this.state)
             );
         }
     }
@@ -23,22 +41,32 @@ class Weather {
 }
 
 class Droplet {
-    constructor(x, y) {
+    constructor(x, y, state) {
         this.x = x;
         this.y = y;
-        // Rain
-        //this.v_x = 5 + random(5);
-        //this.v_y = 10 + random(10);
-        //this.r = map(this.v_y, 20, 10, 1, 2);
-        this.v_x = 0;
-        this.v_y = 2.5 + random(5);
-        this.r = map(this.v_y, 5, 2.5, 2, 3);
+        this.state = state;
+        if (this.state == WEATHER_RAIN) {
+            this.v_x = 5 + random(5);
+            this.v_y = 10 + random(10);
+            this.r = map(this.v_y, 20, 10, 1, 2);
+        }
+        if (this.state == WEATHER_SNOW) {
+            this.v_x = 0;
+            this.v_y = 2.5 + random(5);
+            this.r = map(this.v_y, 5, 2.5, 2, 3);
+        }
     }
 
     update() {
-        //this.x += this.v_x; Rain
-        this.x += random(4) - 2;
-        this.y += this.v_y;
+        if (this.state == WEATHER_RAIN) {
+            this.x += this.v_x;
+            this.y += this.v_y;
+        }
+        if (this.state == WEATHER_SNOW) {
+            this.x += random(4) - 2;
+            this.y += this.v_y;
+        }
+        // Wrap
         if (this.x > mapWidth()) { this.x = 0 }
         if (this.x < 0) { this.x = mapWidth() }
         if (this.y > mapHeight()) { this.y = 0 }
@@ -46,12 +74,15 @@ class Droplet {
     }
 
     display() {
-        //Rain
-        //stroke(255, 50);
-        //strokeWeight(this.r);
-        //line(this.x, this.y, this.x - 0.5 * this.v_x, this.y - 0.5 * this.v_y);
-        fill(255, 200);
-        noStroke();
-        circle(this.x, this.y, this.r);
+        if (this.state == WEATHER_RAIN) {
+            stroke(255, 50);
+            strokeWeight(this.r);
+            line(this.x, this.y, this.x - 0.5 * this.v_x, this.y - 0.5 * this.v_y);
+        }
+        if (this.state == WEATHER_SNOW) {
+            fill(255, 200);
+            noStroke();
+            circle(this.x, this.y, this.r);
+        }
     }
 }
