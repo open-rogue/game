@@ -1,7 +1,7 @@
 class Player {
   constructor(name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
   	this.name = name;
-    this.playerType = (type == null) ? PLAYER_TYPES[0] : type;
+    this.playerType = (type == null) ? PLAYER_TYPES[0] : (PLAYER_TYPES.includes(type) ? type : "man");
     this.x = x;
     this.y = y;
     this.room_id = room_id;
@@ -93,7 +93,6 @@ class Player {
   changePlayerType(type) {
 		if (PLAYER_TYPES.includes(type)) {
       this.playerType = type;
-      print(this.playerType);
       this.submit();
     } else {
       console.log(type);
