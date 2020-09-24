@@ -1,6 +1,6 @@
 require './rb/include.rb'
 
-room = Room.new(5)
+room = Room.new("upside_downs")
 room.color = "#661010"
 
 room.fill("GROUND")

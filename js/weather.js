@@ -9,6 +9,11 @@ class Weather {
         this.particleCount = 200;
     }
 
+    set(state) {
+        this.state = state;
+        this.initialize();
+    }
+
     toggle(state) {
         this.state = (this.state == state) ? WEATHER_CLEAR : state;
         this.initialize();
@@ -19,6 +24,7 @@ class Weather {
     }
 
     initialize() {
+        if (this.clear()) { return null }
         this.particles = [];
         for (var k = 0; k < this.particleCount; k++) {
             this.particles.push(

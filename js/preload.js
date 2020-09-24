@@ -3,7 +3,7 @@ const MAP_WIDTH = 24;
 const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
-const START_ROOM = 2;
+const START_ROOM = "spawn";
 const CHAT_COOLDOWN = 100;
 const PLAYER_TYPES = ["man", "knight", "lizard", "wizard"];
 
@@ -63,7 +63,10 @@ function preload() {
   	ref.on('value', gotPlayerData, errPlayerData);
 	// Room data event
 	var ref = database.ref('mmo/rooms');
-	  ref.on('value', gotRoomData, errRoomData);
+	ref.on('value', gotRoomData, errRoomData);
+	// Server config event
+	var ref = database.ref('mmo/config');
+	ref.on('value', gotConfigData, gotConfigData);
 	// Create stats
 	stats = new Stats();
 	// Create weather

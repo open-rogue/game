@@ -214,7 +214,7 @@ class Player {
     var new_bottom = new_y + (TILESIZE / 2);
     // North
     if (new_y - (TILESIZE / 2) < 0) {
-      if (room.north > -1) {
+      if (room.north != null) {
         this.changeRoom(room.north);
         this.y = room.height - TILESIZE;
       }
@@ -222,7 +222,7 @@ class Player {
     }
     // East
     if (new_x + (TILESIZE / 4) > room.width) {
-      if (room.east > -1) {
+      if (room.east != null) {
         this.changeRoom(room.east);
         this.x = TILESIZE;
       }
@@ -230,7 +230,7 @@ class Player {
     }
     // South
     if (new_y + (TILESIZE / 2) > room.height) {
-      if (room.south > -1) {
+      if (room.south != null) {
         this.changeRoom(room.south);
         this.y = TILESIZE;
       }
@@ -238,7 +238,7 @@ class Player {
     }
     // West
     if (new_x - (TILESIZE / 4) < 0) {
-      if (room.west > -1) {
+      if (room.west != null) {
         this.changeRoom(room.west);
         this.x = room.width - TILESIZE;
       }

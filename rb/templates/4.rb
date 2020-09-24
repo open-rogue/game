@@ -1,7 +1,7 @@
 require './rb/include.rb'
 
-room = Room.new(4)
-room.west = 2
+room = Room.new("portal_room")
+room.west = "spawn"
 
 room.fill(" ")
 room.random_fill('*', 0.1)
@@ -27,7 +27,7 @@ map += "OOOOCOOOOOCOOOOOOOCOOOOO" #5
 room.overlay(map)
 
 room.sign(12, 6, "To the Upside Downs")
-room.warp(12, 8, 5, 12, 8)
+room.warp(12, 8, "upside_downs", 12, 8)
 
 room.reformat()
 

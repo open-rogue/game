@@ -21,7 +21,7 @@ class Room {
             var room_id = warp[2];
             var room_x  = warp[3];
             var room_y  = warp[4];
-            if (room_id != -1) {
+            if (room_id != null) {
                 this.warps.push(new Warp(warp_x, warp_y, room_id, room_x, room_y));
             }
         }
