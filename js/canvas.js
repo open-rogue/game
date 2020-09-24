@@ -50,13 +50,32 @@ function draw() {
 
 function mousePressed() {
 	// Set moving flag on player
-	if (player != null) { player.startMouseMoving() }
+	if (player != null) {
+		if (!stats.mouseClick()) {
+			if (inRange(mouseX, 0, mapWidth()) && inRange(mouseY, 0, mapHeight())) {
+				player.startMouseMoving();
+			}
+		}
+	}
 }
 
 function mouseReleased() {
 	// Unset moving flag on player
 	if (player != null) { player.stopMouseMoving() }
 	document.getElementById("chat").focus(); 
+}
+
+function mouseMoved() {
+	// Check mouse
+	if (this._curElement != null) {
+		if (inRange(mouseY, stats.top(), height)) {
+			if (!stats.updateCursor()) {
+				cursor(ARROW);
+			}
+		} else {
+			cursor(ARROW);
+		}
+	}
 }
 
 function keyReleased() {
@@ -81,4 +100,8 @@ function mapWidth() {
 
 function mapHeight() {
 	return TILESIZE * MAP_HEIGHT;
+}
+
+function inRange(x, min, max) {
+    return ((x - min) * (x - max) <= 0);
 }

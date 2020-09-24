@@ -1,8 +1,8 @@
 require './rb/include.rb'
 
-room = Room.new(2)
-room.north = 1
-room.east = 4
+room = Room.new("spawn")
+room.north = "test_house"
+room.east = "portal_room"
 
 room.fill(" ")
 room.random_fill('"', 0.05)

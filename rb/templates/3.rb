@@ -1,6 +1,6 @@
 require './rb/include.rb'
 
-room = Room.new(3)
+room = Room.new("test_house_upstairs")
 room.weather = false
 
 room.fill(" ")
@@ -27,7 +27,7 @@ room.overlay(map)
 room.tile(13, 4, "CHAIR")
 room.tile(14, 4, "TABLE")
 room.tile(15, 4, "CHAIR")
-room.warp(10, 4, 1, 9, 6)
+room.warp(10, 4, "test_house", 9, 6)
 
 room.reformat()
 

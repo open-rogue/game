@@ -33,7 +33,7 @@ class Room
 
   def initialize(room_id, map = nil)
     @id, @color = room_id, "#222323"
-    @w, @h, @north, @east, @south, @west = 24, 16, -1, -1, -1, -1
+    @w, @h, @north, @east, @south, @west = 24, 16, nil, nil, nil, nil
     @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
     @weather = true
     @data = map.split("") unless (map == nil) || (map.length != @w * @h)
@@ -82,7 +82,7 @@ class Room
     firebase = Firebase::Client.new(base_uri, auth_token)
     #firebase.set(path, id => data)
     response = firebase.set("mmo/rooms/#{@id}", export())
-    puts response.success? ? "Room ##{@id} added to database" : "Room could not be added"
+    puts response.success? ? "Room \"#{@id}\" added to database" : "Room could not be added"
     return response.success?
   end
 end

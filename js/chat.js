@@ -23,11 +23,11 @@ function chatExecute(str) {
 		}
 	}
 	if (command[0] == "rain") {
-		weather.toggle(WEATHER_RAIN);
+		setConfig("weather", weather.state == WEATHER_RAIN ? WEATHER_CLEAR : WEATHER_RAIN);
 		return true;
 	}
 	if (command[0] == "snow") {
-		weather.toggle(WEATHER_SNOW);
+		setConfig("weather", weather.state == WEATHER_SNOW ? WEATHER_CLEAR : WEATHER_SNOW);
 		return true;
 	}
 	if (command[0] == "skin") {

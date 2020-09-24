@@ -1,7 +1,7 @@
 require './rb/include.rb'
 
-room = Room.new(1)
-room.south = 2
+room = Room.new("test_house")
+room.south = "spawn"
 
 room.fill(" ")
 room.random_fill('"', 0.1)
@@ -26,7 +26,7 @@ map += "OOOOOOOO          OOOOOO" #4
 map += "OOOOOOOOOO    OOOOOOOOOO" #5
 
 room.overlay(map)
-room.warp(10, 4, 3, 9, 6)
+room.warp(10, 4, "test_house_upstairs", 9, 6)
 room.sign(14, 11, "This is a test sign")
 
 room.reformat()
