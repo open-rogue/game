@@ -5,7 +5,7 @@ const PLAYER_SPEED = 8;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const START_ROOM = "spawn";
 const CHAT_COOLDOWN = 100;
-const PLAYER_TYPES = ["man", "knight", "lizard", "wizard"];
+const PLAYER_TYPES = ["man", "woman", "knight", "lizard", "wizard"];
 
 const SPRITE_LEFT	 = 0;
 const SPRITE_RIGHT	 = 1;

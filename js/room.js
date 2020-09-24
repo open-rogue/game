@@ -1,18 +1,18 @@
 class Room {
     constructor(room_id) {
         this.room_id = room_id;
-        this.tiles = [];
-        this.warps = [];
-        this.signs = [];
-        this.data  = rooms[this.room_id].data;
-        this.north = rooms[this.room_id].north;
-        this.east  = rooms[this.room_id].east;
-        this.south = rooms[this.room_id].south;
-        this.west  = rooms[this.room_id].west;
-        this.color = rooms[this.room_id].color;
+        this.tiles   = [];
+        this.warps   = [];
+        this.signs   = [];
+        this.data    = rooms[this.room_id].data;
+        this.north   = rooms[this.room_id].north;
+        this.east    = rooms[this.room_id].east;
+        this.south   = rooms[this.room_id].south;
+        this.west    = rooms[this.room_id].west;
+        this.color   = rooms[this.room_id].color;
         this.weather = rooms[this.room_id].weather;
-        this.height = TILESIZE * MAP_HEIGHT;
-        this.width = TILESIZE * MAP_WIDTH;
+        this.height  = TILESIZE * MAP_HEIGHT;
+        this.width   = TILESIZE * MAP_WIDTH;
         // Set warps
         for (var k = 0; k < rooms[this.room_id].warps.length; k++) {
             var warp = rooms[this.room_id].warps[k];
@@ -27,7 +27,7 @@ class Room {
         }
         // Set signs
         for (var k = 0; k < rooms[this.room_id].signs.length; k++) {
-            var sign = rooms[this.room_id].signs[k];
+            var sign   = rooms[this.room_id].signs[k];
             var sign_x = sign[0];
             var sign_y = sign[1];
             var text   = sign[2];
