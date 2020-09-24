@@ -1,7 +1,7 @@
 class Player {
   constructor(name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
   	this.name = name;
-    this.playerType = (type == null) ? PLAYER_TYPES[0] : (PLAYER_TYPES.includes(type) ? type : "man");
+    this.playerType = this.checkPlayerType(type);
     this.x = x;
     this.y = y;
     this.room_id = room_id;
@@ -88,6 +88,11 @@ class Player {
 
   isMoving() {
     return this.is_moving || this.is_arrow_moving || this.is_mouse_moving;
+  }
+
+  checkPlayerType(type) {
+    if (type == null) { return PLAYER_TYPES[0] }
+    return PLAYER_TYPES.includes(type) ? type : PLAYER_TYPES[0];
   }
 
   changePlayerType(type) {
