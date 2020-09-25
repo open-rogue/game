@@ -69,10 +69,12 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 #game-text {
-  font-family: "Press Start 2P", monospace;
+  font-family: "Pixels";
+  /*font-family: "Press Start 2P", monospace;*/
   font-size: 1em;
   color: white;
-  padding: 16px;
+  padding: 0;
+  line-height: 0.8em;
 }
 
 #version {

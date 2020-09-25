@@ -3,6 +3,7 @@ NULL,img/null.png,true
 GOLD,img/gold.png,false
 POTION,img/potion.png,false
 HOME,img/home.png,false
+CASTLE,img/castle.png,false
 PLUS_GOLD,img/plus_gold.png,false
 STONE_FLOOR,img/stone_floor.png,false
 STONE_TOP,img/stone_top.png,true

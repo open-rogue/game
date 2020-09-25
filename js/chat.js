@@ -35,4 +35,12 @@ function chatExecute(str) {
 		player.changePlayerType(command[1]);
 		return true;
 	}
+	if (command[0] == "home") {
+		if (command.length == 1) {
+			player.goHome();
+		} else {
+			player.changeRoom("home_" + command[1], 0.5 * mapWidth(), 0.5 * mapHeight());
+		}
+		return true;
+	}
 }
