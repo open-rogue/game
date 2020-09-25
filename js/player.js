@@ -164,9 +164,10 @@ class Player {
     //line(this.x, this.y, this.x + this.dir.x * TILESIZE, this.y + this.dir.y * TILESIZE);
     //noStroke();
     // Name
+    noStroke();
     this.is_player ? fill(255, 0, 0) : fill(128);
     textAlign(CENTER, CENTER);
-    textSize(12);
+    textSize(TILESIZE / 2);
     text(this.name, this.x, this.y + TILESIZE);
     // Chat
     if (this.chatText != "") {
