@@ -71,7 +71,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 #game-text {
   font-family: "Pixels";
   /*font-family: "Press Start 2P", monospace;*/
-  font-size: 1em;
+  font-size: 1.2em;
   color: white;
   padding: 0;
   line-height: 0.8em;

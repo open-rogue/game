@@ -10,7 +10,7 @@ class Stats {
     display() {
         fill("#FFFFFF");
         textAlign(LEFT, CENTER);
-        textSize(16);
+        textSize(TILESIZE * 0.75);
         // Gold
         var quantity = player.inventory.GOLD == null ? 0 : player.inventory.GOLD;
         image(tileset["GOLD"], 0, height - TILESIZE, TILESIZE, TILESIZE);

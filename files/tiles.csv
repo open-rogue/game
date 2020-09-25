@@ -5,9 +5,6 @@ POTION,img/potion.png,false
 HOME,img/home.png,false
 CASTLE,img/castle.png,false
 PLUS_GOLD,img/plus_gold.png,false
-STONE_FLOOR,img/stone_floor.png,false
-STONE_TOP,img/stone_top.png,true
-STONE_BRICK,img/stone_brick.png,true
 GROUND,img/ground.png,false
 GRASS,img/grass.png,false
 FLOWERS,img/flowers.png,false
