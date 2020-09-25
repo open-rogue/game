@@ -5,6 +5,8 @@ function setup() {
 	frameRate(15);
 	noSmooth();
 	textFont(font);
+	// Create game text
+	createP('&nbsp;').parent('#game').id('game-text');
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();

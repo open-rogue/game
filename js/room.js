@@ -53,3 +53,11 @@ class Room {
         }
     }
 }
+
+function getRoomData(room_id) {
+    if (room_id in rooms) {
+        return rooms[room_id].data;
+    } else {
+        return [];
+    }
+}
