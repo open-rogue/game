@@ -5,8 +5,10 @@ room.north = "test_house"
 room.east = "portal_room"
 
 room.fill(" ")
-room.random_fill('"', 0.05)
-room.random_fill('*', 0.1)
+
+room.random_fill("*", 0.1)
+
+PLAINS_FLOWERS.each { |flower| room.random_fill(flower, 0.02) }
 
        #012345678901234567890123
 map  = "OOOOOOOOOO    OOOOOOOOOO" #0
@@ -29,6 +31,7 @@ map += "OOOOOOOOOOOOOOOOOOOOOOOO" #5
 room.overlay(map)
 room.sign(5, 3, "Sophy smells!")
 
+room.scatter_replace("O", PLAINS_TREES)
 room.reformat()
 
 room.save()

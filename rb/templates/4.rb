@@ -29,6 +29,7 @@ room.overlay(map)
 room.sign(12, 6, "To the Upside Downs")
 room.warp(12, 8, "upside_downs", 12, 8)
 
+room.scatter_replace("O", PLAINS_TREES)
 room.reformat()
 
 room.save()

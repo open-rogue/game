@@ -1,11 +1,15 @@
 KEY_PATH = "./files/key.json"
 
+
+PLAINS_FLOWERS = ["PLAINS_FLOWER_0", "PLAINS_FLOWER_1", "PLAINS_FLOWER_2", "PLAINS_FLOWER_3"]
+PLAINS_TREES = ["PLAINS_TREE_0", "PLAINS_TREE_1", "PLAINS_TREE_2", "PLAINS_TREE_3"]
+
 REF = [
   [' ', 'GROUND'],
   ['G', 'GROUND'],
   ['"', 'GRASS'],
   ['*', 'FLOWERS'],
-  ['O', 'OAK_TREE'],
+  ['O', 'PLAINS_TREE_0'],
   ['F', 'FIR_TREE'],
   ['P', 'PINE_TREE'],
   ['C', 'CHERUB_TREE'],
@@ -63,6 +67,8 @@ class Room
   def fill_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @tiles[ix(i, j)] = t } }; end
 
   def scatter_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @tiles[ix(i, j)] = t[(rand * t.length).floor] } }; end
+
+  def scatter_replace(t, a); @tiles.map! { |k| k == t ? a[(rand * a.length).floor] : k }; end
 
   def overlay(map); map.split("").each_with_index { |k, i| @tiles[i] = k unless k == " " }; end
 

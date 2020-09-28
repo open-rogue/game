@@ -10,8 +10,8 @@ DUNGEON_CEILING_HORZ = ["DUNGEON_CEILING_HORIZONTAL_0", "DUNGEON_CEILING_HORIZON
 
 room.fill(" ")
 
-#room.scatter_area([1, 2, 22, 11], DUNGEON_FLOOR)
-room.fill_area([1, 2, 22, 11], "DUNGEON_FLOOR_TEST")
+room.scatter_area([1, 2, 22, 11], DUNGEON_FLOOR)
+#room.fill_area([1, 2, 22, 11], "DUNGEON_FLOOR_TEST")
 
 room.scatter_area([1, 1, 22, 1],   DUNGEON_WALL)
 room.scatter_area([0, 13, 23, 13], DUNGEON_WALL)
