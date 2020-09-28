@@ -165,7 +165,13 @@ class Player {
     //noStroke();
     // Name
     noStroke();
-    this.is_player ? fill(255, 0, 0) : fill(128);
+    //this.is_player ? fill(255, 0, 0) : fill(128);
+    if (this.is_player) {
+      fill(255, 0, 0, 128);
+      var bounds = font.textBounds(this.name + " ", 0, 0, TILESIZE / 2);
+      rect(this.x - bounds.w / 2, this.y + TILESIZE - 6, bounds.w, bounds.h + 4);
+    }
+    fill(255);
     textAlign(CENTER, CENTER);
     textSize(TILESIZE / 2);
     text(this.name, this.x, this.y + TILESIZE);
@@ -337,7 +343,7 @@ class Player {
       signs: [[7, 6, `${this.name}'s home`]],
       warps: [[-1, -1, -1, -1, -1]],
       weather: false
-  	};
+    };
   	var ref = database.ref('mmo/rooms');
     ref.child(this.home_id).set(data, this.gotData);
     callback();

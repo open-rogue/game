@@ -1,11 +1,11 @@
-const TILESIZE = 32;
+const TILESIZE = 24;
 const MAP_WIDTH = 24;
 const MAP_HEIGHT = 16;
 const PLAYER_SPEED = 12;
 const PLAYER_TIMEOUT = 10 * 60 * 1000; // 10 MINUTES
 const START_ROOM = "spawn";
 const CHAT_COOLDOWN = 100;
-const PLAYER_TYPES = ["man", "woman", "knight", "lizard", "wizard"];
+const PLAYER_TYPES = ["man", "woman", "knight", "lizard", "wizard", "thing"];
 
 const SPRITE_LEFT	 = 0;
 const SPRITE_RIGHT	 = 1;

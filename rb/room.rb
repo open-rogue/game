@@ -55,6 +55,12 @@ class Room
   
   def random_fill(t, r); @data.map! { |k| rand < r ? t : k }; end
 
+  def scatter_fill(t); @data.map! { |k| t[(rand * t.length).floor] }; end
+
+  def fill_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @data[ix(i, j)] = t } }; end
+
+  def scatter_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @data[ix(i, j)] = t[(rand * t.length).floor] } }; end
+
   def overlay(map); map.split("").each_with_index { |k, i| @data[i] = k unless k == " " }; end
 
   def reformat(); REF.each { |a, b| @data.map! { |c| (a == c) ? b : c } }; end

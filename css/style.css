@@ -63,7 +63,6 @@ input:focus, select:focus, textarea:focus, button:focus {
   color: transparent;
   text-shadow: 0 0 0 #FFFFFF;
   border: none;
-  width: 576px;
   margin: 16px;
   padding: 0;
 }
