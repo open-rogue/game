@@ -28,50 +28,53 @@ REF = [
 ]
 
 class Room
-  attr_accessor :id, :data, :w, :h, :color, :weather
+  attr_accessor :id, :tiles, :w, :h, :color, :weather
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
     @id, @color = room_id, "#222323"
     @w, @h, @north, @east, @south, @west = 24, 16, nil, nil, nil, nil
-    @data, @warps, @signs = Array.new(@w * @h), [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
+    @tiles, @props = Array.new(@w * @h), [[-1, -1, "NULL"]]
+    @warps, @signs = [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
     @weather = true
-    @data = map.split("") unless (map == nil) || (map.length != @w * @h)
+    @tiles = map.split("") unless (map == nil) || (map.length != @w * @h)
   end
 
   def ix(i, j); j * @w + i; end
 
-  def fill(t); @data.map! { t }; end
+  def fill(t); @tiles.map! { t }; end
 
-  def tile(i, j, t); @data[ix(i, j)] = t; end
+  def tile(i, j, t); @tiles[ix(i, j)] = t; end
+
+  def prop(i, j, t); @props << [i, j, t]; end
   
   def warp(i, j, r, x, y); @warps << [i, j, r, x, y]; end
   
   def sign(i, j, s); @signs << [i, j, s]; end
 
-  def col(i, t); (0...@h).each { |j| @data[ix(i, j)] = t }; end
+  def col(i, t); (0...@h).each { |j| @tiles[ix(i, j)] = t }; end
 
-  def row(j, t); (0...@w).each { |i| @data[ix(i, j)] = t }; end
+  def row(j, t); (0...@w).each { |i| @tiles[ix(i, j)] = t }; end
   
-  def random_fill(t, r); @data.map! { |k| rand < r ? t : k }; end
+  def random_fill(t, r); @tiles.map! { |k| rand < r ? t : k }; end
 
-  def scatter_fill(t); @data.map! { |k| t[(rand * t.length).floor] }; end
+  def scatter_fill(t); @tiles.map! { |k| t[(rand * t.length).floor] }; end
 
-  def fill_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @data[ix(i, j)] = t } }; end
+  def fill_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @tiles[ix(i, j)] = t } }; end
 
-  def scatter_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @data[ix(i, j)] = t[(rand * t.length).floor] } }; end
+  def scatter_area(a, t); (a[1]..a[3]).each { |j| (a[0]..a[2]).each { |i| @tiles[ix(i, j)] = t[(rand * t.length).floor] } }; end
 
-  def overlay(map); map.split("").each_with_index { |k, i| @data[i] = k unless k == " " }; end
+  def overlay(map); map.split("").each_with_index { |k, i| @tiles[i] = k unless k == " " }; end
 
-  def reformat(); REF.each { |a, b| @data.map! { |c| (a == c) ? b : c } }; end
+  def reformat(); REF.each { |a, b| @tiles.map! { |c| (a == c) ? b : c } }; end
 
-  def draw(); (0...@h).each { |j| puts (0...@w).map { |i| @data[ix(i, j)][0] + " " }.join }; end
+  def draw(); (0...@h).each { |j| puts (0...@w).map { |i| @tiles[ix(i, j)][0] + " " }.join }; end
 
   def export()
     {
       :room_id => @id,
       :color => @color,
-      :data => @data,
+      :tiles => @tiles,
       :warps => @warps,
       :signs => @signs,
       :north => @north,
@@ -86,7 +89,7 @@ class Room
     base_uri = 'https://machin-dev.firebaseio.com'
     auth_token = File.open(KEY_PATH).read
     firebase = Firebase::Client.new(base_uri, auth_token)
-    #firebase.set(path, id => data)
+    #firebase.set(path, id => tiles)
     response = firebase.set("mmo/rooms/#{@id}", export())
     puts response.success? ? "Room \"#{@id}\" added to database" : "Room could not be added"
     return response.success?
