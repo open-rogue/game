@@ -63,3 +63,11 @@ PLAINS_GRASS_1,img/tiles/plains/grass/1.png,false
 PLAINS_GRASS_2,img/tiles/plains/grass/2.png,false
 PLAINS_GRASS_3,img/tiles/plains/grass/3.png,false
 PLAINS_GRASS_4,img/tiles/plains/grass/4.png,false
+PLAINS_FLOWER_0,img/tiles/plains/flower/0.png,false
+PLAINS_FLOWER_1,img/tiles/plains/flower/1.png,false
+PLAINS_FLOWER_2,img/tiles/plains/flower/2.png,false
+PLAINS_FLOWER_3,img/tiles/plains/flower/3.png,false
+PLAINS_TREE_0,img/tiles/plains/tree/0.png,false
+PLAINS_TREE_1,img/tiles/plains/tree/1.png,false
+PLAINS_TREE_2,img/tiles/plains/tree/2.png,false
+PLAINS_TREE_3,img/tiles/plains/tree/3.png,false

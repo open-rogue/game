@@ -29,6 +29,7 @@ room.overlay(map)
 room.warp(10, 4, "test_house_upstairs", 9, 6)
 room.sign(14, 11, "This is a test sign")
 
+room.scatter_replace("O", PLAINS_TREES)
 room.reformat()
 
 room.save()
