@@ -339,7 +339,8 @@ class Player {
     var data = {
       room_id: this.home_id,
       color: "#222223",
-      data: getRoomData("example_home"),
+      tiles: getRoomData("example_home"),
+      props: [[-1, -1, "NULL"]],
       signs: [[7, 6, `${this.name}'s home`]],
       warps: [[-1, -1, -1, -1, -1]],
       weather: false
