@@ -77,6 +77,7 @@ class Room
       :tiles => @tiles,
       :warps => @warps,
       :signs => @signs,
+      :props => @props,
       :north => @north,
       :east => @east,
       :south => @south,
