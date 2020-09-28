@@ -4,7 +4,6 @@ class Room {
         this.tiles   = [];
         this.warps   = [];
         this.signs   = [];
-        this.data    = rooms[this.room_id].data;
         this.north   = rooms[this.room_id].north;
         this.east    = rooms[this.room_id].east;
         this.south   = rooms[this.room_id].south;
@@ -39,7 +38,7 @@ class Room {
         for (var j = 0; j < MAP_HEIGHT; j++) {
             for (var i = 0; i < MAP_WIDTH; i++) {
                 var index = (j * MAP_WIDTH) + i;
-                var type  = this.data[index];
+                var type  = rooms[this.room_id].tiles[index];
                 this.tiles.push(new Tile(i, j, type));
             }
         }
