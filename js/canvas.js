@@ -7,6 +7,8 @@ function setup() {
 	textFont(font);
 	// Create game text
 	createP('&nbsp;').parent('#game').id('game-text');
+	// Set chat width
+	document.getElementById("chat").style.width = `${mapWidth()}px`;
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();
