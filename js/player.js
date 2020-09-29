@@ -1,6 +1,7 @@
 class Player {
-  constructor(name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
-  	this.name = name;
+  constructor(session, name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
+    this.session = session;
+    this.name = name;
     this.playerType = this.checkPlayerType(type);
     this.x = x;
     this.y = y;
@@ -11,7 +12,8 @@ class Player {
     this.is_moving = is_moving;
     this.is_mouse_moving = false;
     this.is_arrow_moving = false;
-    this.latestTime = Infinity;
+    this.latestTime = 0;
+    this.localTime = Date.now();
     this.lastWarp = 0;
     this.warpCooldown = 1000;
     this.soundCooldown = 3;
@@ -201,23 +203,26 @@ class Player {
   }
 
   submit() {
-  	var data = {
-      room: this.room_id,
-  		x: this.round(this.x, 4),
-      y: this.round(this.y, 4),
-  		dir: [
-        this.round(this.dir.x, 4), 
-        this.round(this.dir.y, 4)
-      ],
-      isMoving: this.isMoving(),
-      animFrame: this.anim_frame,
-      playerType: this.playerType,
-      lastAction: firebase.database.ServerValue.TIMESTAMP,
-      inventory: this.inventory,
-      chatText: this.chatText
-  	};
-  	var ref = database.ref('mmo/players');
-  	ref.child(this.name).set(data, this.gotData);
+    if (Date.now() - this.localTime > 100) {
+      var data = {
+        room: this.room_id,
+        x: this.round(this.x, 4),
+        y: this.round(this.y, 4),
+        dir: [
+          this.round(this.dir.x, 4), 
+          this.round(this.dir.y, 4)
+        ],
+        isMoving: this.isMoving(),
+        animFrame: this.anim_frame,
+        playerType: this.playerType,
+        lastAction: dbTimestamp(),
+        inventory: this.inventory,
+        chatText: this.chatText,
+        session: this.session
+      };
+      var ref = database.ref('mmo/players');
+      ref.child(this.name).set(data, this.gotData);
+    }
   }
 
   gotData(data) {
@@ -230,10 +235,13 @@ class Player {
     if (room_id in rooms) {
       if (x != null) { this.x = parseFloat(x) };
       if (y != null) { this.y = parseFloat(y) };
-      print(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);
       this.room_id = room_id;
-      room = new Room(room_id);
-      this.submit();
+      if (room == null || room.room_id != room_id) {
+        print(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);
+        room = new Room(room_id);
+        this.submit();
+      }
+      
     }
   }
 

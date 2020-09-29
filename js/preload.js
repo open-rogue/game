@@ -36,9 +36,13 @@ let table;
 let font;
 let weather;
 let sprites = [];
+let is_retrieving = false;
+let is_validated = false;
 
 function preload() {
 	font = loadFont("files/pixel.ttf");
+	// Get session key
+	session_key = (getURLParams().s == null) ? "Null" : getURLParams().s;
 	// Get player name
 	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
 	player_name = player_name.substr(0, 16);
