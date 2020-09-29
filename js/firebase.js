@@ -1,4 +1,7 @@
 function gotPlayerData(data) {
+	if (is_retrieving) { return }
+	is_retrieving = true;
+	is_new = true;
 	ghosts = [];
 	var records = data.val();
 	if (records != null) {
@@ -18,34 +21,45 @@ function gotPlayerData(data) {
 			// Assign values
 			if (name != player_name && player != null) {
 				// Ghost
-				//print("Player:", player.room_id, "Ghost:", room_id)
 				if (player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
-					ghosts.push(new Player(name, type, room_id, x, y, dir, false, is_moving, anim_frame, chat_text));
+					ghosts.push(new Player(null, name, type, room_id, x, y, dir, false, is_moving, anim_frame, chat_text));
 				}
 			} else {
 				// Player
-				if (player_name == name && player == null) {
-					var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
-					player = new Player(player_name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
-					if (room != null) {
-						player.changeRoom(room_id);
+				if (player_name == name && player == null && !is_validated) {
+					is_new = false;
+					if (validateSession(records[name].session)) {
+						print("Valid");
+						var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
+						var session = generateSession();
+						player = new Player(session, player_name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
+						if (room != null) { player.changeRoom(room_id) }
+					} else {
+						print(player);
+						print(is_validated);
+						print(`Session key "${session_key}" is invalid, should be "${records[name].session}"`);
+						//window.location.href = "http://www.google.com";
 					}
 				} else {
 					if (player != null) {
+						print("Set time")
 						player.latestTime = records[name].lastAction;
+						player.localTime = Date.now();
 					}
 				}
 			}
 		}
 	}
 	// Create player if not in database
-	if (player == null) {
+	if (player == null && is_new) {
 		print("Creating new player")
 		var x = MAP_WIDTH  * TILESIZE * 0.5;
 		var y = MAP_HEIGHT * TILESIZE * 0.5;
-		player = new Player(player_name, player_type, START_ROOM, x, y, createVector(0, 0), true, false, 0);
+		var session = generateSession();
+		player = new Player(session, player_name, player_type, START_ROOM, x, y, createVector(0, 0), true, false, 0);
 	}
 	//draw();
+	is_retrieving = false;
 }
 
 function errPlayerData(err) {
