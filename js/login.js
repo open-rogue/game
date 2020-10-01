@@ -11,7 +11,7 @@ function showGame() {
 }
 
 function validateSession(key) {
-    if (is_validated) { return true }
+    return true;
     if (key == session_key) { is_validated = true }
     return key == session_key;
 }

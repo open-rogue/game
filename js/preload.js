@@ -37,7 +37,6 @@ let font;
 let weather;
 let sprites = [];
 let is_retrieving = false;
-let is_validated = false;
 
 function preload() {
 	font = loadFont("files/pixel.ttf");

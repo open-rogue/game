@@ -26,10 +26,9 @@ function gotPlayerData(data) {
 				}
 			} else {
 				// Player
-				if (player_name == name && player == null && !is_validated) {
+				if (player_name == name && player == null) {
 					is_new = false;
 					if (validateSession(records[name].session)) {
-						print("Valid");
 						var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
 						var session = generateSession();
 						player = new Player(session, player_name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
@@ -37,12 +36,11 @@ function gotPlayerData(data) {
 					} else {
 						print(player);
 						print(is_validated);
-						print(`Session key "${session_key}" is invalid, should be "${records[name].session}"`);
+						print(`Session key "${session_key}" is invalid`);//, should be "${records[name].session}"`);
 						//window.location.href = "http://www.google.com";
 					}
 				} else {
 					if (player != null) {
-						print("Set time")
 						player.latestTime = records[name].lastAction;
 						player.localTime = Date.now();
 					}

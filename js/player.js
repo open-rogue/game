@@ -192,7 +192,7 @@ class Player {
     // Inventory and particle test
     if (this.is_player && this.isMoving()) {
       if (random(1) < 0.05) {
-        particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 5));
+        particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 12));
         this.addItem("GOLD", 1);
       }
     }
