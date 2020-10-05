@@ -1,6 +1,7 @@
 class Player {
-  constructor(session, name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
+  constructor(session, uid, name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
     this.session = session;
+    this.uid = uid;
     this.name = name;
     this.playerType = this.checkPlayerType(type);
     this.x = x;
@@ -218,10 +219,11 @@ class Player {
         lastAction: dbTimestamp(),
         inventory: this.inventory,
         chatText: this.chatText,
-        session: this.session
+        session: this.session,
+        name: this.name
       };
       var ref = database.ref('mmo/players');
-      ref.child(this.name).set(data, this.gotData);
+      ref.child(this.uid).set(data, this.gotData);
     }
   }
 
@@ -233,8 +235,8 @@ class Player {
     room_id = room_id.toLowerCase();
     print(room_id);
     if (room_id in rooms) {
-      if (x != null) { this.x = parseFloat(x) };
-      if (y != null) { this.y = parseFloat(y) };
+      if (x != null) { this.x = parseFloat(x) }
+      if (y != null) { this.y = parseFloat(y) }
       this.room_id = room_id;
       if (room == null || room.room_id != room_id) {
         print(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);

@@ -8,40 +8,40 @@ function gotPlayerData(data) {
 		var names = Object.keys(records);
 		for (var k = 0; k < names.length; k++) {
 			// Set variables
-			var name = names[k];
-			var type = (records[name].playerType == null) ? PLAYER_TYPES[0] : records[name].playerType;
-			var x = records[name].x;
-			var y = records[name].y;
-			var room_id = records[name].room;
-			var dir = createVector(records[name].dir[0], records[name].dir[1]);
-			var time = records[name].lastAction;
-			var is_moving = records[name].isMoving;
-      		var anim_frame = records[name].animFrame;
-			var chat_text = records[name].chatText;
+			var uid = names[k];
+			print(uid);
+			var name = (records[uid].name == null) ? "Undefined" : records[uid].name;
+			var type = (records[uid].playerType == null) ? PLAYER_TYPES[0] : records[uid].playerType;
+			var x = records[uid].x;
+			var y = records[uid].y;
+			var room_id = records[uid].room;
+			var dir = createVector(records[uid].dir[0], records[uid].dir[1]);
+			var time = records[uid].lastAction;
+			var is_moving = records[uid].isMoving;
+      		var anim_frame = records[uid].animFrame;
+			var chat_text = records[uid].chatText;
 			// Assign values
-			if (name != player_name && player != null) {
+			if (uid != player_uid && player != null) {
 				// Ghost
 				if (player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
-					ghosts.push(new Player(null, name, type, room_id, x, y, dir, false, is_moving, anim_frame, chat_text));
+					ghosts.push(new Player(null, null, name, type, room_id, x, y, dir, false, is_moving, anim_frame, chat_text));
 				}
 			} else {
 				// Player
-				if (player_name == name && player == null) {
+				if (player_uid == uid && player == null) {
 					is_new = false;
-					if (validateSession(records[name].session)) {
-						var inventory = ("inventory" in records[name]) ? records[name].inventory : {};
+					if (validateSession(records[uid].session)) {
+						var inventory = ("inventory" in records[uid]) ? records[uid].inventory : {};
 						var session = generateSession();
-						player = new Player(session, player_name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
+						player = new Player(session, player_uid, name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
 						if (room != null) { player.changeRoom(room_id) }
 					} else {
-						print(player);
-						print(is_validated);
 						print(`Session key "${session_key}" is invalid`);//, should be "${records[name].session}"`);
-						//window.location.href = "http://www.google.com";
+						window.location.href = "/index.html";
 					}
 				} else {
 					if (player != null) {
-						player.latestTime = records[name].lastAction;
+						player.latestTime = records[uid].lastAction;
 						player.localTime = Date.now();
 					}
 				}
@@ -54,7 +54,7 @@ function gotPlayerData(data) {
 		var x = MAP_WIDTH  * TILESIZE * 0.5;
 		var y = MAP_HEIGHT * TILESIZE * 0.5;
 		var session = generateSession();
-		player = new Player(session, player_name, player_type, START_ROOM, x, y, createVector(0, 0), true, false, 0);
+		player = new Player(session, player_uid, player_name, player_type, START_ROOM, x, y, createVector(0, 0), true, false, 0);
 	}
 	//draw();
 	is_retrieving = false;

@@ -41,11 +41,12 @@ let is_retrieving = false;
 function preload() {
 	font = loadFont("files/pixel.ttf");
 	// Get session key
+	player_uid  = (getURLParams().uid == null) ? "Null" : getURLParams().uid;
 	session_key = (getURLParams().s == null) ? "Null" : getURLParams().s;
 	// Get player name
-	player_name = (getURLParams().name == null) ? "Null" : getURLParams().name;
+	player_name = (getURLParams().n == null) ? "Null" : getURLParams().n;
 	player_name = player_name.substr(0, 16);
-	player_type =  (getURLParams().type == null) ? PLAYER_TYPES[0] : getURLParams().type;
+	player_type = (getURLParams().type == null) ? PLAYER_TYPES[0] : getURLParams().type;
 	// Firebase
 	var firebaseConfig = {
 		apiKey: "AIzaSyAmxjDLZrtiWjQGkekCdTXKx5zCbLDJP28",
