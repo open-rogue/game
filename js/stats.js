@@ -106,18 +106,3 @@ function beautifyNumber(number) {
 //       <td class = "quantity">0</td>
 //     </tr>
 //   </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

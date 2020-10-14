@@ -65,7 +65,7 @@ function registerAccount() {
 function submitRegistration() {
     var username = document.getElementById("user-input").value;
     if (username != "") {
-        window.location.href = `/game.html?uid=${uid}&n=${username}`;
+        window.location.href = `/layout.html?uid=${uid}&n=${username}`;
     }
 }
 
