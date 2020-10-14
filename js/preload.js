@@ -41,7 +41,7 @@ let sprites = [];
 let is_retrieving = false;
 
 function preload() {
-	font = loadFont("files/pixel.ttf");
+	font = loadFont("/files/pixel.ttf");
 	// Get session key
 	player_uid  = (getURLParams().uid == null) ? "Null" : getURLParams().uid;
 	session_key = (getURLParams().s == null) ? "Null" : getURLParams().s;
@@ -82,16 +82,16 @@ function preload() {
 		var set = [];
 		var type = PLAYER_TYPES[index];
 		for (var k = 0; k < 6; k++) {
-			set.push(loadImage(`img/sprites/${type}/${k}.png`));
+			set.push(loadImage(`/img/sprites/${type}/${k}.png`));
 		}
 		sprites[type] = set;
 	}
 	// Sounds
-	bgm = loadSound('ogg/little_town_orchestral.ogg');
-	step_left_sound = loadSound('ogg/stepwood_1.wav');
-	step_right_sound = loadSound('ogg/stepwood_2.wav');
+	bgm = loadSound('/ogg/little_town_orchestral.ogg');
+	step_left_sound = loadSound('/ogg/stepwood_1.wav');
+	step_right_sound = loadSound('/ogg/stepwood_2.wav');
 	// Tileset
-	table = loadTable('files/tiles.csv?' + (new Date()).getTime(), 'csv', 'header', loadTiles);
+	table = loadTable('/files/tiles.csv?' + (new Date()).getTime(), 'csv', 'header', loadTiles);
 }
 
 function loadTiles() {
