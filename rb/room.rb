@@ -32,11 +32,11 @@ REF = [
 ]
 
 class Room
-  attr_accessor :id, :tiles, :w, :h, :color, :weather
+  attr_accessor :id, :name, :tiles, :w, :h, :color, :weather
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
-    @id, @color = room_id, "#222323"
+    @id, @name, @color = room_id, "unnamed", "#222323"
     @w, @h, @north, @east, @south, @west = 24, 16, nil, nil, nil, nil
     @tiles, @props = Array.new(@w * @h), [[-1, -1, "NULL"]]
     @warps, @signs = [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
@@ -79,6 +79,7 @@ class Room
   def export()
     {
       :room_id => @id,
+      :name => @name,
       :color => @color,
       :tiles => @tiles,
       :warps => @warps,

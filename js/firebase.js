@@ -9,7 +9,6 @@ function gotPlayerData(data) {
 		for (var k = 0; k < names.length; k++) {
 			// Set variables
 			var uid = names[k];
-			print(uid);
 			var name = (records[uid].name == null) ? "Undefined" : records[uid].name;
 			var type = (records[uid].playerType == null) ? PLAYER_TYPES[0] : records[uid].playerType;
 			var x = records[uid].x;

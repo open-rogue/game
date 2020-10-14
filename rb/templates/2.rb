@@ -1,6 +1,8 @@
 require './rb/include.rb'
 
 room = Room.new("spawn")
+room.name = "Spawn"
+#room.color = "#98BA5E"
 room.north = "test_house"
 room.east = "portal_room"
 
@@ -29,7 +31,7 @@ map += "OOOOOO            OOOOOO" #4
 map += "OOOOOOOOOOOOOOOOOOOOOOOO" #5
 
 room.overlay(map)
-room.sign(5, 3, "Sophy smells!")
+room.sign(5, 3, "Test!")
 
 room.scatter_replace("O", PLAINS_TREES)
 room.reformat()

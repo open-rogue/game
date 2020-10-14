@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI');
 
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
 
 body {
     margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    overflow-x: hidden;
 }
 
 #grid {
@@ -11,7 +22,7 @@ body {
     height: 100%;
     min-height: 100vh;
     background-color: white;
-    grid-template-columns: 240px 1fr 576px 1fr;
+    grid-template-columns: 240px 1fr 576px 64px 240px 1fr;
     background-color: white;
 }
 
@@ -32,14 +43,22 @@ body {
     grid-column: 3 / 4;
     width: 100%;
     margin: 10vh 0;
-    background-color: lightcoral;
+}
+
+#right {
+    display: flex;
+    grid-column: -2 / -3;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 10vh 0;
 }
 
 #navigation ul {
     list-style: none;
     padding: 0;
     width: 100%;
-    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
 }
 
@@ -63,4 +82,68 @@ body {
 #navigation .nav-icon {
     width: 32px;
     padding-left: 4px;
+}
+
+.divider {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color: #DFDFDE;
+    margin-bottom: 16px;
+    margin-top: 12px;
+}
+
+#content > p {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+}
+
+input {
+    border: 1px solid  #DFDFDE;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding: 8px;
+    width: 100%;
+}
+
+#game-text {
+    display: none;
+}
+
+canvas {
+    border-radius: 8px;
+}
+
+/* Inventory table */
+
+#inventory {
+    border: 1px solid #DFDFDE;
+    border-radius: 8px;
+    color: black;
+    font-size: 14px;
+}
+
+#inventory th {
+    background-color: #F7F6F3;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#inventory .name {
+    width: 100%;
+    text-align: center;
+}
+
+#inventory .name, .quantity {
+    padding: 0 8px;
+}
+
+#inventory img { 
+    height: 24px;
+    width: auto;
 }

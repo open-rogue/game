@@ -1,6 +1,7 @@
 require './rb/include.rb'
 
 room = Room.new("portal_room")
+room.name = "Portal Room"
 room.west = "spawn"
 
 room.fill(" ")

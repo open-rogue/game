@@ -1,14 +1,13 @@
 function setup() {
 	// Create canvas
-	canvas = createCanvas(MAP_WIDTH * TILESIZE, (MAP_HEIGHT + 1.5) * TILESIZE);
+	//canvas = createCanvas(MAP_WIDTH * TILESIZE, (MAP_HEIGHT + 1.5) * TILESIZE);
+	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
 	canvas.parent('game');
 	frameRate(15);
 	noSmooth();
 	textFont(font);
-	// Create game text
-	createP('&nbsp;').parent('#game').id('game-text');
 	// Set chat width
-	document.getElementById("chat").style.width = `${mapWidth()}px`;
+	//document.getElementById("chat").style.width = `${mapWidth()}px`;
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();

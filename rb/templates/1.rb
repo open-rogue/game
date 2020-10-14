@@ -1,6 +1,7 @@
 require './rb/include.rb'
 
 room = Room.new("test_house")
+room.name = "Test House"
 room.south = "spawn"
 
 room.fill(" ")

@@ -119,7 +119,6 @@ class Player {
       this.playerType = type;
       this.submit();
     } else {
-      console.log(type);
       print(type, "NOT IN PLAYER_TYPES", PLAYER_TYPES);
     }
   }
@@ -130,7 +129,7 @@ class Player {
       this.chatCooldown = CHAT_COOLDOWN;
       this.submit();
     }
-      callback();
+    callback();
   }
 
   sound() {
@@ -292,18 +291,6 @@ class Player {
         }
       }
     }
-    // Check sign
-    var is_sign = false;
-    for (var k = 0; k < room.signs.length; k++) {
-      var sign = room.signs[k];
-      if (createVector(new_x - sign.x(), new_y - sign.y()).mag() < TILESIZE * 2) {
-        setGameText(sign.text);
-        is_sign = true;
-      }
-    }
-    if (!is_sign) {
-      clearGameText();
-    }
     // Check warp collision
     for (var k = 0; k < room.warps.length; k++) {
       var warp = room.warps[k];
@@ -343,15 +330,19 @@ class Player {
     } else {
       this.inventory[item] = quantity;
     }
+    if (this.inventory[item] == 0) {
+      delete this.inventory[item];
+    }
   }
 
   initializeRoom(callback) {
     var data = {
       room_id: this.home_id,
+      name: `${this.name}'s Home`,
       color: "#222223",
       tiles: getRoomData("example_home"),
       props: [[-1, -1, "NULL"]],
-      signs: [[7, 6, `${this.name}'s home`]],
+      signs: [[7, 6, `${this.name}'s Home`]],
       warps: [[-1, -1, -1, -1, -1]],
       weather: false
     };
