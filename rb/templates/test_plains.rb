@@ -1,11 +1,12 @@
 require './rb/include.rb'
 
 room = Room.new("test_plains")
+room.name = "Test Plains"
 room.south = "spawn"
 
 PLAINS_GRASS = ["PLAINS_GRASS_0", "PLAINS_GRASS_1", "PLAINS_GRASS_2", "PLAINS_GRASS_3", "PLAINS_GRASS_4"]
 
-PLAINS_FLOWERS = ["PLAINS_FLOWER_0", "PLAINS_FLOWER_1", "PLAINS_FLOWER_2", "PLAINS_FLOWER_3"]
+#PLAINS_FLOWERS = ["PLAINS_FLOWER_0", "PLAINS_FLOWER_1", "PLAINS_FLOWER_2", "PLAINS_FLOWER_3"]
 
 room.scatter_fill(PLAINS_GRASS)
 

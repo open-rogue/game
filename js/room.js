@@ -1,6 +1,7 @@
 class Room {
     constructor(room_id) {
         this.room_id = room_id;
+        this.name    = rooms[this.room_id].name;
         this.tiles   = [];
         this.warps   = [];
         this.signs   = [];
@@ -46,9 +47,13 @@ class Room {
 
     display(only_colliders = false) {
         background(this.color);
-		document.getElementById("game").style.backgroundColor = this.color;
+        //document.getElementById("game").style.backgroundColor = this.color;
+        document.getElementById("room_name").innerHTML = this.name;
         for (var k = 0; k < this.tiles.length; k++) {
             this.tiles[k].display();
+        }
+        for (var k = 0; k < this.signs.length; k++) {
+            this.signs[k].display();
         }
     }
 }

@@ -43,7 +43,7 @@ function gotPlayerData(data) {
     players = data.val();
     if (uid in players) {
         var session_key = data.val()[uid].session;
-        window.location.href = `/game.html?uid=${uid}&s=${session_key}`;
+        window.location.href = `/layout.html?uid=${uid}&s=${session_key}`;
     } else {
         registerAccount();
     }

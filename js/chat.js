@@ -31,7 +31,6 @@ function chatExecute(str) {
 		return true;
 	}
 	if (command[0] == "skin") {
-		print(command[1]);
 		player.changePlayerType(command[1]);
 		return true;
 	}
@@ -41,6 +40,10 @@ function chatExecute(str) {
 		} else {
 			player.changeRoom("home_" + command[1], 0.5 * mapWidth(), 0.5 * mapHeight());
 		}
+		return true;
+	}
+	if ((command[0] == "give") && (command.length == 3)) {
+		player.addItem(command[1].toUpperCase(), parseInt(command[2]));
 		return true;
 	}
 }

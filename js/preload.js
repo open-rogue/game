@@ -21,6 +21,8 @@ let step_right_sound;
 
 let tileset = {};
 let colliders = [];
+let image_paths = {}
+let item_names = {}
 
 let canvas;
 let room;
@@ -95,11 +97,14 @@ function preload() {
 function loadTiles() {
 	//print(table.getRowCount() + ' total tiles in table');
 	for (let row = 0; row < table.getRowCount(); row++) {
-		print(id, path);
 		var id = table.getString(row, 0);
-		var path = table.getString(row, 1);
-		var collider = table.getString(row, 2);
+		var name = table.getString(row, 1);
+		var path = table.getString(row, 2);
+		var collider = table.getString(row, 3);
+		print(id, name, path, collider);
 		tileset[id] = loadImage(path);
+		image_paths[id] = path;
+		item_names[id] = name;
 		if (collider == 'true') {
 			colliders.push(id);
 		}

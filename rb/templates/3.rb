@@ -1,6 +1,7 @@
 require './rb/include.rb'
 
 room = Room.new("test_house_upstairs")
+room.name = "Test House"
 room.weather = false
 
 room.fill(" ")

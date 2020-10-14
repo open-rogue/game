@@ -32,21 +32,27 @@
 
   <body>
     <div id = "grid">
-        <div id = "navigation">
-          <ul>
-            <li class = "selected"><i class="fa fa-gamepad fa-sm nav-icon"></i>Play</li>
-            <li><i class="fa fa-user fa-lg nav-icon"></i>Account</li>
-            <li><i class="fa fa-code fa-sm nav-icon"></i>Development log</li>
-            <li><i class="fa fa-bug fa-lg nav-icon"></i>Bug report</li>
-          </ul>
-          <ul>
-            <li><i class="fa fa-plus fa-lg nav-icon"></i>Commands</li>
-          </ul>
-        </div>
-        <div id = "content">
-          <div id="game"></div>
-          <input id="chat" autofocus></input>
-        </div>
+      <div id = "navigation">
+        <ul>
+          <li class = "selected"><i class="fa fa-gamepad fa-sm nav-icon"></i>Play</li>
+          <li><i class="fa fa-user fa-lg nav-icon"></i>Account</li>
+          <li><i class="fa fa-code fa-sm nav-icon"></i>Development log</li>
+          <li><i class="fa fa-bug fa-lg nav-icon"></i>Bug report</li>
+        </ul>
+        <ul>
+          <li><i class="fa fa-plus fa-lg nav-icon"></i>Commands</li>
+        </ul>
+      </div>
+      <div id = "content">
+        <!-- Game Canvas -->
+        <p id = "room_name"></p>
+        <div class = "divider"></div>
+        <div id="game"></div>
+        <input id="chat" autofocus></input>
+      </div>
+      <div id = "right">
+        <!-- Inventory Table -->
+      </div>
     </div>
   </body>
 </html>
