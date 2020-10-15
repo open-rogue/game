@@ -56,6 +56,11 @@ class Room {
             this.signs[k].display();
         }
     }
+
+    interact(i, j) {
+        var index = (j * MAP_WIDTH) + i;
+        console.log(rooms[this.room_id].tiles[index]);
+    }
 }
 
 function getRoomData(room_id) {
