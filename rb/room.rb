@@ -36,7 +36,7 @@ class Room
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
-    @id, @name, @color = room_id, "unnamed", "#222323"
+    @id, @name, @owner, @color = room_id, "unnamed", "Louis", "#222323"
     @w, @h, @north, @east, @south, @west = 24, 16, nil, nil, nil, nil
     @tiles, @props = Array.new(@w * @h), [[-1, -1, "NULL"]]
     @warps, @signs = [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]
@@ -72,7 +72,7 @@ class Room
 
   def overlay(map); map.split("").each_with_index { |k, i| @tiles[i] = k unless k == " " }; end
 
-  def reformat(); REF.each { |a, b| @tiles.map! { |c| (a == c) ? b : c } }; end
+  def reformat(ref = REF); ref.each { |a, b| @tiles.map! { |c| (a == c) ? b : c } }; end
 
   def draw(); (0...@h).each { |j| puts (0...@w).map { |i| @tiles[ix(i, j)][0] + " " }.join }; end
 

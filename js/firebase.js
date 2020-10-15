@@ -65,9 +65,11 @@ function errPlayerData(err) {
 
 function gotRoomData(data) {
 	rooms = data.val();
+	var room_id = player == null ? START_ROOM : player.room_id;
 	if (room == null) {
-		var room_id = player == null ? START_ROOM : player.room_id;
 		room = new Room(room_id in rooms ? room_id : START_ROOM);
+	} else {
+		room = new Room(room_id);
 	}
 }
 
