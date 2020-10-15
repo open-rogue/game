@@ -81,6 +81,7 @@ class Room
       :room_id => @id,
       :name => @name,
       :color => @color,
+      :owner => @owner,
       :tiles => @tiles,
       :warps => @warps,
       :signs => @signs,

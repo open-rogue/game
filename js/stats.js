@@ -8,24 +8,30 @@ class Stats {
   }
 
   showInventory() {
-    var div = document.getElementById("right");
+    var div = document.getElementById("inventory");
     div.innerHTML = "";
     if (Object.keys(player.inventory).length !== 0) {
-      var table = createElement("table").id("inventory").parent(div);
+      //document.getElementById("inventory-image").style.display = "inline";
+      div.style.display = "flex";
+      var table = createElement("table").parent(div);
       // Create header
-      var row = createElement("tr").parent(table);
-      createElement("th", "Inventory").id("inventory-header").parent(row);
-      document.getElementById("inventory-header").colSpan = "3";
+      //var row = createElement("tr").parent(table);
+      //createElement("th", "Inventory").id("inventory-header").parent(row);
+      //document.getElementById("inventory-header").colSpan = "3";
       // Create items
       for (let item in player.inventory) {
         var quantity = beautifyNumber(player.inventory[item]);
         var image_path = (item in image_paths) ? image_paths[item] : image_paths["NULL"];
         var name = (item in item_names) ? item_names[item] : item;
-        row = createElement("tr").parent(table);
-        createElement("td", `<img src = \"${image_path}">`).class("icon").parent(row);
+        var row = createElement("tr").parent(table);
+        createElement("td", `<img src = \"${image_path}\">`).class("icon").parent(row);
         createElement("td", name).class("name").parent(row);
+        createElement("td", ":").class("quantity").parent(row);
         createElement("td", quantity).class("quantity").parent(row);
       }
+    } else {
+      //document.getElementById("inventory-image").style.display = "none";
+      div.style.display = "none";
     }
   }
 }

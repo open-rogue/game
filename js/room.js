@@ -3,6 +3,7 @@ class Room {
         this.room_id = room_id;
         this.raw     = rooms[this.room_id];
         this.name    = this.raw.name;
+        this.owner   = this.raw.owner;
         this.tiles   = [];
         this.props   = [];
         this.warps   = [];
@@ -64,6 +65,19 @@ class Room {
             }
         }
     }
+
+    removeProp(i, j) {
+        var index = -1;
+        for (var k = 0; k < this.raw.props.length; k++) {
+            var prop = this.raw.props[k];
+            if ((i == prop[0]) && (j == prop[1])) {
+                index = k;
+            }
+        }
+        if (index > -1) {
+            this.raw.props.splice(index, 1);
+        }
+    }
     
     setProp(i, j, type) {
         var index = -1;
@@ -85,6 +99,7 @@ class Room {
         var data = {
             room_id: this.room_id,
             name: this.name,
+            owner: this.owner,
             color: this.color,
             tiles: this.raw.tiles,
             props: this.raw.props,
@@ -94,7 +109,6 @@ class Room {
         };
         var ref = database.ref('mmo/rooms');
         ref.child(this.room_id).set(data, this.gotData);
-        console.log("Updated");
     }
 
     display() {

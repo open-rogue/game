@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI');
 
+@font-face {
+    font-family: "Pixels";
+    src: url(../files/pixel.ttf);
+  }
+
 img { 
     image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
     image-rendering: -moz-crisp-edges;          /* Firefox                        */
@@ -13,7 +18,7 @@ img {
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
     user-select: none;
 }
 
@@ -23,7 +28,7 @@ body {
     height: 100%;
     min-height: 100vh;
     background-color: white;
-    grid-template-columns: 240px 1fr 576px 64px 240px 1fr;
+    grid-template-columns: 240px 1fr 576px 64px 200px 1fr;
     background-color: white;
 }
 
@@ -48,12 +53,13 @@ body {
 
 #right {
     display: flex;
-    grid-column: -2 / -3;
+    grid-column: 5 / 6;
     width: 100%;
     height: 100%;
     min-height: 100vh;
     flex-direction: column;
     margin: 10vh 0;
+    align-items: center;
 }
 
 #navigation ul {
@@ -109,8 +115,27 @@ input {
     width: 100%;
 }
 
-#game-text {
-    display: none;
+#console {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid  #DFDFDE;
+    border-radius: 8px;
+    color: #72706B;
+    font-family: monospace;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding: 8px;
+    width: 100%;
+    height: 80px;
+    max-height: 80px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#console p {
+    margin: 0;
+    padding-bottom: 4px;
 }
 
 canvas {
@@ -119,11 +144,25 @@ canvas {
 
 /* Inventory table */
 
+#inventory-image {
+    display: none;
+    width: 32px;
+    height: 32px;
+    margin: 16px 0;
+}
+
 #inventory {
+    display: none;
     border: 1px solid #DFDFDE;
     border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+}
+
+#inventory table {
     color: black;
     font-size: 14px;
+    width: 100%;
 }
 
 #inventory th {
@@ -137,7 +176,11 @@ canvas {
 
 #inventory .name {
     width: 100%;
-    text-align: center;
+    text-align: left;
+}
+
+#inventory .quantity {
+    text-align: right;
 }
 
 #inventory .name, .quantity {
