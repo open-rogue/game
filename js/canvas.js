@@ -54,11 +54,18 @@ function draw() {
 	}
 }
 
-function mouseTileCursor(x, y) {
-	noFill();
-	stroke(255);
-	strokeWeight(2);
-	rect(mouseX - (mouseX % TILESIZE), mouseY - (mouseY % TILESIZE), TILESIZE, TILESIZE, 8);
+function mouseTileCursor() {
+	if (mouseOnScreen()) {
+		noFill();
+		stroke(255);
+		strokeWeight(2);
+		rect(
+			mouseX - (mouseX % TILESIZE), 
+			mouseY - (mouseY % TILESIZE), 
+			TILESIZE, TILESIZE,
+			8
+		);
+	}
 }
 
 function mousePressed() {
@@ -66,7 +73,7 @@ function mousePressed() {
 		// Set moving flag on player
 		if (player != null) {
 			if (!stats.mouseClick()) {
-				if (inRange(mouseX, 0, mapWidth()) && inRange(mouseY, 0, mapHeight())) {
+				if (mouseOnScreen()) {
 					player.startMouseMoving();
 				}
 			}
@@ -85,17 +92,8 @@ function mouseReleased() {
 	document.getElementById("chat").focus(); 
 }
 
-function mouseMoved() {
-	// Check mouse
-	if (this._curElement != null) {
-		if (inRange(mouseY, stats.top(), height)) {
-			if (!stats.updateCursor()) {
-				cursor(ARROW);
-			}
-		} else {
-			cursor(ARROW);
-		}
-	}
+function mouseOnScreen() {
+	return inRange(mouseX, 0, width) && inRange(mouseY, 0, height);
 }
 
 function keyReleased() {
@@ -122,6 +120,6 @@ function mapHeight() {
 	return TILESIZE * MAP_HEIGHT;
 }
 
-function inRange(x, min, max) {
-    return ((x - min) * (x - max) <= 0);
+function inRange(n, min, max) {
+    return ((n - min) * (n - max) <= 0);
 }
