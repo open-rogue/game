@@ -118,8 +118,10 @@ class Player {
 		if (PLAYER_TYPES.includes(type)) {
       this.playerType = type;
       this.submit();
+      return true;
     } else {
       print(type, "NOT IN PLAYER_TYPES", PLAYER_TYPES);
+      return false;
     }
   }
 
@@ -192,10 +194,15 @@ class Player {
     // Inventory and particle test
     if (this.is_player && this.isMoving()) {
       if (random(1) < 0.05) {
-        particles.push(new Particle("PLUS_GOLD", this.x, this.y - TILESIZE, 12));
-        this.addItem("GOLD", 1);
+        this.addItem("GOLD", 1, false);
       }
     }
+  }
+
+  addParticle(particle) {
+    particles.push(
+      new Particle(particle, this.x, this.y - TILESIZE, 12)
+    );
   }
 
   round(num, places) {
@@ -324,7 +331,16 @@ class Player {
     return this.y + TILESIZE;
   }
 
-  addItem(item, quantity) {
+  addItem(item, quantity, log = true) {
+    if (log) {
+      var item_name = (item in item_names) ? item_names[item] : item;
+      printToConsole(`Obtained ${quantity} × [${item_name}]`);
+    }
+    if (item == "GOLD") {
+      this.addParticle("PARTICLE_PLUS_GOLD");
+    } else {
+      this.addParticle("PARTICLE_PLUS_ITEM");
+    }
     if (item in this.inventory) {
       this.inventory[item] += quantity;
     } else {
@@ -338,6 +354,7 @@ class Player {
   initializeRoom(callback) {
     var data = {
       room_id: this.home_id,
+      owner: this.name,
       name: `${this.name}'s Home`,
       color: "#222223",
       tiles: getRoomData("example_home"),

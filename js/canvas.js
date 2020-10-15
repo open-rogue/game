@@ -32,8 +32,8 @@ function draw() {
 		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
 		// Display room
 		room.display();
-		//
-		room.tick();
+		// Tick room if owned
+		if (player.name == room.owner) { room.tick() }
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Show tile cursor

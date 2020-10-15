@@ -33,6 +33,17 @@ class Weather {
         }
     }
 
+    current() {
+        switch(this.state) {
+            case WEATHER_CLEAR:
+                return "CLEAR";
+            case WEATHER_RAIN:
+                return "RAIN";
+            case WEATHER_SNOW:
+                return "SNOW";
+        }
+    }
+
     update() {
         for (var k = 0; k < this.particles.length; k++) {
             this.particles[k].update();

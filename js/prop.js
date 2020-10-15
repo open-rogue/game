@@ -1,4 +1,4 @@
-GROW_RATE = 0.01; // Between 0 and 1
+GROW_RATE = 0.05; // Between 0 and 1
 
 class Prop extends Tile { 
   constructor(i, j, text) {
