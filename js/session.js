@@ -14,7 +14,7 @@ function validateSession(key) {
     //if (key == session_key) {
     //    is_validated = true
     //}
-    //return true;
+    return true;
     return key == session_key;
 }
 

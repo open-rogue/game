@@ -8,6 +8,7 @@ function setup() {
 	textFont(font);
 	// Set chat width
 	//document.getElementById("chat").style.width = `${mapWidth()}px`;
+	document.addEventListener('contextmenu', event => event.preventDefault());
 	// Play audio
 	bgm.loop();
 	//document.getElementById("audio").play();
@@ -33,6 +34,8 @@ function draw() {
 		room.display();
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
+		// Show tile cursor
+		mouseTileCursor();
 		// Display player
 		player.display();
 		// Play player sounds
@@ -51,14 +54,28 @@ function draw() {
 	}
 }
 
+function mouseTileCursor(x, y) {
+	noFill();
+	stroke(255);
+	strokeWeight(2);
+	rect(mouseX - (mouseX % TILESIZE), mouseY - (mouseY % TILESIZE), TILESIZE, TILESIZE, 8);
+}
+
 function mousePressed() {
-	// Set moving flag on player
-	if (player != null) {
-		if (!stats.mouseClick()) {
-			if (inRange(mouseX, 0, mapWidth()) && inRange(mouseY, 0, mapHeight())) {
-				player.startMouseMoving();
+	if (mouseButton == LEFT) {
+		// Set moving flag on player
+		if (player != null) {
+			if (!stats.mouseClick()) {
+				if (inRange(mouseX, 0, mapWidth()) && inRange(mouseY, 0, mapHeight())) {
+					player.startMouseMoving();
+				}
 			}
 		}
+	} else {
+		room.interact(
+			floor(mouseX / TILESIZE),
+			floor(mouseY / TILESIZE)
+		);
 	}
 }
 

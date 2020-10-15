@@ -5,6 +5,7 @@ class Sign extends Tile {
   }
 
   display() {
+    noStroke();
     fill(0, 0, 0, 192);
     var bounds = font.textBounds(this.text + " ", 0, 0, TILESIZE / 2);
     rect(this.x() - bounds.w / 2, this.y() - TILESIZE - 6, bounds.w, bounds.h + 4);
