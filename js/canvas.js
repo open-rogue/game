@@ -32,6 +32,8 @@ function draw() {
 		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
 		// Display room
 		room.display();
+		//
+		room.tick();
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Show tile cursor
@@ -72,10 +74,8 @@ function mousePressed() {
 	if (mouseButton == LEFT) {
 		// Set moving flag on player
 		if (player != null) {
-			if (!stats.mouseClick()) {
-				if (mouseOnScreen()) {
-					player.startMouseMoving();
-				}
+			if (mouseOnScreen()) {
+				player.startMouseMoving();
 			}
 		}
 	} else {
