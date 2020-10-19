@@ -32,16 +32,21 @@ function draw() {
 		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
 		// Display room
 		room.display();
+		// Assign host if no host
+		if (room.host == null) {
+			print("Set host - draw");
+			room.setHost(player.uid);
+		}
 		// Tick room if owned
 		if ((frameCount % FRAMERATE == 0) && (player.name == room.owner)) { room.tick() }
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
-		// Show tile/entity cursor
-		mouseCursor();
 		// Display player
 		player.display();
 		// Play player sounds
 		player.sound();
+		// Show tile/entity cursor
+		mouseCursor();
 		// Display particles
 		for (var k = 0; k < particles.length; k++) { particles[k].display() }
 		// Remove complete particles

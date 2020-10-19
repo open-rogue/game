@@ -3,6 +3,7 @@ class Room {
         this.room_id = room_id;
         this.raw     = rooms[this.room_id];
         this.name    = this.raw.name;
+        this.host    = this.raw.host;
         this.owner   = this.raw.owner;
         this.tiles   = [];
         this.props   = [];
@@ -99,12 +100,17 @@ class Room {
         var data = {
             room_id: this.room_id,
             name: this.name,
+            host: this.host,
             owner: this.owner,
             color: this.color,
             tiles: this.raw.tiles,
             props: this.raw.props,
             signs: this.raw.signs,
             warps: this.raw.warps,
+            north: this.raw.north,
+            east: this.raw.east,
+            south: this.raw.south,
+            west: this.raw.west,
             weather: this.weather
         };
         var ref = database.ref('mmo/rooms');
@@ -138,6 +144,13 @@ class Room {
             if ((prop.i == i) && (prop.j == j)) {
                 prop.interact();
             }
+        }
+    }
+
+    setHost(uid) {
+        if (this.host !== uid) {
+            this.host = uid;
+            this.update();
         }
     }
 }

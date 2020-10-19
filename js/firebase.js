@@ -3,22 +3,22 @@ function gotPlayerData(data) {
 	is_retrieving = true;
 	is_new = true;
 	ghosts = [];
-	var records = data.val();
-	if (records != null) {
-		var names = Object.keys(records);
+	players = data.val();
+	if (players != null) {
+		var names = Object.keys(players);
 		for (var k = 0; k < names.length; k++) {
 			// Set variables
 			var uid = names[k];
-			var name = (records[uid].name == null) ? "Undefined" : records[uid].name;
-			var type = (records[uid].playerType == null) ? PLAYER_TYPES[0] : records[uid].playerType;
-			var x = records[uid].x;
-			var y = records[uid].y;
-			var room_id = records[uid].room;
-			var dir = createVector(records[uid].dir[0], records[uid].dir[1]);
-			var time = records[uid].lastAction;
-			var is_moving = records[uid].isMoving;
-      		var anim_frame = records[uid].animFrame;
-			var chat_text = records[uid].chatText;
+			var name = (players[uid].name == null) ? "Undefined" : players[uid].name;
+			var type = (players[uid].playerType == null) ? PLAYER_TYPES[0] : players[uid].playerType;
+			var x = players[uid].x;
+			var y = players[uid].y;
+			var room_id = players[uid].room;
+			var dir = createVector(players[uid].dir[0], players[uid].dir[1]);
+			var time = players[uid].lastAction;
+			var is_moving = players[uid].isMoving;
+      		var anim_frame = players[uid].animFrame;
+			var chat_text = players[uid].chatText;
 			// Assign values
 			if (uid != player_uid && player != null) {
 				// Ghost
@@ -29,19 +29,19 @@ function gotPlayerData(data) {
 				// Player
 				if (player_uid == uid && player == null) {
 					is_new = false;
-					if (validateSession(records[uid].session)) {
-						var inventory = ("inventory" in records[uid]) ? records[uid].inventory : {};
+					if (validateSession(players[uid].session)) {
+						var inventory = ("inventory" in players[uid]) ? players[uid].inventory : {};
 						var session = generateSession();
 						player = new Player(session, player_uid, name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
 						if (room != null) { player.changeRoom(room_id) }
 						stats.display();
 					} else {
-						print(`Session key "${session_key}" is invalid`);//, should be "${records[name].session}"`);
+						print(`Session key "${session_key}" is invalid`);//, should be "${players[name].session}"`);
 						window.location.href = "/index.html";
 					}
 				} else {
 					if (player != null) {
-						player.latestTime = records[uid].lastAction;
+						player.latestTime = players[uid].lastAction;
 						player.localTime = Date.now();
 					}
 				}
@@ -81,4 +81,14 @@ function errRoomData(err) {
 
 function dbTimestamp() {
 	return firebase.database.ServerValue.TIMESTAMP;
+}
+
+function playerName(uid) {
+	var uids = Object.keys(players);
+	for (var k = 0; k < uids.length; k++) {
+		if (uids[k] == uid) {
+			return players[uids[k]].name;
+		}
+	}
+	return null;
 }
