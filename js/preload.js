@@ -74,7 +74,7 @@ function preload() {
 	ref.on('value', gotRoomData, errRoomData);
 	// Server config event
 	var ref = database.ref('mmo/config');
-	ref.on('value', gotConfigData, gotConfigData);
+	ref.on('value', gotConfigData, errConfigData);
 	// Create stats
 	stats = new Stats();
 	// Create weather
@@ -92,23 +92,24 @@ function preload() {
 	bgm = loadSound('/ogg/little_town_orchestral.ogg');
 	step_left_sound = loadSound('/ogg/stepwood_1.wav');
 	step_right_sound = loadSound('/ogg/stepwood_2.wav');
-	// Tileset
-	table = loadTable('/files/tiles.csv?' + (new Date()).getTime(), 'csv', 'header', loadTiles);
+	// Import tile data
+	var table_path = `/files/tiles.csv?${(new Date()).getTime()}`;
+	table = loadTable(table_path, 'csv', 'header', loadTiles);
 }
 
 function loadTiles() {
-	//print(table.getRowCount() + ' total tiles in table');
 	for (let row = 0; row < table.getRowCount(); row++) {
-		var id = table.getString(row, 0);
-		var name = table.getString(row, 1);
-		var path = table.getString(row, 2);
+		// Get values
+		var id       = table.getString(row, 0);
+		var name     = table.getString(row, 1);
+		var path     = table.getString(row, 2);
 		var collider = table.getString(row, 3);
-		print(id, name, path, collider);
-		tileset[id] = loadImage(path);
+		// Add data to local caches
+		tileset[id]     = loadImage(path);
 		image_paths[id] = path;
-		item_names[id] = name;
-		if (collider == 'true') {
-			colliders.push(id);
-		}
+		item_names[id]  = name;
+		if (collider == 'true') { colliders.push(id) }
+		// Print to web console
+		print(id, name, path, collider);
 	}
 }

@@ -59,4 +59,12 @@ function chatExecute(str) {
 		clearConsole();
 		return true;
 	}
+	if (command[0] == "owner") {
+		printToConsole(`Room owner is [${playerName(room.owner)}]`);
+		return true;
+	}	
+	if (command[0] == "host") {
+		printToConsole(`Room host is [${playerName(room.host)}]`);
+		return true;
+	}
 }

@@ -1,5 +1,5 @@
 KEY_PATH = "./files/key.json"
-LOUIS_UUID = "cpPFbwLg1yfRjODbnNT9NNVP6xp2"
+LOUIS_UID = "cpPFbwLg1yfRjODbnNT9NNVP6xp2"
 
 
 PLAINS_FLOWERS = ["PLAINS_FLOWER_0", "PLAINS_FLOWER_1", "PLAINS_FLOWER_2", "PLAINS_FLOWER_3"]
@@ -37,7 +37,7 @@ class Room
   attr_accessor :north, :east, :south, :west
 
   def initialize(room_id, map = nil)
-    @id, @name, @owner, @host, @color = room_id, "unnamed", "Louis", nil, "#222323"
+    @id, @name, @owner, @host, @color = room_id, "unnamed", LOUIS_UID, nil, "#222323"
     @w, @h, @north, @east, @south, @west = 24, 16, "NULL", "NULL", "NULL", "NULL"
     @tiles, @props = Array.new(@w * @h), [[-1, -1, "NULL"]]
     @warps, @signs = [[-1, -1, -1, -1, -1]], [[-1, -1, ""]]

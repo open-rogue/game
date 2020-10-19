@@ -33,12 +33,9 @@ function draw() {
 		// Display room
 		room.display();
 		// Assign host if no host
-		if (room.host == null) {
-			print("Set host - draw");
-			room.setHost(player.uid);
-		}
+		if (room.host == null) { room.setHost(player.uid) }
 		// Tick room if owned
-		if ((frameCount % FRAMERATE == 0) && (player.name == room.owner)) { room.tick() }
+		if ((frameCount % FRAMERATE == 0) && (player.uid == room.host)) { room.tick() }
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Display player
