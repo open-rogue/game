@@ -1,3 +1,4 @@
+const FRAMERATE = 15;
 const TILESIZE = 24;
 const MAP_WIDTH = 24;
 const MAP_HEIGHT = 16;

@@ -349,6 +349,7 @@ class Player {
     if (this.inventory[item] == 0) {
       delete this.inventory[item];
     }
+    stats.display();
   }
 
   initializeRoom(callback) {

@@ -34,6 +34,7 @@ function gotPlayerData(data) {
 						var session = generateSession();
 						player = new Player(session, player_uid, name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
 						if (room != null) { player.changeRoom(room_id) }
+						stats.display();
 					} else {
 						print(`Session key "${session_key}" is invalid`);//, should be "${records[name].session}"`);
 						window.location.href = "/index.html";
@@ -54,6 +55,7 @@ function gotPlayerData(data) {
 		var y = MAP_HEIGHT * TILESIZE * 0.5;
 		var session = generateSession();
 		player = new Player(session, player_uid, player_name, player_type, START_ROOM, x, y, createVector(0, 0), true, false, 0);
+		stats.display();
 	}
 	//draw();
 	is_retrieving = false;
