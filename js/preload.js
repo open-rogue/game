@@ -28,6 +28,7 @@ let item_names = {}
 let canvas;
 let room;
 let player;
+let players;
 let ghosts = [];
 let particles;
 let database;

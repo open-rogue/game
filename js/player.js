@@ -244,11 +244,17 @@ class Player extends Entity {
       if (y != null) { this.y = parseFloat(y) }
       this.room_id = room_id;
       if (room == null || room.room_id != room_id) {
-        print(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);
+        // Remove host from previous room
+        if (room.host == player.uid) { room.setHost(null) }
+        // Create room object
         room = new Room(room_id);
+        // Assign host to new room
+        room.setHost(player.uid);
+        // Write player changes to database
         this.submit();
+        // Print to console
+        printToConsole(`Moved to room ${room_id} [${this.round(this.x)}, ${this.round(this.y)}]`);
       }
-      
     }
   }
 
@@ -260,28 +266,28 @@ class Player extends Entity {
     var new_bottom = new_y + (TILESIZE / 2);
     // North
     if (new_y - (TILESIZE / 2) < 0) {
-      if (room.north != null) {
+      if (room.north != "NULL") {
         this.changeRoom(room.north, this.x, room.height - TILESIZE);
       }
       return false;
     }
     // East
     if (new_x + (TILESIZE / 4) > room.width) {
-      if (room.east != null) {
+      if (room.east != "NULL") {
         this.changeRoom(room.east, TILESIZE, this.y);
       }
       return false;
     }
     // South
     if (new_y + (TILESIZE / 2) > room.height) {
-      if (room.south != null) {
+      if (room.south != "NULL") {
         this.changeRoom(room.south, this.x, TILESIZE);
       }
       return false;
     }
     // West
     if (new_x - (TILESIZE / 4) < 0) {
-      if (room.west != null) {
+      if (room.west != "NULL") {
         this.changeRoom(room.west, room.width - TILESIZE, this.y);
       }
       return false;
