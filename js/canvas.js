@@ -36,8 +36,8 @@ function draw() {
 		if ((frameCount % FRAMERATE == 0) && (player.name == room.owner)) { room.tick() }
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
-		// Show tile cursor
-		mouseTileCursor();
+		// Show tile/entity cursor
+		mouseCursor();
 		// Display player
 		player.display();
 		// Play player sounds
@@ -56,17 +56,17 @@ function draw() {
 	}
 }
 
-function mouseTileCursor() {
+function mouseCursor() {
+	noFill();
+	stroke(255);
+	strokeWeight(2);
 	if (mouseOnScreen()) {
-		noFill();
-		stroke(255);
-		strokeWeight(2);
-		rect(
-			mouseX - (mouseX % TILESIZE), 
-			mouseY - (mouseY % TILESIZE), 
-			TILESIZE, TILESIZE,
-			8
-		);
+		if (player.contains(mouseX, mouseY)) {
+			print("Test", player.left(), player.top(), player.w, player.h);
+			rect(player.left(), player.top(), player.w, player.h, 8);
+		} else {
+			rect(mouseX - (mouseX % TILESIZE), mouseY - (mouseY % TILESIZE), TILESIZE, TILESIZE, 8);
+		}
 	}
 }
 

@@ -1,11 +1,10 @@
-class Player {
+class Player extends Entity {
   constructor(session, uid, name, type, room_id, x, y, dir, is_player, is_moving, anim_frame, chat_text = "", inventory = { "GOLD": 0 }) {
+    super(x, y, TILESIZE, TILESIZE);
     this.session = session;
     this.uid = uid;
     this.name = name;
     this.playerType = this.checkPlayerType(type);
-    this.x = x;
-    this.y = y;
     this.room_id = room_id;
     this.home_id = "home_" + this.name.toLowerCase();
     this.dir = dir;
@@ -313,22 +312,6 @@ class Player {
       }
     }
     return true;
-  }
-
-  left() {
-    return this.x;
-  }
-
-  top() {
-    return this.y;
-  }
-
-  right() {
-    return this.x + TILESIZE;
-  }
-
-  bottom() {
-    return this.y + TILESIZE;
   }
 
   addItem(item, quantity, log = true) {
