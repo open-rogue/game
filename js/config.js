@@ -10,9 +10,5 @@ function errConfigData(err) {
 
 function setConfig(key, value) {
     var ref = database.ref('mmo/config');
-    ref.child(key).set(value, gotSetConfigData);
-}
-
-function gotSetConfigData(data) {
-
+    ref.child(key).set(value);
 }

@@ -8,16 +8,28 @@ class Prop extends Tile {
   interact() {
     switch(this.type) {
       case "FARM_PUMPKIN_2":
-        player.addItem("PUMPKIN", 1);
-        room.setProp(this.i, this.j, "FARM_PUMPKIN_0");
+        if (player.uid == room.owner) {
+          player.addItem("PUMPKIN", 1);
+          room.setProp(this.i, this.j, "FARM_PUMPKIN_0");
+        } else {
+          printToConsole("You do not have permission to do that")
+        }
         break;
       case "FARM_WHEAT_2":
-        player.addItem("WHEAT", 1);
-        room.setProp(this.i, this.j, "FARM_WHEAT_0");
+        if (player.uid == room.owner) {
+          player.addItem("WHEAT", 1);
+          room.setProp(this.i, this.j, "FARM_WHEAT_0");
+        } else {
+          printToConsole("You do not have permission to do that")
+        }
         break;
       case "FARM_BERRIES_2":
-        player.addItem("BERRIES", 1);
-        room.setProp(this.i, this.j, "FARM_BERRIES_0");
+        if (player.uid == room.owner) {
+          player.addItem("BERRIES", 1);
+          room.setProp(this.i, this.j, "FARM_BERRIES_0");
+        } else {
+          printToConsole("You do not have permission to do that")
+        }
         break;
     }
   }
