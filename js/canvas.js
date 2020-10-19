@@ -3,7 +3,7 @@ function setup() {
 	//canvas = createCanvas(MAP_WIDTH * TILESIZE, (MAP_HEIGHT + 1.5) * TILESIZE);
 	canvas = createCanvas(MAP_WIDTH * TILESIZE, MAP_HEIGHT * TILESIZE);
 	canvas.parent('game');
-	frameRate(15);
+	frameRate(FRAMERATE);
 	noSmooth();
 	textFont(font);
 	// Set chat width
@@ -33,7 +33,7 @@ function draw() {
 		// Display room
 		room.display();
 		// Tick room if owned
-		if (player.name == room.owner) { room.tick() }
+		if ((frameCount % FRAMERATE == 0) && (player.name == room.owner)) { room.tick() }
 		// Display ghost players
 		for (var k = 0; k < ghosts.length; k++) { ghosts[k].display() }
 		// Show tile cursor
@@ -45,9 +45,9 @@ function draw() {
 		// Display particles
 		for (var k = 0; k < particles.length; k++) { particles[k].display() }
 		// Remove complete particles
-		particles = particles.filter(function(particle) { return !particle.finished() });
+		particles = particles.filter(function(particle) { return !particle.finished() })
 		// Stats bar
-		stats.display();
+		//stats.display();
 		// Weather
 		if (!weather.clear() && room.weather) {
 			weather.update();
