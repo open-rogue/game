@@ -163,6 +163,8 @@ canvas {
     color: black;
     font-size: 14px;
     width: 100%;
+    border-collapse: collapse;
+    font-family: "Pixels", "Segoe UI", sans-serif;
 }
 
 #inventory th {
@@ -177,6 +179,15 @@ canvas {
 #inventory .name {
     width: 100%;
     text-align: left;
+}
+
+#inventory span {
+    padding: 3px;
+}
+
+#inventory .selected {
+    background-color: #911111;
+    color: white;
 }
 
 #inventory .quantity {

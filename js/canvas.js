@@ -30,6 +30,8 @@ function draw() {
 		}
 		// Move player with mouse
 		if (player.is_mouse_moving) { player.move(mouseX, mouseY) }
+		// Check for slash
+		if (keyIsDown(191)) { setChat("/") }
 		// Display room
 		room.display();
 		// Assign host if no host
@@ -64,7 +66,6 @@ function mouseCursor() {
 	strokeWeight(2);
 	if (mouseOnScreen()) {
 		if (player.contains(mouseX, mouseY)) {
-			print("Test", player.left(), player.top(), player.w, player.h);
 			rect(player.left(), player.top(), player.w, player.h, 8);
 		} else {
 			rect(mouseX - (mouseX % TILESIZE), mouseY - (mouseY % TILESIZE), TILESIZE, TILESIZE, 8);
@@ -85,6 +86,14 @@ function mousePressed() {
 			floor(mouseX / TILESIZE),
 			floor(mouseY / TILESIZE)
 		);
+	}
+}
+
+function mouseWheel(event) {
+	let input = constrain(event.delta, -1, 1);
+	if (abs(input) > 0.05) {
+		stats.shiftSelected(input);
+		stats.showInventory();
 	}
 }
 

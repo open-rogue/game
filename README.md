@@ -26,3 +26,9 @@
 [The Adventure Begins - bart](https://opengameart.org/content/adventure-begins)
 
 [Foot walking step sounds - Jute](https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-snow-wood-and-dirt)
+
+[RogueDB32](https://opengameart.org/content/roguedb32)
+
+[DLC for 8x8 Tileset](https://opengameart.org/content/dlc1-for-8x8px-tileset)
+
+[Top Sci-Fi CGA Tileset](https://opengameart.org/content/top-sci-fi-cga-tileset)

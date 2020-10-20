@@ -351,7 +351,11 @@ class Player extends Entity {
       props: [[-1, -1, "NULL"]],
       signs: [[7, 6, `${this.name}'s Home`]],
       warps: [[-1, -1, -1, -1, -1]],
-      weather: false
+      weather: false,
+      north: "NULL",
+      east: "NULL",
+      south: "NULL",
+      west: "NULL"
     };
   	var ref = database.ref('mmo/rooms');
     ref.child(this.home_id).set(data, this.gotData);

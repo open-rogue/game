@@ -22,7 +22,7 @@ function gotPlayerData(data) {
 			// Assign values
 			if (uid != player_uid && player != null) {
 				// Ghost
-				if (player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
+				if (player.latestTime != 0 && player.latestTime - time < PLAYER_TIMEOUT && player.room_id == room_id) {
 					ghosts.push(new Player(null, null, name, type, room_id, x, y, dir, false, is_moving, anim_frame, chat_text));
 				}
 			} else {

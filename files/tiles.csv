@@ -4,6 +4,7 @@ GOLD,Gold,img/gold.png,false
 POTION,Potion,img/potion.png,false
 HOME,Home,img/home.png,false
 CASTLE,,img/castle.png,false
+AXE,Axe,img/items/axe.png,false
 BAG,,img/items/bag.png,false
 PARTICLE_PLUS_ITEM,,img/particles/plus_item.png,false
 PARTICLE_PLUS_GOLD,,img/particles/plus_gold.png,false

@@ -2,9 +2,14 @@ function chatValue() {
 	return document.getElementById("chat").value;
 }
 
-function clearChat() {
-	document.getElementById("chat").value = "";
+function setChat(value = "") {
+	document.getElementById("chat").value = value;
 }
+
+function clearChat() {
+	setChat()
+}
+
 
 function chatExecute(str) {
 	if (str[0] != "/") { return null }
