@@ -50,8 +50,6 @@ function draw() {
 		for (var k = 0; k < particles.length; k++) { particles[k].display() }
 		// Remove complete particles
 		particles = particles.filter(function(particle) { return !particle.finished() })
-		// Stats bar
-		//stats.display();
 		// Weather
 		if (!weather.clear() && room.weather) {
 			weather.update();
