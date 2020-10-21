@@ -10,21 +10,10 @@ class Stats {
   }
 
   shiftSelected(shift) {
-    print("BEFORE", this.pos);
-    if (shift < 0) {
-      this.pos -= 1;
-    } else {
-      this.pos += 1;
-    }
-    if (this.pos >= this.item_count) {
-      this.pos = 0;
-    }
-    if (this.pos < 0) {
-      this.pos = this.item_count - 1;
-    }
+    this.pos += (shift < 0) ? -1 : 1;
+    this.pos  = (this.pos >= this.item_count) ? 0 : this.pos;
+    this.pos  = (this.pos < 0) ? this.item_count - 1 : this.pos;
     player.equipped = this.getEquipped();
-    print("AFTER", this.pos);
-    print(player.equipped);
   }
 
   showInventory() {
