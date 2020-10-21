@@ -10,6 +10,7 @@ class Stats {
   }
 
   shiftSelected(shift) {
+    print("BEFORE", this.pos);
     if (shift < 0) {
       this.pos -= 1;
     } else {
@@ -21,6 +22,9 @@ class Stats {
     if (this.pos < 0) {
       this.pos = this.item_count - 1;
     }
+    player.equipped = this.getEquipped();
+    print("AFTER", this.pos);
+    print(player.equipped);
   }
 
   showInventory() {
@@ -31,24 +35,26 @@ class Stats {
       div.style.display = "flex";
       var index = 0;
       var table = createElement("table").parent(div);
-      // Show gold
-      var image_path = image_paths["GOLD"];
-      var name = item_names["GOLD"];
-      var quantity = beautifyNumber(player.inventory["GOLD"]);
-      this.addInventoryRow(table, image_path, name, quantity, index);
       // Create items
       for (let item in player.inventory) {
-        if (item != "GOLD") {
-          index += 1;
-          var image_path = (item in image_paths) ? image_paths[item] : image_paths["NULL"];
-          var name = (item in item_names) ? item_names[item] : item;
-          var quantity = beautifyNumber(player.inventory[item]);
-          this.addInventoryRow(table, image_path, name, quantity, index);
-        }
+        var image_path = (item in image_paths) ? image_paths[item] : image_paths["NULL"];
+        var name = (item in item_names) ? item_names[item] : item;
+        var quantity = beautifyNumber(player.inventory[item]);
+        this.addInventoryRow(table, image_path, name, quantity, index);
+        index += 1;
       }
     } else {
       div.style.display = "none";
     }
+  }
+
+  getEquipped() {
+    var index = 0;
+    for (let item in player.inventory) {
+      if (index == this.pos) { return item }
+      index += 1;
+    }
+    return "NULL";
   }
 
   addInventoryRow(table, image_path, name, quantity, index) {

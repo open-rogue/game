@@ -22,6 +22,7 @@ class Player extends Entity {
     this.inventory = inventory;
     this.anim_frame = anim_frame;
     this.chatText = chat_text;
+    this.equipped = "NULL";
     if (this.is_player) {
       this.submit();
     }
