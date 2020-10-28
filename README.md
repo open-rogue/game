@@ -32,3 +32,7 @@
 [DLC for 8x8 Tileset](https://opengameart.org/content/dlc1-for-8x8px-tileset)
 
 [Top Sci-Fi CGA Tileset](https://opengameart.org/content/top-sci-fi-cga-tileset)
+
+[Legend of Fanguary Tileset](https://opengameart.org/content/legend-of-fangury-characters-and-tileset-8x8)
+
+[8x8 resource pack](https://opengameart.org/content/8x8-resource-pack)
