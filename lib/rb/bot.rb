@@ -52,6 +52,13 @@ def invite_link(uid, otp); "#{GAME_URL}/?uid=#{uid}&otp=#{otp}"; end
 
 $bot = Discordrb::Bot.new(token: DISCORD_TOKEN, client_id: DISCORD_CLIENT_ID)
 
+$bot.message(start_with: PREFIX + 'quietjoin') do |event|
+    uid, name, otp = event.user.id.to_s, event.author.display_name, (0...8).map { (65 + rand(26)).chr }.join
+    success = get_players().key?(uid) ? refresh_otp(uid, otp) : add_user(uid, name, otp)
+    event.author.dm invite_link(uid, otp) if success
+    event.message.delete
+end
+
 $bot.message(start_with: PREFIX + 'join') do |event|
     uid, name, otp = event.user.id.to_s, event.author.display_name, (0...8).map { (65 + rand(26)).chr }.join
     success = get_players().key?(uid) ? refresh_otp(uid, otp) : add_user(uid, name, otp)
