@@ -28,32 +28,22 @@ body {
     height: 100%;
     min-height: 100vh;
     background-color: white;
-    grid-template-columns: 240px 1fr 576px 64px 200px 1fr;
+    grid-template-columns: 1fr 576px 64px 200px 1fr;
     background-color: white;
-}
-
-#navigation {
-    display: flex;
-    grid-column: 1 / 2;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    background-color: #F7F6F3;
-    flex-direction: column;
 }
 
 #content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    grid-column: 3 / 4;
+    grid-column: 2 / 3;
     width: 100%;
     margin: 10vh 0;
 }
 
 #right {
     display: flex;
-    grid-column: 5 / 6;
+    grid-column: 4 / 5;
     width: 100%;
     height: 100%;
     min-height: 100vh;

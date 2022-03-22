@@ -29,14 +29,14 @@ function gotPlayerData(data) {
 				// Player
 				if (player_uid == uid && player == null) {
 					is_new = false;
-					if (validateSession(players[uid].session)) {
+					if (validateSession(players[uid].otp)) {
 						var inventory = ("inventory" in players[uid]) ? players[uid].inventory : {};
 						var session = generateSession();
 						player = new Player(session, player_uid, name, type, room_id, x, y, dir, true, false, 0, chat_text, inventory);
 						if (room != null) { player.changeRoom(room_id) }
 						stats.display();
 					} else {
-						print(`Session key "${session_key}" is invalid`);//, should be "${players[name].session}"`);
+						print(`One-time password "${session_otp}" is invalid`);//, should be "${players[name].session}"`);
 						window.location.href = "/index.html";
 					}
 				} else {

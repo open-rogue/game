@@ -34,6 +34,7 @@ let particles;
 let database;
 let rooms;
 let player_name;
+let session_otp;
 let bgm;
 let stats;
 let table;
@@ -44,6 +45,8 @@ let is_retrieving = false;
 
 function preload() {
 	font = loadFont("/files/pixel.ttf");
+	// Get one-time password
+	session_otp = getURLParams().otp;
 	// Get session key
 	player_uid  = (getURLParams().uid == null) ? "Null" : getURLParams().uid;
 	session_key = (getURLParams().s == null) ? "Null" : getURLParams().s;
@@ -51,30 +54,30 @@ function preload() {
 	player_name = (getURLParams().n == null) ? "Null" : getURLParams().n;
 	player_name = player_name.substr(0, 16);
 	player_type = (getURLParams().type == null) ? PLAYER_TYPES[0] : getURLParams().type;
-	// Firebase
-	var firebaseConfig = {
-		apiKey: "AIzaSyAmxjDLZrtiWjQGkekCdTXKx5zCbLDJP28",
-		authDomain: "machin-dev.firebaseapp.com",
-		databaseURL: "https://machin-dev.firebaseio.com",
-		projectId: "machin-dev",
-		storageBucket: "machin-dev.appspot.com",
-		messagingSenderId: "471389656934",
-		appId: "1:471389656934:web:de807290048ad37fa91aa7",
-		measurementId: "G-2LDMEXJL3N"
-	};
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-	firebase.analytics();
-	database = firebase.database();
-	// Player data event
-	var ref = database.ref('mmo/players');
-  	ref.on('value', gotPlayerData, errPlayerData);
-	// Room data event
-	var ref = database.ref('mmo/rooms');
-	ref.on('value', gotRoomData, errRoomData);
-	// Server config event
-	var ref = database.ref('mmo/config');
-	ref.on('value', gotConfigData, errConfigData);
+
+    // Firebase
+    requirejs.config({
+        paths: {
+            text: "/js/require/text",
+            json: "/js/require/json"
+        }
+    });
+    require(['json!/firebase_config.json'], function (firebaseConfig) {
+        console.log("Loaded firebase config")
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+		database = firebase.database();
+		// Player data event
+		var ref = database.ref('mmo/players');
+  		ref.on('value', gotPlayerData, errPlayerData);
+		// Room data event
+		var ref = database.ref('mmo/rooms');
+		ref.on('value', gotRoomData, errRoomData);
+		// Server config event
+		var ref = database.ref('mmo/config');
+		ref.on('value', gotConfigData, errConfigData);
+    });
 	// Create stats
 	stats = new Stats();
 	// Create weather
