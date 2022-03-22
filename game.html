@@ -60,27 +60,52 @@
 
     #chat {
       display: flex;
+      margin-top: 16px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
       font-family: "Pixels";
-      background-color: inherit;
       color: transparent;
       text-shadow: 0 0 0 #FFFFFF;
       border: none;
-      border-radius: 8px;
-      padding: 4px;
+      padding: 8px;
+    }
+
+    #console {
+      display: flex;
       margin-top: 16px;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      font-family: "Pixels";
+      font-size: 0.75em;
+      flex-direction: column;
+      padding: 8px;
+      color: rgba(255, 255, 255, 0.5);
+      height: 96px;
+      overflow: scroll;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      user-select: none;
+    }
+
+    #console > p {
+      padding: 2px;
+      margin: 0;
+    }
+
+    #console::-webkit-scrollbar {
+      display: none;
     }
   </style>
 
   <body>
     <div id="wrapper">
       <div id="game">
+        <span id = "console"></span>
         <input id = "chat" autofocus></input>
       </div>
     </div>
     
     <p id = "room_name" style = "display: none;"></p>
-    <span id = "console" style = "display: none;"></span>
     <div id = "inventory" style = "display: none;"></div>
     <!--
     <div id = "grid">
