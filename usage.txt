@@ -1,0 +1,21 @@
+# Discord commands
+
+Commands:
+  ^join       Receive a session link
+  ^players    List all players that have joined
+  ^online     List all players that are currently online
+  ^rooms      List all room IDs
+
+# In-game commands
+
+Commands:
+  /spawn                        Warp to spawn
+  /room <room_id>               Warp to room
+  /rain                         Toggle rain globally
+  /snow                         Toggle snow globally
+  /skin <skin_id>               Change skin
+  /home <player>                Warp to home of player
+  /give <item_id> <quantity>    Give item to yourself
+  /clear                        Clear your console
+  /owner                        Show the room owner
+  /host                         Show the room host

@@ -1,5 +1,5 @@
 PREFIX = '^'
-GAME_URL = "http://localhost:8000"
+GAME_URL = "https://game.machin.dev"
 DISCORD_TOKEN = File.read("../discord_token.key").chomp
 DISCORD_CLIENT_ID = File.read("../discord_client_id.key").chomp
 FIREBASE_BASE_URI = "https://machin-dev.firebaseio.com"
@@ -74,6 +74,11 @@ end
 $bot.message(start_with: PREFIX + 'rooms') do |event|
     room_ids = get_rooms().keys
     event.respond format_standard("Rooms (#{room_ids.length}): [#{room_ids.join(", ")}]")
+end
+
+$bot.message(start_with: PREFIX + 'help') do |event|
+    message = File.readlines('./usage.txt').map { |line| line.chomp.gsub('^', PREFIX) }
+    event.respond format_help(message.join("\n"))
 end
 
 $bot.run
