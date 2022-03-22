@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OpenRogue</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/assets/favicon.png"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script defer src=https://cdn.JsDelivr.net/npm/p5/lib/addons/p5.sound.min.js></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+    <!--<script src="js/start.js"></script>-->
+    <script src="/lib/js/requirejs/require.js"></script>
+    <script src="/lib/js/preload.js"></script>
+    <script src="/lib/js/canvas.js"></script>
+    <script src="/lib/js/firebase.js"></script>
+    <script src="/lib/js/entity.js"></script>
+    <script src="/lib/js/room.js"></script>
+    <script src="/lib/js/tile.js"></script>
+    <script src="/lib/js/warp.js"></script>
+    <script src="/lib/js/sign.js"></script>
+    <script src="/lib/js/prop.js"></script>
+    <script src="/lib/js/particle.js"></script>
+    <script src="/lib/js/stats.js"></script>
+    <script src="/lib/js/chat.js"></script>
+    <script src="/lib/js/weather.js"></script>
+    <script src="/lib/js/config.js"></script>
+    <script src="/lib/js/player.js"></script>
+    <script src="/lib/js/console.js"></script>
+    <script src="/lib/js/session.js"></script>
+  </head>
+
+  <style>
+    @font-face {
+      font-family: "Pixels";
+      src: url("../assets/pixel.ttf");
+    }
+
+    textarea, select, input, button { outline: none; }
+
+    body {
+      margin: 0;
+    }
+
+    #wrapper {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #game {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    #chat {
+      display: flex;
+      font-family: "Pixels";
+      background-color: inherit;
+      color: transparent;
+      text-shadow: 0 0 0 #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 4px;
+      margin-top: 16px;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+
+  <body>
+    <div id="wrapper">
+      <div id="game">
+        <input id = "chat" autofocus></input>
+      </div>
+    </div>
+    
+    <p id = "room_name" style = "display: none;"></p>
+    <span id = "console" style = "display: none;"></span>
+    <div id = "inventory" style = "display: none;"></div>
+    <!--
+    <div id = "grid">
+      <div id = "content">
+        <p id = "room_name"></p>
+        <div class = "divider"></div>
+        <div id="game"></div>
+        <input id = "chat" autofocus></input>
+        <span id = "console"></span>
+      </div>
+      <div id = "right">
+        <div id = "inventory"></div>
+      </div>
+    </div>
+    -->
+  </body>
+</html>

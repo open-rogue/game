@@ -1,6 +1,6 @@
 # Open-source MMO
 
-<img src="./files/preview.png" alt="Gameplay preview" width="100%">
+<img src="./assets/preview.png" alt="Gameplay preview" width="100%">
 
 ### Chat commands
 
