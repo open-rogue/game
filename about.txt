@@ -1,0 +1,7 @@
+OpenRogue is a simple online environment in development by Louis.
+
+It is currently in it's early stages and has aspirations to be a simple open-world community with a player-driven economy.
+
+The bot provides a link between Discord and the realtime database the game uses, and so will be used in features such as trade.
+
+If you would like to join in its development - reach out!

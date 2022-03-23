@@ -5,6 +5,9 @@ Commands:
   ^players    List all players that have joined
   ^online     List all players that are currently online
   ^rooms      List all room IDs
+  ^gold       Show your gold quantity
+  ^top        List the top 20 players by gold quantity
+  ^economy    Show the total quantity of gold in circulation
 
 # In-game commands
 
@@ -15,7 +18,6 @@ Commands:
   /snow                         Toggle snow globally
   /skin <skin_id>               Change skin
   /home <player>                Warp to home of player
-  /give <item_id> <quantity>    Give item to yourself
   /clear                        Clear your console
   /owner                        Show the room owner
   /host                         Show the room host

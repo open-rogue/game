@@ -5,17 +5,22 @@ DISCORD_CLIENT_ID = File.read("../discord_client_id.key").chomp
 FIREBASE_BASE_URI = "https://machin-dev.firebaseio.com"
 FIREBASE_TOKEN = File.open("../firebase.json").read
 
-puts "DISCORD_TOKEN=#{DISCORD_TOKEN}"
-puts "DISCORD_CLIENT_ID=#{DISCORD_CLIENT_ID}"
-puts "FIREBASE_TOKEN=#{FIREBASE_TOKEN}"
-
 require 'bundler'
 Bundler.setup(:default, :ci)
 
+require 'json'
+
+puts "\n"
+puts "DISCORD_TOKEN=#{DISCORD_TOKEN}"
+puts "DISCORD_CLIENT_ID=#{DISCORD_CLIENT_ID}"
+puts "FIREBASE_CLIENT_ID=#{JSON.load(FIREBASE_TOKEN.to_s).dig("client_id")}"
+puts "\n"
+
 require 'rest-client'
+ENV["DISCORDRB_NONACL"] = "true"
 require 'discordrb' # https://www.rubydoc.info/gems/discordrb/3.2.1/
 require 'firebase'
-require 'json'
+
 
 $firebase = Firebase::Client.new(FIREBASE_BASE_URI, FIREBASE_TOKEN)
 
@@ -52,13 +57,6 @@ def invite_link(uid, otp); "#{GAME_URL}/?uid=#{uid}&otp=#{otp}"; end
 
 $bot = Discordrb::Bot.new(token: DISCORD_TOKEN, client_id: DISCORD_CLIENT_ID)
 
-$bot.message(start_with: PREFIX + 'quietjoin') do |event|
-    uid, name, otp = event.user.id.to_s, event.author.display_name, (0...8).map { (65 + rand(26)).chr }.join
-    success = get_players().key?(uid) ? refresh_otp(uid, otp) : add_user(uid, name, otp)
-    event.author.dm invite_link(uid, otp) if success
-    event.message.delete
-end
-
 $bot.message(start_with: PREFIX + 'join') do |event|
     uid, name, otp = event.user.id.to_s, event.author.display_name, (0...8).map { (65 + rand(26)).chr }.join
     success = get_players().key?(uid) ? refresh_otp(uid, otp) : add_user(uid, name, otp)
@@ -86,6 +84,48 @@ end
 $bot.message(start_with: PREFIX + 'help') do |event|
     message = File.readlines('./usage.txt').map { |line| line.chomp.gsub('^', PREFIX) }
     event.respond format_help(message.join("\n"))
+end
+
+$bot.message(start_with: PREFIX + 'welcome') do |event|
+    event.respond "Type ``^join`` to receive a session link, or type ``^help`` to see a list of commands."
+end
+
+$bot.message(start_with: PREFIX + 'about') do |event|
+    event.respond format_help(File.readlines('./about.txt').map { |line| line.chomp }.join("\n"))
+end
+
+$bot.message(start_with: PREFIX + 'gold') do |event|
+    players, uid = get_players(), event.user.id.to_s
+    if players.key?(uid)
+        gold, name = players.dig(uid, "inventory", "GOLD"), players[uid]["name"]
+        event.respond format_standard("Player #{name} has #{gold == nil ? 0 : gold} gold!")
+    else
+        event.respond format_error("Player not found in database!")
+    end
+end
+
+$bot.message(start_with: PREFIX + 'top') do |event|
+    players = get_players().map { |u, d| [d["name"], d.dig("inventory", "GOLD").to_i] }.sort! { |a, b| b[1] <=> a[1] }
+    caption = players.first(20).map.with_index { |d, i| "#{(i + 1).to_s.rjust(2, " ")}. #{d[0].ljust(10, " ")} #{d[1]}" }.join("\n")
+    event.respond format_standard(caption)
+end
+
+$bot.message(start_with: PREFIX + 'economy') do |event|
+    gold = get_players().sum { |u, d| d.dig("inventory", "GOLD").to_i }
+    event.respond format_standard("There is currently #{gold} gold in circulation!")
+end
+
+$bot.message(start_with: PREFIX + 'debug') do |event|
+    players, uid = get_players(), event.user.id.to_s
+    if players.key?(uid)
+        puts JSON.pretty_generate(players[uid])
+    end
+    event.message.delete
+end
+
+$bot.message(start_with: PREFIX + 'logo') do |event|
+    event.send_file(File.open("./assets/logo.png", 'r'))
+    event.message.delete
 end
 
 $bot.run
