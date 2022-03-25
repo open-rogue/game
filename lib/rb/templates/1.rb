@@ -5,8 +5,8 @@ room.name = "Test House"
 room.south = "spawn"
 
 room.fill(" ")
-room.random_fill('"', 0.1)
-room.random_fill('*', 0.1)
+room.random_fill("*", 0.1)
+PLAINS_FLOWERS.each { |flower| room.random_fill(flower, 0.02) }
 
        #012345678901234567890123
 map  = "OOOOOOOOOOOOOOOOOOOOOOOO" #0

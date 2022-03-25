@@ -1,4 +1,4 @@
-KEY_PATH = "./files/key.json"
+KEY_PATH = "../firebase.json"
 LOUIS_UID = "cpPFbwLg1yfRjODbnNT9NNVP6xp2"
 
 

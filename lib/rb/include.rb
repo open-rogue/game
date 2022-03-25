@@ -4,4 +4,4 @@ require 'bundler'
 Bundler.setup(:default, :ci)
 require 'firebase'
 # Require room object
-require './rb/room.rb'
+require_relative './room.rb'

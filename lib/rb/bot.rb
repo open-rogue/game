@@ -21,6 +21,8 @@ ENV["DISCORDRB_NONACL"] = "true"
 require 'discordrb' # https://www.rubydoc.info/gems/discordrb/3.2.1/
 require 'firebase'
 
+require_relative './world_factory.rb'
+
 
 $firebase = Firebase::Client.new(FIREBASE_BASE_URI, FIREBASE_TOKEN)
 
@@ -54,6 +56,7 @@ def format_error(str); return "```diff\n- #{str}\n```"; end
 def format_usage(str); return "Command usage: ``#{PREFIX}#{str}``"; end
 def format_help(str); return "```markdown\n#{str}\n```"; end
 def invite_link(uid, otp); "#{GAME_URL}/?uid=#{uid}&otp=#{otp}"; end
+def is_admin?(author); author.defined_permission?(:administrator); end
 
 $bot = Discordrb::Bot.new(token: DISCORD_TOKEN, client_id: DISCORD_CLIENT_ID)
 
@@ -88,6 +91,7 @@ end
 
 $bot.message(start_with: PREFIX + 'welcome') do |event|
     event.respond "Type ``^join`` to receive a session link, or type ``^help`` to see a list of commands."
+    event.message.delete
 end
 
 $bot.message(start_with: PREFIX + 'about') do |event|
@@ -126,6 +130,20 @@ end
 $bot.message(start_with: PREFIX + 'logo') do |event|
     event.send_file(File.open("./assets/logo.png", 'r'))
     event.message.delete
+end
+
+$bot.message(start_with: PREFIX + 'generate') do |event|
+    if is_admin?(event.author)
+        seed = event.content.split(" ")[1].to_i
+        event.respond format_standard("SEED=#{seed}")
+        # Default to ocean with land seeds
+        factory = WorldFactory.new(seed, 32, 16)
+        factory.scatter("^", 0.01)
+        factory.grow("^", 0.1, 16)
+        event.respond format_standard(factory.world.map { |r| r.join }.join("\n"))
+    else
+        event.respond format_error("Administrator permission required!")
+    end
 end
 
 $bot.run

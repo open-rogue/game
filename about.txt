@@ -1,4 +1,4 @@
-OpenRogue is a simple online environment in development by Louis.
+OpenRogue is a minimal online environment in development by Louis.
 
 It is currently in it's early stages and has aspirations to be a simple open-world community with a player-driven economy.
 
