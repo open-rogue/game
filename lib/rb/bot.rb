@@ -1,5 +1,5 @@
 PREFIX = '^'
-GAME_URL = "https://game.machin.dev"
+GAME_URL = "https://rogue.machin.dev"
 DISCORD_TOKEN = File.read("../discord_token.key").chomp
 DISCORD_CLIENT_ID = File.read("../discord_client_id.key").chomp
 FIREBASE_BASE_URI = "https://machin-dev.firebaseio.com"
