@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     discordrb (3.2.1)
       discordrb-webhooks (~> 3.2.0.1)
       opus-ruby
@@ -45,7 +45,7 @@ GEM
     opus-ruby (1.0.1)
       ffi
     os (1.1.0)
-    public_suffix (4.0.5)
+    public_suffix (5.0.0)
     rbnacl (3.4.0)
       ffi
     rest-client (2.1.0)
